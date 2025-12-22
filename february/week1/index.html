@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>The Boo-riculum – January Week 1 Game Deck</title>
+<title>The Boo-riculum – February Week 1 Game Deck</title>
 <meta name="theme-color" content="#000">
 <link rel="icon" type="image/png" href="BoohaYellow.png">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet" />
@@ -261,155 +261,9 @@ footer{
 <body>
 
 <!-- 🔐 BOOHA TOKEN GATE (INDEX) + 👀 PREVIEW PILL -->
-<script>
-(async function () {
 
-  /* =========================
-     [A] CONFIG
-     ========================= */
-  const API_BASE = 'https://www.bryanharper.tokyo';
-  const GATE_URL = 'https://www.bryanharper.tokyo/booha-gate';
 
-  const MSG = {
-    kicked: {
-      en: "Someone just logged in using your name and PIN.",
-      jp: "別の端末であなたの名前とPINでログインされました。"
-    },
-    expired: {
-      en: "Your session has expired. Please log in again.",
-      jp: "セッションの有効期限が切れました。もう一度ブーハーゲートからログインしてください。"
-    },
-    invalid: {
-      en: "Your session is invalid. Please log in again.",
-      jp: "セッションの確認に問題が発生しました。もう一度ブーハーゲートからログインしてください。"
-    },
-    missing: {
-      en: "No session found. Please log in through the Booha Gate.",
-      jp: "セッションが見つかりません。ブーハーゲートからログインしてください。"
-    }
-  };
-
-  /* =========================
-     [B] PREVIEW MODE (DEV ONLY)
-     ========================= */
-  function isPreviewOn(){
-    const qs = new URLSearchParams(location.search);
-
-    if (qs.get('preview') === '1') {
-      try { sessionStorage.setItem('boohaPreview', '1'); } catch {}
-      qs.delete('preview');
-
-      const clean =
-        location.pathname +
-        (qs.toString() ? '?' + qs.toString() : '') +
-        location.hash;
-      history.replaceState(null, '', clean);
-
-      return true;
-    }
-
-    try { return sessionStorage.getItem('boohaPreview') === '1'; } catch {}
-    return false;
-  }
-
-  const PREVIEW = isPreviewOn();
-
-  /* =========================
-     [C] PREVIEW PILL (UI)
-     ========================= */
-  function showPreviewPill(){
-    const pill = document.createElement('div');
-    pill.textContent = 'PREVIEW MODE';
-    pill.style.cssText = `
-      position: fixed;
-      top: calc(10px + env(safe-area-inset-top));
-      right: calc(10px + env(safe-area-inset-right));
-      z-index: 99999;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255, 90, 160, 0.95);
-      color: #000;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: .04em;
-      box-shadow: 0 6px 18px rgba(0,0,0,.35);
-      pointer-events: none;
-    `;
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.appendChild(pill);
-    });
-  }
-
-  if (PREVIEW) {
-    console.log('[Booha Gate] PREVIEW MODE ENABLED');
-    showPreviewPill();
-  }
-
-  /* =========================
-     [D] HELPERS
-     ========================= */
-  function kickOut(kind) {
-    const m = MSG[kind] || MSG.invalid;
-    alert(m.en + "\n\n" + m.jp);
-    window.location.href = GATE_URL;
-  }
-
-  function getToken(){
-    const params = new URLSearchParams(window.location.search);
-    let t = params.get('token');
-    if (!t) {
-      try { t = sessionStorage.getItem('boohaToken'); } catch {}
-    }
-    return t;
-  }
-
-  /* =========================
-     [E] MAIN FLOW
-     ========================= */
-  let token = getToken();
-
-  if (!token) {
-    if (PREVIEW) return;   // 👀 allow GitHub preview
-    kickOut('missing');
-    return;
-  }
-
-  try {
-    const res = await fetch(
-      API_BASE + '/_functions/verifyToken?token=' + encodeURIComponent(token),
-      { headers: { 'Accept': 'application/json' } }
-    );
-
-    const data = await res.json();
-
-    if (!data.valid) {
-      if (data.reason === "KICKED" || data.isActive === false) kickOut('kicked');
-      else if (data.reason === "EXPIRED" || data.expired) kickOut('expired');
-      else kickOut('invalid');
-      return;
-    }
-
-    // ✅ token is valid — keep it for child pages
-    try { sessionStorage.setItem('boohaToken', token); } catch {}
-
-    // ✅ append token to all internal links
-    document.querySelectorAll('a[href]').forEach(a => {
-      const href = a.getAttribute('href');
-      if (!href) return;
-      if (href.startsWith('http')) return;
-      if (href.includes('token=')) return;
-
-      const sep = href.includes('?') ? '&' : '?';
-      a.setAttribute('href', href + sep + 'token=' + encodeURIComponent(token));
-    });
-
-  } catch (err) {
-    console.error('[Game Deck Index] token verification error:', err);
-    kickOut('invalid');
-  }
-})();
-</script>
+  
 <!-- 🔐 END BOOHA TOKEN GATE -->
 
 
@@ -417,7 +271,7 @@ footer{
 <section id="welcome">
   <h1>The Boo-riculum</h1>
   <h2>ブー・リキュラム</h2>
-  <h3>January Week 1 Game Deck<br>１月第１週ゲームデッキ</h3>
+  <h3>February Week 1 Game Deck<br>2月第１週ゲームデッキ</h3>
 
   <div class="deck-links">
     <a class="deck" href="tapmatch.html"><b>Tap Match</b><span>タップマッチ</span></a>
