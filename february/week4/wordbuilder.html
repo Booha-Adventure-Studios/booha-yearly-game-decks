@@ -8,9 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-/* =========================================================
-   ✅ WEEKLY THEME COLORS (CHANGE EACH WEEK IF YOU WANT)
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [A] WEEKLY THEME COLORS (CHANGE EACH WEEK IF YOU WANT)
+   ///*** ========================================================= */
 :root{
   --bg:#0b1530; --ink:#fff; --outline:#ffffff26;
   --green:#22c55e; --red:#ef4444; --purple:#7c3aed;
@@ -27,6 +27,10 @@ body{
   overflow-x:hidden; overflow-y:auto;
   user-select:none; -webkit-user-select:none; -ms-user-select:none;
 }
+
+/* ///*** =========================================================
+   ///*** [B] TOP NAV + HELP UI (STANDARD BOOHA)
+   ///*** ========================================================= */
 
 /* Top nav buttons (standard Booha) */
 .top-nav-btn{
@@ -87,12 +91,18 @@ body{
   color:#e5e7eb; font-size:1.2rem; cursor:pointer;
 }
 
-/* Global overlays */
+/* ///*** =========================================================
+   ///*** [C] GLOBAL OVERLAYS / FX
+   ///*** ========================================================= */
+
 #overlay{position:fixed; inset:0; pointer-events:none; z-index:9999}
 .flashRed{position:fixed; inset:0; background:rgba(255,0,0,.35); animation:flash .35s ease; pointer-events:none; z-index:9998}
 @keyframes flash{0%{opacity:0}40%{opacity:1}100%{opacity:0}}
 
-/* Header */
+/* ///*** =========================================================
+   ///*** [D] HEADER / HERO
+   ///*** ========================================================= */
+
 header{
   text-align:center;
   padding:48px 16px 8px;
@@ -137,6 +147,10 @@ header h3{margin-top:6px;opacity:.9}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 @keyframes fizzmove{0%{transform:translate(0,0) rotate(0)}50%{transform:translate(-4px,-4px) rotate(180deg)}100%{transform:translate(0,0) rotate(360deg)}}
 @keyframes fizzglow{0%{opacity:.4;filter:blur(3px)}100%{opacity:1;filter:blur(7px)}}
+
+/* ///*** =========================================================
+   ///*** [E] GAME LAYOUT
+   ///*** ========================================================= */
 
 main{
   flex:1;
@@ -342,9 +356,9 @@ footer{text-align:center;padding:16px;font-family:'Cinzel',serif;font-size:.95re
 <footer>BRYAN'S ENGLISH SCHOOL</footer>
 
 <script>
-/* =========================================================
-   ✅ CHANGE THIS EACH WEEK (ONE PLACE)
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [1] WEEK CONFIG (EDIT HERE EACH WEEK)
+   ///*** ========================================================= */
 const WEEK_CONFIG = {
   monthEn: "February",
   monthJp: "2月",
@@ -358,21 +372,15 @@ const WEEK_CONFIG = {
     "borrow","heavy","light","directions","broken",
     "fix","hurry","accident","safe","emergency"
   ],
-
-  /* ✅ AUDIO RULES (DO NOT CHANGE WEEKLY)
-     - Sage voice files live in:
-         audio/vocab/v01_word.mp3 ...
-     - SFX live in:
-         assets/audio/ding.mp3, fart.mp3, result_*.mp3
-  */
 };
 
-/* =========================================================
-   ✅ PATHS (AUTO) — NO MORE "week4/" HACKS
+/* ///*** =========================================================
+   ///*** [2] PATHS (AUTO) — NO MORE "week4/" HACKS
+   ///*** =========================================================
    Works anywhere as long as the folder contains:
      ./audio/vocab/...
      ./assets/audio/...
-   ========================================================= */
+*/
 const BASE = (() => {
   const u = new URL(window.location.href);
   u.hash = ""; u.search = "";
@@ -383,14 +391,14 @@ const PATHS = {
   sfx:   BASE + "assets/audio/"
 };
 
-/* =========================================================
-   ✅ HELPERS
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [3] HELPERS / DOM SHORTCUTS
+   ///*** ========================================================= */
 const $ = (s) => document.querySelector(s);
 
-/* =========================================================
-   ✅ DOM
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [4] DOM HOOKS
+   ///*** ========================================================= */
 const drop=$("#dropZone"), bank=$("#bank"), play=$("#playBtn"), check=$("#checkBtn");
 const nextWrap=$("#nextWrap"), nextBtn=$("#nextBtn"), progressCount=$("#progressCount");
 const pageRound=$("#page-round"), pageResults=$("#page-results");
@@ -399,9 +407,9 @@ const quitBtn=$("#quitBtn");
 const helpBtn=$("#helpBtn"), helpModal=$("#helpModal"), helpClose=$("#helpClose");
 const bigHeart=$("#bigHeart"), bigFart=$("#bigFart");
 
-/* =========================================================
-   ✅ NAV / HELP (CHANGE ONLY IF YOUR MENU PATH CHANGES)
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [5] NAV / HELP (EDIT ONLY IF MENU PATH CHANGES)
+   ///*** ========================================================= */
 quitBtn.addEventListener("click",()=>{ location.href="index.html"; });
 
 function openHelp(){ helpModal.style.display="flex"; helpModal.setAttribute("aria-hidden","false"); }
@@ -410,11 +418,69 @@ helpBtn.addEventListener("click",openHelp);
 helpClose.addEventListener("click",closeHelp);
 helpModal.addEventListener("click",e=>{ if(e.target===helpModal) closeHelp(); });
 
-/* =========================================================
-   ✅ AUDIO (CROSS-DEVICE SAFE)
-   - iOS/Safari requires user gesture to unlock audio.
-   ========================================================= */
-const sfx = {
+/* ///*** =========================================================
+   ///*** [6] AUDIO ENGINE (NO CLIPPED STARTS / CROSS-DEVICE)
+   ///*** =========================================================
+   FIXES:
+   - "emergency" -> "mergency" (Sage MP3 start clipping)
+   - ding late / clipped on iOS
+   STRATEGY:
+   - One-time unlock on first gesture
+   - WebAudio decoded buffers for SFX (ding/fart/results) = instant
+   - "Prime" Sage <audio> elements (muted micro-play) after unlock
+*/
+
+/* ---------- [6A] WebAudio core (for SFX) ---------- */
+let AC = null;                 // AudioContext
+let audioUnlocked = false;     // one-time
+const SFX_BUFFERS = new Map(); // name -> AudioBuffer
+
+function getAudioContext(){
+  if(AC) return AC;
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if(!Ctx) return null;
+  AC = new Ctx();
+  return AC;
+}
+
+async function fetchArrayBuffer(url){
+  const res = await fetch(url, { cache:"force-cache" }).catch(()=>null);
+  if(!res || !res.ok) throw new Error("fetch failed: " + url);
+  return await res.arrayBuffer();
+}
+
+async function decodeToBuffer(url){
+  const ctx = getAudioContext();
+  if(!ctx) return null;
+  const ab = await fetchArrayBuffer(url);
+  // decodeAudioData sometimes needs callback on older safari, but promises work on modern Safari
+  const buf = await ctx.decodeAudioData(ab.slice(0));
+  return buf;
+}
+
+function playSfxBuffer(name, opts = {}){
+  const ctx = getAudioContext();
+  if(!ctx) return; // fallback will handle elsewhere
+  const buf = SFX_BUFFERS.get(name);
+  if(!buf) return;
+
+  const src = ctx.createBufferSource();
+  src.buffer = buf;
+
+  const gain = ctx.createGain();
+  gain.gain.value = (typeof opts.gain === "number") ? opts.gain : 1.0;
+
+  src.connect(gain);
+  gain.connect(ctx.destination);
+
+  // NOTE: For MP3 encoder delay/start, we can optionally skip a tiny amount.
+  // Keeping at 0 by default because buffers are decoded and play instantly.
+  const offset = (typeof opts.offset === "number") ? opts.offset : 0;
+  try{ src.start(0, offset); }catch{}
+}
+
+/* ---------- [6B] <audio> fallback (if WebAudio unsupported) ---------- */
+const sfxFallback = {
   ding:  new Audio(PATHS.sfx + "ding.mp3"),
   fart:  new Audio(PATHS.sfx + "fart.mp3"),
   r0_5:  new Audio(PATHS.sfx + "result_0-5.mp3"),
@@ -423,56 +489,33 @@ const sfx = {
   r15:   new Audio(PATHS.sfx + "result_15.mp3"),
 };
 
-Object.values(sfx).forEach(a=>{
+Object.values(sfxFallback).forEach(a=>{
   a.preload="auto";
   a.playsInline = true;
+  a.crossOrigin = "anonymous";
   try{ a.load(); }catch{}
 });
 
-function playAudio(a){
-  // robust replay for rapid taps + iOS quirks
+function playAudioTag(a){
   try{
+    // For iOS: setting currentTime right before play can sometimes stutter.
+    // But for short SFX it’s usually OK once primed.
+    a.pause();
     a.currentTime = 0;
     const p = a.play();
     if(p && p.catch){
       p.catch(()=>{
+        // last-resort clone (rare)
         const clone = a.cloneNode(true);
-        clone.preload = "auto";
-        clone.playsInline = true;
+        clone.preload="auto";
+        clone.playsInline=true;
         clone.play().catch(()=>{});
       });
     }
   }catch{}
 }
 
-let audioUnlocked = false;
-async function unlockAudioOnce(){
-  if(audioUnlocked) return;
-  audioUnlocked = true;
-
-  // Tiny muted play/pause to satisfy iOS
-  const probe = sfx.ding;
-  try{
-    probe.muted = true;
-    await probe.play();
-    probe.pause();
-    probe.currentTime = 0;
-    probe.muted = false;
-  }catch{
-    // ok — still proceed; user taps will generally unlock anyway
-  }
-}
-
-// unlock on first real interaction (best across devices/iframes)
-["pointerdown","touchstart","mousedown","keydown"].forEach(evt=>{
-  window.addEventListener(evt, unlockAudioOnce, {once:true, passive:true});
-});
-
-/* =========================================================
-   ✅ SAGE (LOCAL MP3s)
-   File naming: v01_help.mp3 ... v15_emergency.mp3
-   Folder: audio/vocab/
-   ========================================================= */
+/* ---------- [6C] Sage voice cache (local MP3s) ---------- */
 const sage = new Map();
 WEEK_CONFIG.MASTER_BASE.forEach((word, i) => {
   const num = String(i + 1).padStart(2, "0");
@@ -481,6 +524,8 @@ WEEK_CONFIG.MASTER_BASE.forEach((word, i) => {
   a.preload = "auto";
   a.playsInline = true;
   a.loop = false;
+  a.crossOrigin = "anonymous";
+  // iOS tip: keep volume at 1, prime via muted micro-play
   try{ a.load(); }catch{}
   sage.set(word, a);
 });
@@ -489,6 +534,91 @@ function stopAllSage(){
   sage.forEach(a=>{ try{ a.pause(); a.currentTime = 0; }catch{} });
 }
 
+/* ---------- [6D] Unlock + Prime (THE IMPORTANT PART) ---------- */
+async function primeAudioTag(a){
+  // Prime by doing a micro muted play/pause, so the next play won't clip.
+  // On iOS, this is the #1 fix for "mergency"/"erections" 🙃
+  try{
+    const wasMuted = a.muted;
+    const wasVol = a.volume;
+
+    a.muted = true;
+    a.volume = 0;
+
+    // play a tiny bit
+    const p = a.play();
+    if(p && p.catch) await p.catch(()=>{});
+    // pause quickly
+    a.pause();
+    a.currentTime = 0;
+
+    a.volume = wasVol;
+    a.muted = wasMuted;
+  }catch{
+    // ignore
+  }
+}
+
+async function unlockAudioOnce(){
+  if(audioUnlocked) return;
+  audioUnlocked = true;
+
+  // Resume AudioContext (SFX path)
+  const ctx = getAudioContext();
+  if(ctx){
+    try{ if(ctx.state === "suspended") await ctx.resume(); }catch{}
+  }
+
+  // Prime ONE fallback tag immediately (helps iOS unlock)
+  await primeAudioTag(sfxFallback.ding);
+
+  // Prime ALL Sage tags quickly (15 items: fine)
+  // This is what prevents the chopped first syllable.
+  for(const a of sage.values()){
+    await primeAudioTag(a);
+  }
+
+  // Decode SFX buffers (best-case latency)
+  // If decoding fails, fallback <audio> still works.
+  const want = [
+    ["ding", PATHS.sfx + "ding.mp3"],
+    ["fart", PATHS.sfx + "fart.mp3"],
+    ["r0_5", PATHS.sfx + "result_0-5.mp3"],
+    ["r6_10", PATHS.sfx + "result_6-10.mp3"],
+    ["r11_14", PATHS.sfx + "result_11-14.mp3"],
+    ["r15", PATHS.sfx + "result_15.mp3"],
+  ];
+
+  if(ctx){
+    for(const [name, url] of want){
+      try{
+        const buf = await decodeToBuffer(url);
+        if(buf) SFX_BUFFERS.set(name, buf);
+      }catch{
+        // ignore; fallback will cover
+      }
+    }
+  }
+}
+
+// unlock on first real interaction (best across devices/iframes)
+["pointerdown","touchstart","mousedown","keydown"].forEach(evt=>{
+  window.addEventListener(evt, unlockAudioOnce, {once:true, passive:true});
+});
+
+/* ---------- [6E] Public SFX play function (buffer-first, fallback-second) ---------- */
+function playSfx(name){
+  const ctx = getAudioContext();
+  if(ctx && SFX_BUFFERS.has(name)){
+    playSfxBuffer(name);
+  }else{
+    // fallback tags
+    const a = sfxFallback[name];
+    if(a) playAudioTag(a);
+  }
+}
+
+/* ---------- [6F] Speak button (Sage) ---------- */
 async function speak(){
   await unlockAudioOnce();
 
@@ -499,7 +629,11 @@ async function speak(){
   stopAllSage();
   play.classList.add("fizzy");
 
-  try{ a.currentTime = 0; }catch{}
+  // Important: don’t spam currentTime resets during buffering
+  try{
+    a.pause();
+    a.currentTime = 0;
+  }catch{}
 
   const clear = ()=> play.classList.remove("fizzy");
   a.onended = clear;
@@ -514,9 +648,9 @@ async function speak(){
 }
 play.addEventListener("click", speak);
 
-/* =========================================================
-   ✅ VISUAL FX
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [7] VISUAL FX (RED FLASH + BIG ICON POP)
+   ///*** ========================================================= */
 function flashRedScreen(){
   const el=document.createElement("div");
   el.className="flashRed";
@@ -530,18 +664,18 @@ function showBig(el){
   setTimeout(()=>el.classList.remove("show"), 950);
 }
 
-/* =========================================================
-   ✅ GAME STATE
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [8] GAME STATE
+   ///*** ========================================================= */
 let WORDS = [];
 let index = 0;
 let totalScore = 0;
 let firstTry = true;
 let selectedTile = null;
 
-/* =========================================================
-   ✅ SLOT/TILE LOGIC
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [9] SLOT/TILE LOGIC (TAP TILE -> TAP SLOT)
+   ///*** ========================================================= */
 function nextEmptySlot(){
   return [...drop.children].find(s=>!s.firstChild) || null;
 }
@@ -651,9 +785,9 @@ function sendToBank(tile){
   });
 }
 
-/* =========================================================
-   ✅ ROUND / CHECK
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [10] ROUND / CHECK LOGIC
+   ///*** ========================================================= */
 check.addEventListener("click", async ()=>{
   await unlockAudioOnce();
 
@@ -664,7 +798,7 @@ check.addEventListener("click", async ()=>{
     if(firstTry) totalScore++;
 
     showBig(bigHeart);
-    playAudio(sfx.ding);
+    playSfx("ding");              // ✅ buffer-first SFX
 
     nextWrap.style.display="flex";
     check.style.display="none";
@@ -672,7 +806,7 @@ check.addEventListener("click", async ()=>{
     firstTry = false;
     flashRedScreen();
     showBig(bigFart);
-    playAudio(sfx.fart);
+    playSfx("fart");              // ✅ buffer-first SFX
 
     const tiles=[...drop.querySelectorAll(".tile")];
     tiles.forEach(t=>sendToBank(t));
@@ -690,9 +824,9 @@ nextBtn.addEventListener("click", ()=>{
   loadCard();
 });
 
-/* =========================================================
-   ✅ RESULTS
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [11] RESULTS (SFX + CONFETTI)
+   ///*** ========================================================= */
 function showResults(){
   pageRound.style.display="none";
   playWrap.style.display="none";
@@ -701,16 +835,16 @@ function showResults(){
   const pct=Math.round((totalScore/WORDS.length)*100);
   const msg=$("#resultMsg"), score=$("#resultScore");
 
-  let bg="blueGlow", snd=sfx.r11_14, text="いいね！あと少しでパーフェクト！";
-  if(totalScore<=5){ bg="redGlow"; snd=sfx.r0_5; text="ブーリキュラム見てないでしょ！"; }
-  else if(totalScore<=10){ bg="orangeGlow"; snd=sfx.r6_10; text="YouTube見すぎ！ブーリキュラムもやろう！"; }
-  else if(totalScore===15){ bg="goldGlow"; snd=sfx.r15; text="すごい！あなたは地球で一番頭がいい！"; }
+  let bg="blueGlow", snd="r11_14", text="いいね！あと少しでパーフェクト！";
+  if(totalScore<=5){ bg="redGlow"; snd="r0_5"; text="ブーリキュラム見てないでしょ！"; }
+  else if(totalScore<=10){ bg="orangeGlow"; snd="r6_10"; text="YouTube見すぎ！ブーリキュラムもやろう！"; }
+  else if(totalScore===15){ bg="goldGlow"; snd="r15"; text="すごい！あなたは地球で一番頭がいい！"; }
 
   document.body.className = bg;
   msg.textContent = text;
   score.textContent = `${totalScore}/${WORDS.length}（${pct}%）`;
 
-  playAudio(snd);
+  playSfx(snd);
 
   if(totalScore===15){
     for(let i=0;i<160;i++){
@@ -727,9 +861,9 @@ function showResults(){
   }
 }
 
-/* =========================================================
-   ✅ UTILS / INIT
-   ========================================================= */
+/* ///*** =========================================================
+   ///*** [12] UTILS / INIT
+   ///*** ========================================================= */
 function shuffle(arr){
   for(let i=arr.length-1;i>0;i--){
     const j=Math.floor(Math.random()*(i+1));
