@@ -4,8 +4,13 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>Booha Word Builder – February Week 4</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
+/* =========================================================
+   ✅ WEEKLY THEME COLORS (CHANGE EACH WEEK IF YOU WANT)
+   ========================================================= */
 :root{
   --bg:#0b1530; --ink:#fff; --outline:#ffffff26;
   --green:#22c55e; --red:#ef4444; --purple:#7c3aed;
@@ -245,7 +250,6 @@ main{
   text-align:center;
   padding:60px 16px;
   min-height:60vh;
-  display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
@@ -274,15 +278,16 @@ footer{text-align:center;padding:16px;font-family:'Cinzel',serif;font-size:.95re
 }
 </style>
 </head>
+
 <body>
 <div id="overlay"></div>
 
 <button class="top-nav-btn" id="quitBtn"><span>Quit</span><span class="jp">やめる</span></button>
 <button class="icon-btn" id="helpBtn">?</button>
 
-<div class="help-modal" id="helpModal">
-  <div class="help-panel">
-    <button class="help-close" id="helpClose">×</button>
+<div class="help-modal" id="helpModal" aria-hidden="true">
+  <div class="help-panel" role="dialog" aria-modal="true" aria-label="How to Play">
+    <button class="help-close" id="helpClose" aria-label="Close">×</button>
     <h2>遊び方 / How to Play</h2>
     <h3>Word Builder Game</h3>
 
@@ -309,15 +314,17 @@ footer{text-align:center;padding:16px;font-family:'Cinzel',serif;font-size:.95re
 </header>
 
 <div class="playWrap" id="playWrap">
-  <button class="playBtn" id="playBtn"><span>▶</span></button>
+  <button class="playBtn" id="playBtn" aria-label="Play audio"><span>▶</span></button>
 </div>
 
 <main id="page-round">
   <div class="dropZone" id="dropZone"></div>
   <div class="bank" id="bank"></div>
+
   <div class="controls">
     <button class="btn primary" id="checkBtn" disabled>CHECK</button>
   </div>
+
   <div id="nextWrap"><button id="nextBtn">Next / つぎへ</button></div>
   <div id="progressCount">1 / 15</div>
 </main>
@@ -335,114 +342,116 @@ footer{text-align:center;padding:16px;font-family:'Cinzel',serif;font-size:.95re
 <footer>BRYAN'S ENGLISH SCHOOL</footer>
 
 <script>
-/* ====== Helpers ====== */
-const $=s=>document.querySelector(s);
+/* =========================================================
+   ✅ CHANGE THIS EACH WEEK (ONE PLACE)
+   ========================================================= */
+const WEEK_CONFIG = {
+  monthEn: "February",
+  monthJp: "2月",
+  weekEn: "Week 4",
+  weekJp: "第4週",
+  totalQuestions: 15,
 
-/* ====== Path helper (MUST be before SAGE_INDEX) ====== */
-const WEEK_PREFIX = location.pathname.includes('/week4/') ? '' : 'week4/';
+  /* ✅ WEEK DATA (CHANGE EACH WEEK) */
+  MASTER_BASE: [
+    "help","carry","open","close","lend",
+    "borrow","heavy","light","directions","broken",
+    "fix","hurry","accident","safe","emergency"
+  ],
 
-/* ====== Data ====== */
-const MASTER_BASE = [
-  "help","carry","open","close","lend",
-  "borrow","heavy","light","directions","broken",
-  "fix","hurry","accident","safe","emergency"
-];
+  /* ✅ AUDIO RULES (DO NOT CHANGE WEEKLY)
+     - Sage voice files live in:
+         audio/vocab/v01_word.mp3 ...
+     - SFX live in:
+         assets/audio/ding.mp3, fart.mp3, result_*.mp3
+  */
+};
 
+/* =========================================================
+   ✅ PATHS (AUTO) — NO MORE "week4/" HACKS
+   Works anywhere as long as the folder contains:
+     ./audio/vocab/...
+     ./assets/audio/...
+   ========================================================= */
+const BASE = (() => {
+  const u = new URL(window.location.href);
+  u.hash = ""; u.search = "";
+  return u.href.endsWith("/") ? u.href : u.href.replace(/[^/]+$/, "");
+})();
+const PATHS = {
+  vocab: BASE + "audio/vocab/",
+  sfx:   BASE + "assets/audio/"
+};
 
-// Sage vocab files are numbered: v01_goal.mp3, v02_plan.mp3, ...
-const SAGE_INDEX = MASTER_BASE.reduce((acc, word, i) => {
-  const num = String(i + 1).padStart(2, '0');
-  acc[word] = `${WEEK_PREFIX}audio/vocab/v${num}_${word}.mp3`;
-  return acc;
-}, {});
+/* =========================================================
+   ✅ HELPERS
+   ========================================================= */
+const $ = (s) => document.querySelector(s);
 
-let WORDS=[]; // shuffled on load
-let index=0,totalScore=0,firstTry=true;
-
-/* ====== DOM ====== */
-const drop=$("#dropZone"),bank=$("#bank"),play=$("#playBtn"),check=$("#checkBtn");
-const nextWrap=$("#nextWrap"),nextBtn=$("#nextBtn"),progressCount=$("#progressCount");
-const pageRound=$("#page-round"),pageResults=$("#page-results");
+/* =========================================================
+   ✅ DOM
+   ========================================================= */
+const drop=$("#dropZone"), bank=$("#bank"), play=$("#playBtn"), check=$("#checkBtn");
+const nextWrap=$("#nextWrap"), nextBtn=$("#nextBtn"), progressCount=$("#progressCount");
+const pageRound=$("#page-round"), pageResults=$("#page-results");
 const playWrap=$("#playWrap");
 const quitBtn=$("#quitBtn");
 const helpBtn=$("#helpBtn"), helpModal=$("#helpModal"), helpClose=$("#helpClose");
 const bigHeart=$("#bigHeart"), bigFart=$("#bigFart");
 
-/* Quit = back to menu */
+/* =========================================================
+   ✅ NAV / HELP (CHANGE ONLY IF YOUR MENU PATH CHANGES)
+   ========================================================= */
 quitBtn.addEventListener("click",()=>{ location.href="index.html"; });
 
-/* Help popup logic */
-function openHelp(){ helpModal.style.display="flex"; }
-function closeHelp(){ helpModal.style.display="none"; }
+function openHelp(){ helpModal.style.display="flex"; helpModal.setAttribute("aria-hidden","false"); }
+function closeHelp(){ helpModal.style.display="none"; helpModal.setAttribute("aria-hidden","true"); }
 helpBtn.addEventListener("click",openHelp);
 helpClose.addEventListener("click",closeHelp);
 helpModal.addEventListener("click",e=>{ if(e.target===helpModal) closeHelp(); });
 
-/* ====== Audio ====== */
-/* ✅ SFX: Works whether this HTML is at repo root OR inside /week1/ */
+/* =========================================================
+   ✅ AUDIO (CROSS-DEVICE SAFE)
+   - iOS/Safari requires user gesture to unlock audio.
+   ========================================================= */
 const sfx = {
-  ding:  new Audio(WEEK_PREFIX + 'assets/audio/ding.mp3'),
-  fart:  new Audio(WEEK_PREFIX + 'assets/audio/fart.mp3'),
-  r0_5:  new Audio(WEEK_PREFIX + 'assets/audio/result_0-5.mp3'),
-  r6_10: new Audio(WEEK_PREFIX + 'assets/audio/result_6-10.mp3'),
-  r11_14:new Audio(WEEK_PREFIX + 'assets/audio/result_11-14.mp3'),
-  r15:   new Audio(WEEK_PREFIX + 'assets/audio/result_15.mp3'),
+  ding:  new Audio(PATHS.sfx + "ding.mp3"),
+  fart:  new Audio(PATHS.sfx + "fart.mp3"),
+  r0_5:  new Audio(PATHS.sfx + "result_0-5.mp3"),
+  r6_10: new Audio(PATHS.sfx + "result_6-10.mp3"),
+  r11_14:new Audio(PATHS.sfx + "result_11-14.mp3"),
+  r15:   new Audio(PATHS.sfx + "result_15.mp3"),
 };
 
 Object.values(sfx).forEach(a=>{
-  a.preload='auto';
+  a.preload="auto";
   a.playsInline = true;
   try{ a.load(); }catch{}
 });
 
-function playSfx(audio){
+function playAudio(a){
+  // robust replay for rapid taps + iOS quirks
   try{
-    audio.currentTime=0;
-    audio.play().catch(()=>{
-      const clone = audio.cloneNode(true);
-      clone.preload='auto';
-      clone.playsInline = true;
-      clone.play().catch(()=>{});
-    });
+    a.currentTime = 0;
+    const p = a.play();
+    if(p && p.catch){
+      p.catch(()=>{
+        const clone = a.cloneNode(true);
+        clone.preload = "auto";
+        clone.playsInline = true;
+        clone.play().catch(()=>{});
+      });
+    }
   }catch{}
 }
 
-/* ====== Sage voice (LOCAL) ======
-   Always point to: .../week1/audio/vocab/
-   even if this HTML is inside week1/games/ or deeper.
-*/
-const WEEK4_BASE =
-  location.pathname.includes('/week4/')
-    ? location.pathname.split('/week4/')[0] + '/week4/'
-    : '/week1/';
-
-const SAGE_BASE_URL = location.origin + WEEK1_BASE + 'audio/vocab/';
-
-const sage = new Map();
-MASTER_BASE.forEach((word, i) => {
-  const num = String(i + 1).padStart(2, '0');
-  const src = `${SAGE_BASE_URL}v${num}_${word}.mp3`;
-  const a = new Audio(src);
-  a.preload = 'auto';
-  a.playsInline = true;
-  a.loop = false;
-  try { a.load(); } catch {}
-  sage.set(word, a);
-});
-
-
-function stopAllSage(){
-  sage.forEach(a=>{ try{ a.pause(); a.currentTime = 0; }catch{} });
-}
-
-/* iOS/Safari: must unlock audio with a USER gesture */
 let audioUnlocked = false;
 async function unlockAudioOnce(){
   if(audioUnlocked) return;
   audioUnlocked = true;
 
-  // try a tiny play/pause on a real element to satisfy iOS
-  const probe = sfx.ding; // short local file
+  // Tiny muted play/pause to satisfy iOS
+  const probe = sfx.ding;
   try{
     probe.muted = true;
     await probe.play();
@@ -450,51 +459,89 @@ async function unlockAudioOnce(){
     probe.currentTime = 0;
     probe.muted = false;
   }catch{
-    // If this fails, Sage may still work, but keep going
+    // ok — still proceed; user taps will generally unlock anyway
   }
 }
 
-function speak(){
+// unlock on first real interaction (best across devices/iframes)
+["pointerdown","touchstart","mousedown","keydown"].forEach(evt=>{
+  window.addEventListener(evt, unlockAudioOnce, {once:true, passive:true});
+});
+
+/* =========================================================
+   ✅ SAGE (LOCAL MP3s)
+   File naming: v01_help.mp3 ... v15_emergency.mp3
+   Folder: audio/vocab/
+   ========================================================= */
+const sage = new Map();
+WEEK_CONFIG.MASTER_BASE.forEach((word, i) => {
+  const num = String(i + 1).padStart(2, "0");
+  const src = `${PATHS.vocab}v${num}_${word}.mp3`;
+  const a = new Audio(src);
+  a.preload = "auto";
+  a.playsInline = true;
+  a.loop = false;
+  try{ a.load(); }catch{}
+  sage.set(word, a);
+});
+
+function stopAllSage(){
+  sage.forEach(a=>{ try{ a.pause(); a.currentTime = 0; }catch{} });
+}
+
+async function speak(){
+  await unlockAudioOnce();
+
   const word = WORDS[index];
   const a = sage.get(word);
-  if(!a){ console.warn('[Sage] missing audio for:', word); return; }
-
-  console.log('[Sage src]', a.src); // 👈 ADD THIS LINE
+  if(!a){ console.warn("[Sage] missing audio for:", word); return; }
 
   stopAllSage();
-  play.classList.add('fizzy');
+  play.classList.add("fizzy");
 
   try{ a.currentTime = 0; }catch{}
-  const clear = ()=>play.classList.remove('fizzy');
+
+  const clear = ()=> play.classList.remove("fizzy");
   a.onended = clear;
 
   const p = a.play();
-  if(p && typeof p.catch === 'function'){
-    p.catch(err=>{ console.warn('[Sage] play blocked or missing:', err); clear(); });
+  if(p && p.catch){
+    p.catch(err=>{
+      console.warn("[Sage] play blocked/missing:", err, a.src);
+      clear();
+    });
   }
 }
+play.addEventListener("click", speak);
 
-
-play.addEventListener('click', speak);
-
-/* ====== Visual FX ====== */
+/* =========================================================
+   ✅ VISUAL FX
+   ========================================================= */
 function flashRedScreen(){
-  const el=document.createElement('div');
-  el.className='flashRed';
+  const el=document.createElement("div");
+  el.className="flashRed";
   document.body.appendChild(el);
   setTimeout(()=>el.remove(),400);
 }
 function showBig(el){
-  el.classList.remove('show');
-  // force reflow
-  void el.offsetWidth;
-  el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'), 950);
+  el.classList.remove("show");
+  void el.offsetWidth; // reflow
+  el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"), 950);
 }
 
-/* ====== Tap Game State ====== */
-let selectedTile = null; // tile DOM
+/* =========================================================
+   ✅ GAME STATE
+   ========================================================= */
+let WORDS = [];
+let index = 0;
+let totalScore = 0;
+let firstTry = true;
+let selectedTile = null;
 
+/* =========================================================
+   ✅ SLOT/TILE LOGIC
+   ========================================================= */
 function nextEmptySlot(){
   return [...drop.children].find(s=>!s.firstChild) || null;
 }
@@ -507,36 +554,31 @@ function currentAnswer(){
 function enableCheck(){
   check.disabled = !allFilled();
 }
-
 function clearSelected(){
-  if(selectedTile){ selectedTile.classList.remove('selected'); }
+  if(selectedTile) selectedTile.classList.remove("selected");
   selectedTile = null;
 }
-
 function markHint(){
-  [...drop.children].forEach(s=>s.classList.remove('hint'));
+  [...drop.children].forEach(s=>s.classList.remove("hint"));
   const s = nextEmptySlot();
-  if(s) s.classList.add('hint');
+  if(s) s.classList.add("hint");
 }
 
 function makeTile(ch){
-  const t=document.createElement('div');
+  const t=document.createElement("div");
   t.className="tile";
   t.textContent=ch;
 
-  // cute glow on touch
-  t.addEventListener('pointerdown',()=>{
-    t.classList.add('touched');
-    setTimeout(()=>t.classList.remove('touched'), 180);
+  t.addEventListener("pointerdown",()=>{
+    t.classList.add("touched");
+    setTimeout(()=>t.classList.remove("touched"), 180);
   }, {passive:true});
 
-  // tap logic
-  t.addEventListener('click', (e)=>{
+  t.addEventListener("click", (e)=>{
     e.stopPropagation();
 
-    const inSlot = t.parentElement?.classList.contains('slot');
+    const inSlot = t.parentElement?.classList.contains("slot");
     if(inSlot){
-      // tap tile in slot = send back to bank
       sendToBank(t);
       clearSelected();
       markHint();
@@ -544,23 +586,18 @@ function makeTile(ch){
       return;
     }
 
-    // tap tile in bank
     if(selectedTile === t){
-      // second tap = auto-place into next empty slot
       const s = nextEmptySlot();
-      if(s){ placeIntoSlot(t, s); }
+      if(s) placeIntoSlot(t, s);
       clearSelected();
       markHint();
       enableCheck();
       return;
     }
 
-    // select tile
     clearSelected();
     selectedTile = t;
-    t.classList.add('selected');
-
-    // if a slot is immediately available, we keep it selected so user can tap a specific slot
+    t.classList.add("selected");
   });
 
   return t;
@@ -569,14 +606,12 @@ function makeTile(ch){
 function buildSlots(w){
   drop.innerHTML="";
   for(let i=0;i<w.length;i++){
-    const s=document.createElement('div');
+    const s=document.createElement("div");
     s.className="slot";
 
-    // tap slot: if tile selected, place here
-    s.addEventListener('click', ()=>{
+    s.addEventListener("click", ()=>{
       if(!selectedTile) return;
       if(s.firstChild) return;
-      // if selected tile is still in bank
       if(selectedTile.parentElement !== bank) return;
       placeIntoSlot(selectedTile, s);
       clearSelected();
@@ -595,49 +630,51 @@ function buildBank(w){
   if(chars.length>1){
     do{ scr.sort(()=>Math.random()-.5); } while(scr.join("")===w);
   }
-  scr.forEach((ch)=> bank.appendChild(makeTile(ch)) );
+  scr.forEach(ch=> bank.appendChild(makeTile(ch)));
 }
 
 function placeIntoSlot(tile,slot){
-  // safety
   if(slot.firstChild) return;
-
-  tile.classList.remove('selected');
-  tile.classList.add('inSlot');
+  tile.classList.remove("selected");
+  tile.classList.add("inSlot");
   slot.appendChild(tile);
-  slot.classList.add('filled');
+  slot.classList.add("filled");
 }
 
 function sendToBank(tile){
   bank.appendChild(tile);
-  tile.classList.remove('inSlot','selected');
-  // clean up slot classes
+  tile.classList.remove("inSlot","selected");
+
   [...drop.children].forEach(s=>{
-    if(!s.firstChild) s.classList.remove('filled');
-    else s.classList.add('filled');
+    if(!s.firstChild) s.classList.remove("filled");
+    else s.classList.add("filled");
   });
 }
 
-/* ====== Round / Check ====== */
-check.addEventListener("click",()=>{
-  const ans=currentAnswer(), correct=WORDS[index];
- if(ans===correct){
-  if(firstTry) totalScore++;
+/* =========================================================
+   ✅ ROUND / CHECK
+   ========================================================= */
+check.addEventListener("click", async ()=>{
+  await unlockAudioOnce();
 
-  showBig(bigHeart);
-  playSfx(sfx.ding);   // ✅ DING after correct answer
+  const ans = currentAnswer();
+  const correct = WORDS[index];
 
-  nextWrap.style.display="flex";
-  check.style.display="none";
-} else {
+  if(ans === correct){
+    if(firstTry) totalScore++;
 
-    firstTry=false;
+    showBig(bigHeart);
+    playAudio(sfx.ding);
+
+    nextWrap.style.display="flex";
+    check.style.display="none";
+  } else {
+    firstTry = false;
     flashRedScreen();
     showBig(bigFart);
-    playSfx(sfx.fart);
+    playAudio(sfx.fart);
 
-    // return all tiles to bank
-    const tiles=[...drop.querySelectorAll('.tile')];
+    const tiles=[...drop.querySelectorAll(".tile")];
     tiles.forEach(t=>sendToBank(t));
 
     clearSelected();
@@ -646,14 +683,16 @@ check.addEventListener("click",()=>{
   }
 });
 
-nextBtn.addEventListener("click",()=>{
+nextBtn.addEventListener("click", ()=>{
   index++;
-  progressCount.textContent=`${Math.min(index+1,WORDS.length)} / ${WORDS.length}`;
-  if(index>=WORDS.length){ showResults(); return; }
+  progressCount.textContent = `${Math.min(index+1, WORDS.length)} / ${WORDS.length}`;
+  if(index >= WORDS.length){ showResults(); return; }
   loadCard();
 });
 
-/* ====== Results ====== */
+/* =========================================================
+   ✅ RESULTS
+   ========================================================= */
 function showResults(){
   pageRound.style.display="none";
   playWrap.style.display="none";
@@ -661,16 +700,17 @@ function showResults(){
 
   const pct=Math.round((totalScore/WORDS.length)*100);
   const msg=$("#resultMsg"), score=$("#resultScore");
+
   let bg="blueGlow", snd=sfx.r11_14, text="いいね！あと少しでパーフェクト！";
   if(totalScore<=5){ bg="redGlow"; snd=sfx.r0_5; text="ブーリキュラム見てないでしょ！"; }
   else if(totalScore<=10){ bg="orangeGlow"; snd=sfx.r6_10; text="YouTube見すぎ！ブーリキュラムもやろう！"; }
   else if(totalScore===15){ bg="goldGlow"; snd=sfx.r15; text="すごい！あなたは地球で一番頭がいい！"; }
 
-  document.body.className=bg;
-  msg.textContent=text;
-  score.textContent=`${totalScore}/${WORDS.length}（${pct}%）`;
+  document.body.className = bg;
+  msg.textContent = text;
+  score.textContent = `${totalScore}/${WORDS.length}（${pct}%）`;
 
-  playSfx(snd);
+  playAudio(snd);
 
   if(totalScore===15){
     for(let i=0;i<160;i++){
@@ -687,7 +727,9 @@ function showResults(){
   }
 }
 
-/* ====== Utils ====== */
+/* =========================================================
+   ✅ UTILS / INIT
+   ========================================================= */
 function shuffle(arr){
   for(let i=arr.length-1;i>0;i--){
     const j=Math.floor(Math.random()*(i+1));
@@ -696,31 +738,34 @@ function shuffle(arr){
   return arr;
 }
 
-/* ====== Game Init ====== */
 function loadCard(){
-  const w=WORDS[index];
-  firstTry=true;
+  const w = WORDS[index];
+  firstTry = true;
   clearSelected();
   buildSlots(w);
   buildBank(w);
-  check.disabled=true;
-  check.style.display="inline-block";
-  nextWrap.style.display="none";
+  check.disabled = true;
+  check.style.display = "inline-block";
+  nextWrap.style.display = "none";
   markHint();
 }
+
 function initGame(){
-  WORDS = shuffle([...MASTER_BASE]);
-  index=0; totalScore=0; firstTry=true;
+  WORDS = shuffle([...WEEK_CONFIG.MASTER_BASE]);
+  index = 0;
+  totalScore = 0;
+  firstTry = true;
+
   document.body.className="";
   pageResults.style.display="none";
   playWrap.style.display="flex";
   pageRound.style.display="flex";
-  progressCount.textContent=`1 / ${WORDS.length}`;
+
+  progressCount.textContent = `1 / ${WORDS.length}`;
   loadCard();
 }
 initGame();
-
-
 </script>
+
 </body>
 </html>
