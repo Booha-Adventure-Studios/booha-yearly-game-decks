@@ -509,7 +509,7 @@ body.ios #counter{margin-top:2px;}
    - PREVENT_MIC_SAGE_SPEAK = never auto-speak on mic press
    ========================================================= */
 const SETTINGS = {
-  AUDIO_AFTER_DING_MS: 300,     // ✅ requested: 0.3s pause
+  AUDIO_AFTER_DING_MS: 400,     // ✅ requested: 0.4s pause
   PREVENT_MIC_SAGE_SPEAK: true, // ✅ prevents accidental “happy” on mic press
 };
 
@@ -618,22 +618,18 @@ function sagePathFor(word){
 async function primeSageAudio(){
   if(sagePrimed || !sageVoice) return;
   sagePrimed = true;
+
   try{
-    sageVoice.muted = true;
+    // ✅ PRIME = LOAD ONLY (NO PLAY) so it can NEVER speak "happy"
     const testWord = MASTER?.[0]?.en || '';
     const src = sagePathFor(testWord);
-    if(src) sageVoice.src = src;
-
-    const p = sageVoice.play();
-    if(p && p.then) await p;
-
-    sageVoice.pause();
-    sageVoice.currentTime = 0;
-  }catch(_){
-  }finally{
-    try{ sageVoice.muted = false; }catch{}
-  }
+    if(src){
+      sageVoice.src = src;
+      sageVoice.load(); // silent warm-up
+    }
+  }catch(_){}
 }
+
 
 function stopSage(){
   try{ sageVoice.pause(); }catch{}
@@ -852,8 +848,13 @@ async function iosCheckFlow(){
 function startListening(){
   if(answered) return;
 
-  // ✅ prime is allowed (silent), but NO speaking here
+  // ✅ SAFETY: cancel any pending "after ding" speak + stop any current Sage
+  sageTicket++; 
+  stopSage();
+
+  // ✅ silent prime only (load only, no play)
   primeSageAudio();
+
 
   if(isIOS){
     iosCheckFlow();
