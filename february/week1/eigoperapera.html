@@ -723,7 +723,11 @@ function playAudioWithWait(a){
     await audioWarmUp();
 
     // Force crisp restart
-    try{ a.pause(); a.currentTime=0; }catch(e){}
+    // Force crisp restart (✅ Fix A: prevent ding cut-off on iOS/Safari)
+try{
+  a.pause();
+  a.currentTime = (a === SFX.ding) ? 0.03 : 0;
+}catch(e){}
     a.volume = (a === SFX.ding || a === SFX.fart) ? SETTINGS.SFX_VOL : (a.volume ?? 1);
 
     const done=()=>{ a.onended=null; resolve(); };
