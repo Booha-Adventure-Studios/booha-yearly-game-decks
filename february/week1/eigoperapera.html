@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,14 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
 <!-- =========================================================
-   //* CHANGE 1/5: Page <title> (Week name)
-   ========================================================= -->
+█████████████████████████████████████████████████████████████
+✅✅✅ CHANGE 1/6: Page <title> (Week name)
+- This appears on the browser tab + iPad app switcher.
+█████████████████████████████████████████████████████████████
+========================================================= -->
 <title>Booha Eigo Pera Pera – February Week 1</title>
+
+<!-- =========================================================
+█████████████████████████████████████████████████████████████
+✅ OPTIONAL: ICONS
+█████████████████████████████████████████████████████████████
+========================================================= -->
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">
 
 <meta name="theme-color" content="#0b1530" />
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
+
+<!-- =========================================================
+█████████████████████████████████████████████████████████████
+🎧 IMPORTANT: AUDIO NOTES (Future-proof)
+- iOS/Safari often starts audio “quiet/far away” unless audio is
+  unlocked by a user gesture AND warmed up.
+- This file now does:
+  ✅ "Audio unlock" on first tap (Start / ▶ / Retry / Next)
+  ✅ Warm-up silent play/pause to stabilize volume
+  ✅ Uses fixed volumes for Sage + SFX
+█████████████████████████████████████████████████████████████
+========================================================= -->
 
 <!-- Preload results + SFX -->
 <link rel="preload" as="audio" href="assets/audio/ding.mp3" />
@@ -330,10 +350,13 @@ opacity:.95;
 <div class="h2">EIGO PERA PERA</div>
 
 <!-- =========================================================
-   //* CHANGE 2/5: Header week label (EN/JP)
-   ========================================================= -->
+█████████████████████████████████████████████████████████████
+✅✅✅ CHANGE 2/6: Header week label (EN/JP)
+- These are the big labels on the page.
+█████████████████████████████████████████████████████████████
+========================================================= -->
 <div id="weekLabelEn" class="h3">February Week 1 – Speaking Practice</div>
-<div id="weekLabelJp" class="h4">2月第2週 – スピーキング練習</div>
+<div id="weekLabelJp" class="h4">2月第1週 – スピーキング練習</div>
 </header>
 
 <div class="wrap">
@@ -376,8 +399,8 @@ opacity:.95;
 <li><strong>スタート</strong>で、1つ目の英文が出ます。</li>
 <li><strong>金色の ▶</strong>で、Sage の音声を聞けます。</li>
 <li><strong>3→2→1 のあと</strong>、まんなかが <strong>聞き取り中</strong> になったら、英文を声に出して読みます。</li>
-<li><strong>100%</strong> なら正解：大きいハート ＋ ding。</li>
-<li><strong>100%</strong> じゃなければ間違い：大きいおなら ＋ fart。</li>
+<li>（Android / パソコンのみ）ある程度できていれば OK：大きいハート ＋ ding。</li>
+<li>まだ足りないとき：大きいおなら ＋ fart。</li>
 <li>正解のときは、ding のあとに <strong>つぎへ</strong> が出ます。</li>
 </ul>
 
@@ -386,8 +409,8 @@ opacity:.95;
 <li>Tap <strong>Start</strong> to show the first sentence.</li>
 <li>Tap the <strong>gold ▶</strong> to hear Sage read it.</li>
 <li>After <strong>3→2→1</strong>, when the center shows <strong>聞き取り中</strong>, read the sentence aloud.</li>
-<li><strong>100%</strong> is correct: big heart + ding.</li>
-<li>Not <strong>100%</strong> is wrong: big fart + fart sound.</li>
+<li>(Android/Desktop) Good enough = big heart + ding.</li>
+<li>Not enough = big fart + fart sound.</li>
 <li>On correct, <strong>Next</strong> appears after the ding.</li>
 </ul>
 </div>
@@ -416,12 +439,12 @@ iPad / iPhone 版は、
 
 <footer>Bryan’s English School</footer>
 
-<!-- RESULT PAGES -->
+<!-- RESULT PAGES (Android/Desktop scoring only) -->
 <div id="resRed" class="resultPage"><div class="resultInner glowRed">
 <header>
   <div class="h1">THE BOO-RICULUM</div>
   <div class="h2">EIGO PERA PERA</div>
-  <div class="h3" data-week-en>January Week 1 – Speaking Practice</div>
+  <div class="h3" data-week-en>February Week 1 – Speaking Practice</div>
 </header>
 <div class="resultCenter"><div>
 <div id="msgRed" class="resultMsg">ブーリキュラム見てないでしょ！</div>
@@ -435,7 +458,7 @@ iPad / iPhone 版は、
 <header>
   <div class="h1">THE BOO-RICULUM</div>
   <div class="h2">EIGO PERA PERA</div>
-  <div class="h3" data-week-en>January Week 1 – Speaking Practice</div>
+  <div class="h3" data-week-en>February Week 1 – Speaking Practice</div>
 </header>
 <div class="resultCenter"><div>
 <div id="msgOrange" class="resultMsg">YouTube見すぎ！ブーリキュラムもやろう！</div>
@@ -449,7 +472,7 @@ iPad / iPhone 版は、
 <header>
   <div class="h1">THE BOO-RICULUM</div>
   <div class="h2">EIGO PERA PERA</div>
-  <div class="h3" data-week-en>January Week 1 – Speaking Practice</div>
+  <div class="h3" data-week-en>February Week 1 – Speaking Practice</div>
 </header>
 <div class="resultCenter"><div>
 <div id="msgBlue" class="resultMsg">いいね！あと少しでパーフェクト！</div>
@@ -463,7 +486,7 @@ iPad / iPhone 版は、
 <header>
   <div class="h1">THE BOO-RICULUM</div>
   <div class="h2">EIGO PERA PERA</div>
-  <div class="h3" data-week-en>January Week 1 – Speaking Practice</div>
+  <div class="h3" data-week-en>February Week 1 – Speaking Practice</div>
 </header>
 <div class="resultCenter"><div>
 <div id="msgGold" class="resultMsg">すごい！あなたは地球で一番頭がいい！</div>
@@ -473,7 +496,7 @@ iPad / iPhone 版は、
 <footer>Bryan’s English School</footer>
 </div></div>
 
-<!-- Final result sounds -->
+<!-- Final result sounds (Android/Desktop only) -->
 <audio id="a_r05" src="assets/audio/result_0-5.mp3" preload="auto"></audio>
 <audio id="a_r610" src="assets/audio/result_6-10.mp3" preload="auto"></audio>
 <audio id="a_r1114" src="assets/audio/result_11-14.mp3" preload="auto"></audio>
@@ -481,27 +504,48 @@ iPad / iPhone 版は、
 
 <script>
 /* =========================================================
-   //* CHANGE 3/5: WEEK LABELS (edit these each week)
-   ========================================================= */
+█████████████████████████████████████████████████████████████
+✅✅✅ CHANGE 3/6: WEEK LABELS (edit each week)
+█████████████████████████████████████████████████████████████
+========================================================= */
 const WEEK_LABEL = {
-  title: "Booha Eigo Pera Pera – February Week 1",          // <title>
-  headerEn: "February Week 1 – Speaking Practice",          // big header EN
-  headerJp: "2月第1週 – スピーキング練習"                // big header JP
+  title: "Booha Eigo Pera Pera – February Week 1",
+  headerEn: "February Week 1 – Speaking Practice",
+  headerJp: "2月第1週 – スピーキング練習"
 };
 
 /* =========================================================
-   //* CHANGE 4/5: ROUND SETTINGS (optional)
-   ========================================================= */
+█████████████████████████████████████████████████████████████
+✅✅✅ CHANGE 4/6: ROUND + MIC SETTINGS (tuning)
+- PASS_SCORE: less strict (mic feels smoother)
+- GRACE_MS: ignore the tiny "first blip" when mic turns on
+- EXTRA_END_MS: short settle time before scoring (less clunky)
+█████████████████████████████████████████████████████████████
+========================================================= */
 const SETTINGS = {
-  DUR_MS: 7500,            // listening time
-  WARMUP_MS: 650,          // ✅ new: SR warm-up time to avoid missing first words
-  GO_DELAY_MS: 120         // small UX pause after GO
+  DUR_MS: 7500,
+  WARMUP_MS: 650,          // SR warm-up (prevents clipped first word)
+  GO_DELAY_MS: 120,
+
+  // ✅ smoother mic
+  PASS_SCORE: 88,          // was effectively 100% only; now "good enough" passes
+  GRACE_MS: 280,           // ignore first tiny noise right after GO
+  EXTRA_END_MS: 140,       // let final transcript land before scoring
+  MAX_FUZZY_TOKEN: 1,      // allow 1 token mismatch without killing score
+
+  // ✅ audio stability (fix “far away” Sage + unclear SFX)
+  SAGE_VOL: 1.00,
+  SFX_VOL: 0.95,
+  RESULT_VOL: 1.00,
+  AUDIO_UNLOCK_RETRY_MS: 120
 };
 
 /* =========================================================
-   //* CHANGE 5/5: WEEK SENTENCES (15 items)
-   - audio files: audio/sentences/<filename>
-   ========================================================= */
+█████████████████████████████████████████████████████████████
+✅✅✅ CHANGE 5/6: WEEK SENTENCES (15 items)
+- audio files: audio/sentences/<filename>
+█████████████████████████████████████████████████████████████
+========================================================= */
 const ITEMS_SRC = [
   { en:"I am happy today.", jp:"今日はうれしいです。", hira:"(きょうは うれしい です)", audio:"s01_i_am_happy_today.mp3" },
   { en:"I feel tired after school.", jp:"学校のあと、つかれます。", hira:"(がっこう の あと、つかれます)", audio:"s02_i_feel_tired_after_school.mp3" },
@@ -521,12 +565,28 @@ const ITEMS_SRC = [
 ];
 
 /* =========================================================
-   ///*** [0] INTERNAL (do not change)
-   ========================================================= */
+█████████████████████████████████████████████████████████████
+✅✅✅ CHANGE 6/6 (OPTIONAL): iOS Practice Finish Message (JP)
+- iPad/iPhone do NOT show scores.
+- End screen is Japanese practice-finished only.
+█████████████████████████████████████████████████████████████
+========================================================= */
+const IOS_FINISH_MESSAGE_JP =
+  "練習おわり！\n\n" +
+  "よくできました。\n" +
+  "メーターが動いているあいだ、\n" +
+  "英文を大きい声で読めばOK！";
+
+/* =========================================================
+█████████████████████████████████████████████████████████████
+///*** [0] INTERNAL (do not change)
+█████████████████████████████████████████████████████████████
+========================================================= */
 let idx = 0, SR = null, listening = false, streamAllowed = false, isBusy = false;
 const firstScores = new Array(15).fill(null);
 let firstPerfectCount = 0;
-let collecting = false; // ✅ new: only collect after warm-up
+let collecting = false;
+let collectingStartTs = 0;
 
 function $(sel){ return document.querySelector(sel); }
 const enEl = $('#en'), jpEl = $('#jp'), hiraEl = $('#hira');
@@ -550,13 +610,38 @@ const isIOS = isIpad || isIOSPhone;
   document.querySelectorAll('[data-week-en]').forEach(el=>el.textContent=WEEK_LABEL.headerEn);
 })();
 
+/* =========================================================
+█████████████████████████████████████████████████████████████
+🎧 AUDIO ENGINE (fix: "Sage starts far away", unclear ding/fart)
+- We force an "audio unlock" on first user gesture.
+- We warm up Sage + SFX with silent play/pause.
+█████████████████████████████████████████████████████████████
+========================================================= */
+let audioUnlocked = false;
+let audioWarmDone = false;
+
+function setAudioProps(a, vol){
+  if(!a) return;
+  a.preload = 'auto';
+  a.playsInline = true;
+  a.volume = vol;
+  try{ a.load(); }catch(e){}
+}
+
 const SFX = {
   ding: new Audio('assets/audio/ding.mp3'),
   fart: new Audio('assets/audio/fart.mp3')
 };
-Object.values(SFX).forEach(a => { a.preload = 'auto'; try{ a.load(); }catch(e){} });
+setAudioProps(SFX.ding, SETTINGS.SFX_VOL);
+setAudioProps(SFX.fart, SETTINGS.SFX_VOL);
 
-const RES = { red:$('#a_r05'), orange:$('#a_r610'), blue:$('#a_r1114'), gold:$('#a_r15') };
+const RES = {
+  red:$('#a_r05'),
+  orange:$('#a_r610'),
+  blue:$('#a_r1114'),
+  gold:$('#a_r15')
+};
+Object.values(RES).forEach(a=>setAudioProps(a, SETTINGS.RESULT_VOL));
 
 /* Shuffle ITEMS once */
 const ITEMS = ITEMS_SRC.slice().sort(()=>Math.random()-0.5);
@@ -565,31 +650,170 @@ const ITEMS = ITEMS_SRC.slice().sort(()=>Math.random()-0.5);
 const sageBank = {};
 ITEMS.forEach(it=>{
   const a = new Audio('audio/sentences/' + it.audio);
-  a.preload = 'auto';
-  try{ a.load(); }catch(e){}
+  setAudioProps(a, SETTINGS.SAGE_VOL);
   sageBank[it.audio] = a;
 });
 
 const sleep = ms => new Promise(r=>setTimeout(r, ms));
-function normalize(s){return s.toLowerCase().replace(/[’‘´`]/g,"'").replace(/[^a-z0-9'\s]/g,' ').replace(/\s+/g,' ').trim();}
-function toSet(s){return new Set(normalize(s).split(' ').filter(Boolean));}
 
-function mountWords(t){ enEl.innerHTML = t.split(/\s+/).map(w=>`<span class="word">${w}</span>`).join(' '); }
+async function safePlay(a){
+  if(!a) return;
+  // Always force volume before play (helps “quiet start” weirdness)
+  a.volume = a.volume ?? 1;
+  try{ a.pause(); a.currentTime = 0; }catch(e){}
+  const p = a.play();
+  if(p && p.then){
+    try{ await p; }catch(e){
+      // iOS/Safari: retry shortly
+      await sleep(SETTINGS.AUDIO_UNLOCK_RETRY_MS);
+      try{ await a.play(); }catch(e2){}
+    }
+  }
+}
+
+async function audioUnlock(){
+  if(audioUnlocked) return true;
+
+  // Try a tiny silent unlock using SFX (volume 0 then restore)
+  try{
+    const a = SFX.ding;
+    const oldVol = a.volume;
+    a.volume = 0;
+    await safePlay(a);
+    await sleep(40);
+    try{ a.pause(); a.currentTime = 0; }catch(e){}
+    a.volume = oldVol;
+    audioUnlocked = true;
+    return true;
+  }catch(e){
+    // If blocked, still mark false; user will tap again anyway
+    audioUnlocked = false;
+    return false;
+  }
+}
+
+async function audioWarmUp(){
+  if(audioWarmDone) return;
+  // Warm up: brief silent play/pause on key sounds so volume is stable
+  try{
+    await audioUnlock();
+    const pack = [SFX.ding, SFX.fart, ...Object.values(sageBank).slice(0,3)];
+    for(const a of pack){
+      const old = a.volume;
+      a.volume = 0;
+      await safePlay(a);
+      await sleep(45);
+      try{ a.pause(); a.currentTime = 0; }catch(e){}
+      a.volume = old;
+      await sleep(45);
+    }
+    audioWarmDone = true;
+  }catch(e){
+    // no-op (game still works)
+    audioWarmDone = true;
+  }
+}
+
+function playAudioWithWait(a){
+  return new Promise(async (resolve)=>{
+    if(!a){ resolve(); return; }
+
+    // Ensure unlocked + warmed (fix far-away start + unclear SFX)
+    await audioUnlock();
+    await audioWarmUp();
+
+    // Force crisp restart
+    try{ a.pause(); a.currentTime=0; }catch(e){}
+    a.volume = (a === SFX.ding || a === SFX.fart) ? SETTINGS.SFX_VOL : (a.volume ?? 1);
+
+    const done=()=>{ a.onended=null; resolve(); };
+    const safety=setTimeout(()=>{ a.onended=null; resolve(); }, Math.max(2500,(a.duration||2.5)*1000+260));
+    a.addEventListener('ended',()=>clearTimeout(safety),{once:true});
+    a.onended=done;
+
+    try{
+      await safePlay(a);
+    }catch(e){
+      resolve();
+    }
+  });
+}
+
+/* =========================================================
+///*** Text + scoring helpers (less strict, smoother)
+========================================================= */
+function normalize(s){
+  return (s||"")
+    .toLowerCase()
+    .replace(/[’‘´`]/g,"'")
+    .replace(/[^a-z0-9'\s]/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function normalizeToken(t){
+  let s = normalize(t);
+  // basic de-plural / common endings (gentle)
+  if(s.endsWith("s") && s.length>3) s = s.slice(0,-1);
+  if(s.endsWith("ing") && s.length>5) s = s.slice(0,-3);
+  return s;
+}
+
+function tokensOf(s){
+  return normalize(s).split(' ').map(normalizeToken).filter(Boolean);
+}
+
+function tokenSet(s){
+  return new Set(tokensOf(s));
+}
+
+function mountWords(t){
+  enEl.innerHTML = t.split(/\s+/).map(w=>`<span class="word">${w}</span>`).join(' ');
+}
+
 function markSpoken(sp){
-  const set = toSet(sp);
+  const set = tokenSet(sp);
   enEl.querySelectorAll('.word').forEach(w=>{
-    const v = normalize(w.textContent);
+    const v = normalizeToken(w.textContent);
     if(set.has(v) && !w.classList.contains('blue')) w.classList.add('blue');
   });
 }
-function finalizeColors(){ enEl.querySelectorAll('.word').forEach(w=>{ if(!w.classList.contains('blue')) w.classList.add('red'); }); }
-function keywordScore(t, sp){
-  const k = toSet(t), said = toSet(sp);
-  let hit=0,total=0;
-  k.forEach(x=>{ if(x.length>2){ total++; if(said.has(x)) hit++; }});
-  return total ? Math.round((hit/total)*100) : 0;
+
+function finalizeColors(){
+  enEl.querySelectorAll('.word').forEach(w=>{
+    if(!w.classList.contains('blue')) w.classList.add('red');
+  });
 }
 
+/* More forgiving score:
+   - counts meaningful tokens (len>=2)
+   - allows 1 token miss (SETTINGS.MAX_FUZZY_TOKEN)
+*/
+function keywordScore(target, spoken){
+  const tgt = tokensOf(target).filter(x=>x.length>=2);
+  const said = tokenSet(spoken);
+
+  let total = 0;
+  let hit = 0;
+
+  for(const t of tgt){
+    // ignore ultra-common fillers
+    if(t === "a" || t === "an" || t === "the") continue;
+    total++;
+    if(said.has(t)) hit++;
+  }
+
+  if(!total) return 0;
+
+  // Soft forgiveness (so it feels less strict)
+  const miss = total - hit;
+  const forgiven = Math.min(miss, SETTINGS.MAX_FUZZY_TOKEN);
+  const adjHit = hit + forgiven;
+
+  return Math.round((adjHit / total) * 100);
+}
+
+/* UI helpers */
 function setReady(){
   meterText.innerHTML = 'Ready<br><small>スタンバイ</small>';
 }
@@ -601,10 +825,11 @@ function setListening(){
   meterText.innerHTML = '<span style="font-size:0.75em">大きい声で！</span>';
 }
 function setArming(){
-  // ✅ new: clearer UX (kids wait a moment)
   meterText.innerHTML = '<span style="font-size:.7em">準備中…<br><small>Wait…</small></span>';
 }
-function setFinished(){ meterText.innerHTML='Finished<br><small>おわり！</small>'; }
+function setFinished(){
+  meterText.innerHTML='Finished<br><small>おわり！</small>';
+}
 
 function startSweep(){
   sweep.style.setProperty('--dur', SETTINGS.DUR_MS + 'ms');
@@ -643,31 +868,17 @@ function makeRecognizer(){
   return r;
 }
 
-function playAudioWithWait(a){
-  return new Promise(resolve=>{
-    if(!a){ resolve(); return; }
-    try{ a.pause(); a.currentTime=0; }catch(e){}
-    const done=()=>{ a.onended=null; resolve(); };
-    const tryPlay=()=>{
-      const p=a.play();
-      if(p&&p.then){ p.then(()=>{}).catch(()=>setTimeout(tryPlay,120)); }
-    };
-    const safety=setTimeout(()=>{ a.onended=null; resolve(); }, Math.max(2500,(a.duration||2.5)*1000+200));
-    a.addEventListener('ended',()=>clearTimeout(safety),{once:true});
-    a.onended=done;
-    tryPlay();
-  });
-}
-
 function disableControls(disabled){
   [beginBtn,retryBtn,nextBtn,playBtn].forEach(b=>{ if(b) b.disabled=disabled; });
 }
+
 function resetVisuals(){
   stopSweep(); void sweep.offsetWidth;
   enEl.querySelectorAll('.word').forEach(w=>w.classList.remove('blue','red'));
   scoreBox.style.display='none';
   setReady();
 }
+
 function showItem(){
   const it=ITEMS[idx];
   mountWords(it.en);
@@ -681,7 +892,7 @@ function showBurst(kind){
   const el=document.createElement('div');
   el.className='burst ' + (kind==='ok'?'ok':'ng');
   if(kind==='ok'){
-    el.innerHTML = `<div class="big">♥</div><div class="label">Perfect</div>`;
+    el.innerHTML = `<div class="big">♥</div><div class="label">Good!</div>`;
   }else{
     el.innerHTML = `<div class="big">💨</div><div class="label">Try Again</div>`;
   }
@@ -689,13 +900,22 @@ function showBurst(kind){
   setTimeout(()=>el.remove(),1100);
 }
 
-/* iOS practice mode */
+/* =========================================================
+🍎 iOS PRACTICE MODE (NO SCORE)
+- No scoreBox
+- No result audio
+- End message is JP practice finished
+========================================================= */
 async function beginRoundIOS(){
   if(isBusy) return;
   isBusy=true;
 
   resetVisuals();
   disableControls(true);
+
+  // audio stability: unlock/warm on start tap
+  await audioUnlock();
+  await audioWarmUp();
 
   await countdown321();
   meterText.innerHTML=`<span class="popNum flashGo" style="color:#fff680">GO!</span>`;
@@ -708,6 +928,7 @@ async function beginRoundIOS(){
   setFinished();
   stopSweep();
 
+  // iOS: no score, always allow Next/Retry
   scoreBox.style.display='none';
   beginBtn.style.display='none';
   retryBtn.style.display='inline-block';
@@ -717,7 +938,9 @@ async function beginRoundIOS(){
   isBusy=false;
 }
 
-/* Android/Desktop mic mode (✅ fixed: missing first words) */
+/* =========================================================
+🤖 ANDROID/DESKTOP MIC MODE (LESS STRICT + LESS CLUNKY)
+========================================================= */
 async function beginRound(){
   if(isIOS) return beginRoundIOS();
   if(isBusy) return;
@@ -729,6 +952,11 @@ async function beginRound(){
     isBusy=false;
     return;
   }
+
+  // unlock audio before mic (prevents weird volume ramp)
+  await audioUnlock();
+  await audioWarmUp();
+
   if(!streamAllowed){
     await ensureMicPermission();
     if(!streamAllowed){ isBusy=false; return; }
@@ -737,8 +965,6 @@ async function beginRound(){
   resetVisuals();
   disableControls(true);
 
-  // ✅ NEW: start recognition BEFORE countdown (warm-up),
-  // then only START collecting after GO.
   let heard = "";
   listening = true;
   collecting = false;
@@ -749,6 +975,10 @@ async function beginRound(){
   if(SR){
     SR.onresult=(e)=>{
       if(!collecting) return;
+
+      // ignore tiny first blip
+      if(Date.now() - collectingStartTs < SETTINGS.GRACE_MS) return;
+
       let txt="";
       for(let i=e.resultIndex;i<e.results.length;i++){
         txt+=e.results[i][0].transcript+" ";
@@ -760,15 +990,15 @@ async function beginRound(){
     try{ SR.start(); }catch(e){}
   }
 
-  // Let SR “wake up” so it doesn’t clip the first words
+  // Wake SR to avoid clipping the first word
   await sleep(SETTINGS.WARMUP_MS);
 
   await countdown321();
 
-  // ✅ NOW: GO → begin collecting (fresh buffer)
   meterText.innerHTML=`<span class="popNum flashGo" style="color:#fff680">GO!</span>`;
   heard = "";
   collecting = true;
+  collectingStartTs = Date.now();
 
   await sleep(SETTINGS.GO_DELAY_MS);
 
@@ -777,6 +1007,9 @@ async function beginRound(){
 
   await sleep(SETTINGS.DUR_MS);
 
+  // Let final transcript land (less clunky)
+  await sleep(SETTINGS.EXTRA_END_MS);
+
   collecting = false;
   listening=false;
   try{ SR && SR.stop(); }catch(e){}
@@ -784,17 +1017,20 @@ async function beginRound(){
   stopSweep();
   finalizeColors();
 
-  const s=keywordScore(ITEMS[idx].en,heard);
-  scoreBox.textContent='スコア：'+s+'％';
-  scoreBox.style.display='block';
+  const s = keywordScore(ITEMS[idx].en, heard);
+
+  scoreBox.textContent = 'スコア：' + s + '％';
+  scoreBox.style.display = 'block';
 
   if(firstScores[idx]===null){
     firstScores[idx]=s;
-    if(s===100) firstPerfectCount++;
+    if(s>=SETTINGS.PASS_SCORE) firstPerfectCount++;
   }
 
-  if(s===100){
+  if(s>=SETTINGS.PASS_SCORE){
     showBurst('ok');
+
+    // ✅ crisp ding
     await playAudioWithWait(SFX.ding);
 
     nextBtn.style.display='inline-block';
@@ -802,6 +1038,8 @@ async function beginRound(){
     beginBtn.style.display='none';
   }else{
     showBurst('ng');
+
+    // ✅ crisp fart
     await playAudioWithWait(SFX.fart);
 
     retryBtn.style.display='inline-block';
@@ -826,22 +1064,14 @@ function hideAllResults(){
 }
 
 async function showResults(){
+  // ✅ iOS: NO score, NO result audio. JP practice finished only.
   if(isIOS){
     hideAllResults();
-    const msgBlue=document.getElementById('msgBlue');
-    const scoreBlue=document.getElementById('scoreBlue');
-    if(msgBlue){
-      msgBlue.textContent=
-        "おつかれさま！\n\n" +
-        "このゲームのフル版（マイクで判定）は、Android と パソコンだけです。\n\n" +
-        "iPad / iPhone は、れんしゅう版として遊びます。\n" +
-        "メーターが動いているあいだ、英文を大きい声で読めばOK。\n\n" +
-        "いつか Android / パソコン で遊ぶと、\n" +
-        "マイク判定つきの本気モードもできます。";
-    }
-    if(scoreBlue) scoreBlue.textContent="";
+    const msgBlue = document.getElementById('msgBlue');
+    const scoreBlue = document.getElementById('scoreBlue');
+    if(msgBlue) msgBlue.textContent = IOS_FINISH_MESSAGE_JP;
+    if(scoreBlue) scoreBlue.textContent = "";
     $('#resBlue').style.display='block';
-    await playAudioWithWait(RES.blue);
     return;
   }
 
@@ -877,6 +1107,9 @@ async function showResults(){
 
 /* Buttons */
 beginBtn.addEventListener('click', async()=>{
+  await audioUnlock();
+  await audioWarmUp();
+
   if(isIOS){
     showItem();
     beginRound();
@@ -887,11 +1120,18 @@ beginBtn.addEventListener('click', async()=>{
   showItem();
   beginRound();
 });
-retryBtn.addEventListener('click', ()=>{
+
+retryBtn.addEventListener('click', async ()=>{
+  await audioUnlock();
+  await audioWarmUp();
   showItem();
   beginRound();
 });
-nextBtn.addEventListener('click', ()=>{
+
+nextBtn.addEventListener('click', async ()=>{
+  await audioUnlock();
+  await audioWarmUp();
+
   if(isBusy) return;
   idx++;
   if(idx>=ITEMS.length){
@@ -911,8 +1151,14 @@ nextBtn.addEventListener('click', ()=>{
 let sageNow=null;
 playBtn.addEventListener('click', async()=>{
   if(isBusy || listening) return;
+
+  await audioUnlock();
+  await audioWarmUp();
+
   const it=ITEMS[idx];
   const a=sageBank[it.audio] || new Audio('audio/sentences/' + it.audio);
+  setAudioProps(a, SETTINGS.SAGE_VOL);
+
   if(sageNow && sageNow!==a){
     try{ sageNow.pause(); }catch(e){}
     try{ sageNow.currentTime=0; }catch(e){}
@@ -922,7 +1168,10 @@ playBtn.addEventListener('click', async()=>{
 });
 
 /* Restart */
-Array.from(document.querySelectorAll('[data-restart]')).forEach(b=>b.addEventListener('click', ()=>{
+Array.from(document.querySelectorAll('[data-restart]')).forEach(b=>b.addEventListener('click', async ()=>{
+  await audioUnlock();
+  await audioWarmUp();
+
   hideAllResults();
   for(let i=0;i<firstScores.length;i++) firstScores[i]=null;
   firstPerfectCount=0;
@@ -955,11 +1204,23 @@ const iosNoticeBtn=document.getElementById('iosNoticeBtn');
 if(isIOS && iosNotice && iosNoticeBtn){
   iosNotice.classList.add('show');
   iosNotice.setAttribute('aria-hidden','false');
-  iosNoticeBtn.addEventListener('click', ()=>{
+  iosNoticeBtn.addEventListener('click', async ()=>{
     iosNotice.classList.remove('show');
     iosNotice.setAttribute('aria-hidden','true');
+
+    // iOS: unlock audio as soon as they tap OK (helps Sage volume)
+    await audioUnlock();
+    await audioWarmUp();
   });
 }
+
+// Extra: unlock audio on ANY first tap (very iOS-safe)
+window.addEventListener('pointerdown', async ()=>{
+  if(!audioUnlocked){
+    await audioUnlock();
+    await audioWarmUp();
+  }
+}, {once:true});
 </script>
 </body>
 </html>
