@@ -630,7 +630,6 @@ async function primeSageAudio(){
   }catch(_){}
 }
 
-
 function stopSage(){
   try{ sageVoice.pause(); }catch{}
   try{ sageVoice.currentTime = 0; }catch{}
@@ -774,10 +773,12 @@ if(SR && !isIOS){
     answerBox.classList.remove('pulsing');
 
     const raw = e.results[0][0].transcript;
-    const heard = raw.toLowerCase().replace(/[^a-z]/g,'');
 
+    // ✅ show what SR heard immediately (nice feedback)
     answerText.textContent = raw.trim();
-    evaluate(heard);
+
+    // ✅ FIX: evaluate() expects RAW transcript (future-proof matching + display)
+    evaluate(raw);
   };
 
   recognition.onerror = e => {
@@ -834,7 +835,7 @@ async function iosCheckFlow(){
   nextBtn.style.display = 'none';
   nextBtn.disabled = true;
 
-  // ✅ requested: 0.3s pause AFTER ding
+  // ✅ requested: pause AFTER ding then Sage speaks
   speakCorrectAfterDing(item.en, ()=>{
     nextBtn.style.display = 'inline-block';
     nextBtn.disabled = false;
@@ -849,12 +850,11 @@ function startListening(){
   if(answered) return;
 
   // ✅ SAFETY: cancel any pending "after ding" speak + stop any current Sage
-  sageTicket++; 
+  sageTicket++;
   stopSage();
 
   // ✅ silent prime only (load only, no play)
   primeSageAudio();
-
 
   if(isIOS){
     iosCheckFlow();
@@ -980,20 +980,15 @@ function matchesTarget(rawTranscript, targetWord){
   return score >= requiredScore(t.length);
 }
 
-
-
-
-     
 /* =========================================================
    ///*** [14] CHECK: Evaluate heard text (Future-proof match)
    - Uses matchesTarget() helper (edit-distance + sound-normalize)
-   - Ensures Sage only plays AFTER ding + 0.3s pause
+   - Ensures Sage only plays AFTER ding + pause
    ========================================================= */
 function evaluate(rawTranscript){
   const target = order[idx].en;
 
   // ✅ Always show what SR heard (helps debugging + student feedback)
-  // (If you already set answerText in onresult, this is harmless.)
   if(rawTranscript != null) answerText.textContent = String(rawTranscript).trim();
 
   if(matchesTarget(rawTranscript, target)){
@@ -1016,7 +1011,7 @@ function evaluate(rawTranscript){
     nextBtn.style.display = 'none';
     nextBtn.disabled = true;
 
-    // ✅ 0.3s pause AFTER ding, then Sage speaks the TARGET
+    // ✅ pause AFTER ding, then Sage speaks the TARGET
     speakCorrectAfterDing(target, ()=>{
       nextBtn.style.display = 'inline-block';
       nextBtn.disabled = false;
@@ -1036,7 +1031,6 @@ function evaluate(rawTranscript){
     }, 700);
   }
 }
-
 
 /* =========================================================
    ///*** [15] NEXT
