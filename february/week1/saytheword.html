@@ -3,14 +3,26 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  
-<!-- //* CHANGE 1/6: Page title (week name) *// -->
-<title>Booha Say the Word – February Week 1</title>
-<!-- ///*** [ICON] FAVICON (OPTIONAL) -->
-<link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
-<link rel="apple-touch-icon" href="BoohaYellow.png">  
 
+<!-- =========================================================
+     //* CHANGE 1/6: Page title (week name)
+     ========================================================= -->
+<title>Booha Say the Word – February Week 1</title>
+
+<!-- =========================================================
+     ///*** [ICON] FAVICON (OPTIONAL)
+     ========================================================= -->
+<link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
+<link rel="apple-touch-icon" href="BoohaYellow.png">
+
+<!-- =========================================================
+     ///*** [FONTS]
+     ========================================================= -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet" />
+
+<!-- =========================================================
+     ///*** [STYLES] Booha Say the Word UI
+     ========================================================= -->
 <style>
 :root{
   --bg:#0b1530; --ink:#fff; --gold:#ffd166; --green:#22c55e; --red:#ef4444; --purple:#a855f7;
@@ -33,6 +45,9 @@ body{
   padding-bottom:env(safe-area-inset-bottom);
 }
 
+/* =========================================================
+   ///*** [TOP NAV] Quit button
+   ========================================================= */
 .top-nav-btn{
   position:fixed; top:8px; left:8px; z-index:40;
   border-radius:999px; padding:3px 8px;
@@ -57,6 +72,9 @@ body{
   transform:translateY(1px);
 }
 
+/* =========================================================
+   ///*** [HELP] Floating help icon + overlay
+   ========================================================= */
 .help-icon{
   position:fixed;
   bottom:12px;
@@ -83,6 +101,9 @@ body{
 }
 .help-icon:active{transform:scale(.92);}
 
+/* =========================================================
+   ///*** [HEADER] Title block
+   ========================================================= */
 header{text-align:center;padding:28px 16px 10px}
 header h1{
   font-family:'Cinzel',serif;
@@ -104,12 +125,21 @@ header h2{
 }
 hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#ffffff33,transparent);margin:12px 0 8px}
 
+/* =========================================================
+   ///*** [PAGES] Game + Results pages
+   ========================================================= */
 footer{margin-top:auto;padding:14px 10px;opacity:.9;font-size:1rem;font-family:'Cinzel',serif}
 .page{width:100%;max-width:980px;margin:0 auto;display:none;padding:8px 16px 28px}
 .page.active{display:block}
 
+/* =========================================================
+   ///*** [GAME] Main play area
+   ========================================================= */
 #page-game{display:flex;flex-direction:column;align-items:center;margin-top:30px;gap:22px;}
 
+/* =========================================================
+   ///*** [STRIPE BAR] Japanese + hiragana display
+   ========================================================= */
 .stripeBar{
   position:relative;
   width:min(560px,90vw);
@@ -153,6 +183,9 @@ footer{margin-top:auto;padding:14px 10px;opacity:.9;font-size:1rem;font-family:'
 .jp{font-size:clamp(1.65rem,4.2vw,2.25rem);line-height:1.05;}
 .hira{font-size:clamp(1.12rem,3.2vw,1.32rem);opacity:.95;}
 
+/* =========================================================
+   ///*** [ANSWER ROW] Recognized text + mic/check button
+   ========================================================= */
 .answerRow{
   width:min(560px,90vw);
   display:grid;
@@ -177,7 +210,6 @@ footer{margin-top:auto;padding:14px 10px;opacity:.9;font-size:1rem;font-family:'
   border:1px solid rgba(0,0,0,.06);
   transition:all .3s ease;
 }
-
 #answerText{
   font-size:clamp(1.65rem,4.2vw,2.25rem);
   line-height:1.05;
@@ -185,7 +217,6 @@ footer{margin-top:auto;padding:14px 10px;opacity:.9;font-size:1rem;font-family:'
   text-align:center;
   font-family:'Noto Sans JP',system-ui,sans-serif;
 }
-
 .answerBox.correct{
   background:var(--green);
   color:#052b11;
@@ -211,6 +242,9 @@ footer{margin-top:auto;padding:14px 10px;opacity:.9;font-size:1rem;font-family:'
   50%{box-shadow:0 0 40px 15px rgba(192,132,252,0.9),0 0 60px 25px rgba(168,85,247,0.7);}
 }
 
+/* =========================================================
+   ///*** [MIC BUTTON]
+   ========================================================= */
 .micBtn{
   width:var(--micSize);
   height:var(--micSize);
@@ -229,11 +263,17 @@ footer{margin-top:auto;padding:14px 10px;opacity:.9;font-size:1rem;font-family:'
 @keyframes breath{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
 .micBtn:disabled{opacity:.5;filter:saturate(.6);cursor:not-allowed}
 
+/* =========================================================
+   ///*** [iOS LAYOUT] Simple mode
+   ========================================================= */
 body.ios .answerRow{grid-template-columns:1fr;gap:14px;}
 body.ios #micBtn{width:min(180px,60vw);height:56px;border-radius:999px;margin:0 auto;font-size:1.35rem;font-weight:900;}
 body.ios #micBtn span{display:inline-block;transform:translateY(-1px);}
 body.ios #counter{margin-top:2px;}
 
+/* =========================================================
+   ///*** [NEXT BUTTON + COUNTER]
+   ========================================================= */
 .btn-next{
   background:var(--gold);
   color:#000;
@@ -249,8 +289,14 @@ body.ios #counter{margin-top:2px;}
 }
 .counter{margin-top:10px;text-align:center;opacity:.9;font-size:1rem;}
 
+/* =========================================================
+   ///*** [CONFETTI]
+   ========================================================= */
 .confetti{position:fixed;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:10;opacity:.9;}
 
+/* =========================================================
+   ///*** [RESULTS PAGE]
+   ========================================================= */
 #page-results{text-align:center;}
 .result-box{
   margin-top:40px;
@@ -263,6 +309,9 @@ body.ios #counter{margin-top:2px;}
 .result-msg{font-size:1.4rem;font-weight:800;margin-bottom:10px;}
 .result-score{font-size:1.2rem;opacity:.9;}
 
+/* =========================================================
+   ///*** [HELP OVERLAY]
+   ========================================================= */
 .help-overlay{
   position:fixed;
   inset:0;
@@ -301,6 +350,9 @@ body.ios #counter{margin-top:2px;}
 .help-content li{margin-bottom:4px;}
 .help-content .divider{height:1px;background:linear-gradient(90deg,transparent,#ffffff33,transparent);margin:12px 0;}
 
+/* =========================================================
+   ///*** [iOS NOTICE OVERLAY]
+   ========================================================= */
 .ios-notice-overlay{position:fixed;inset:0;background:rgba(11,21,48,.95);display:none;align-items:center;justify-content:center;z-index:120;}
 .ios-notice-overlay.show{display:flex;}
 .ios-notice-dialog{
@@ -318,11 +370,18 @@ body.ios #counter{margin-top:2px;}
 }
 </style>
 </head>
+
 <body>
 
+<!-- =========================================================
+     ///*** [UI] Quit + Help Buttons
+     ========================================================= -->
 <button id="quitBtn" class="top-nav-btn"><span>Quit</span><span class="jp">／ やめる</span></button>
 <button id="helpBtn" class="help-icon">?</button>
 
+<!-- =========================================================
+     ///*** [HEADER] Title + Week label
+     ========================================================= -->
 <header>
   <h1>THE BOO-RICULUM</h1>
   <h2>SAY THE WORD</h2>
@@ -333,6 +392,9 @@ body.ios #counter{margin-top:2px;}
   <hr class="sep">
 </header>
 
+<!-- =========================================================
+     ///*** [PAGE] GAME
+     ========================================================= -->
 <section id="page-game" class="page active">
   <div class="stripeBar">
     <div id="stripeInner" class="stripeInner sv1"></div>
@@ -357,6 +419,9 @@ body.ios #counter{margin-top:2px;}
   <div id="counter" class="counter">1/15</div>
 </section>
 
+<!-- =========================================================
+     ///*** [PAGE] RESULTS
+     ========================================================= -->
 <section id="page-results" class="page">
   <div class="result-box">
     <div id="resultMsg" class="result-msg">結果</div>
@@ -370,6 +435,9 @@ body.ios #counter{margin-top:2px;}
 
 <footer>Bryan's English School</footer>
 
+<!-- =========================================================
+     ///*** [OVERLAY] Help
+     ========================================================= -->
 <div id="helpOverlay" class="help-overlay">
   <div class="help-dialog">
     <button id="helpClose" class="help-close">×</button>
@@ -400,6 +468,9 @@ body.ios #counter{margin-top:2px;}
   </div>
 </div>
 
+<!-- =========================================================
+     ///*** [OVERLAY] iOS Notice
+     ========================================================= -->
 <div id="iosNotice" class="ios-notice-overlay">
   <div class="ios-notice-dialog">
     <div class="ios-notice-title">iPad / iPhone をお使いの方へ</div>
@@ -409,6 +480,14 @@ body.ios #counter{margin-top:2px;}
   </div>
 </div>
 
+<!-- =========================================================
+     ///*** [AUDIO] SFX + Result Cards + Sage Voice
+     ========================================================= -->
+
+<!-- ✅ SFX (FIXED): ding + fart -->
+<audio id="s_ding" preload="auto" playsinline></audio>
+<audio id="s_fart" preload="auto" playsinline></audio>
+
 <!-- Results (src assigned by JS so it works from root OR inside /week1/) -->
 <audio id="s_r05" preload="auto" playsinline></audio>
 <audio id="s_r610" preload="auto" playsinline></audio>
@@ -416,8 +495,11 @@ body.ios #counter{margin-top:2px;}
 <audio id="s_r15" preload="auto" playsinline></audio>
 
 <!-- Sage voice mp3s live in week1/audio/vocab (numbered: v01_goal.mp3 ...) -->
-<audio id="sageVoice" preload="auto"></audio>
+<audio id="sageVoice" preload="auto" playsinline></audio>
 
+<!-- =========================================================
+     ///*** [SCRIPT] Booha Say the Word Logic
+     ========================================================= -->
 <script>
 /* =========================
    //* CHANGE 3/6: Weekly VOCAB list (15 items)
@@ -442,8 +524,9 @@ const MASTER = [
   {id:15, en:"hungry",     jp:"おなかがすいた", hira:"おなかがすいた"}
 ];
 
-
-
+/* =========================================================
+   ///*** [HELPERS]
+   ========================================================= */
 const $=s=>document.querySelector(s);
 function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);}
 
@@ -456,21 +539,41 @@ function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).ma
 const WEEK_FOLDER = 'week1';
 const WEEK_PREFIX = location.pathname.includes('/' + WEEK_FOLDER + '/') ? '' : (WEEK_FOLDER + '/');
 
+/* =========================================================
+   ///*** [AUDIO PATHS] Attach correct src paths (future-proof)
+   ========================================================= */
 function setAudioSrc(id, relPath){
   const el = document.getElementById(id);
   if(!el) return;
   el.src = WEEK_PREFIX + relPath;
 }
 
-function initResultAudioPaths(){
+function initAllAudioPaths(){
+  // ✅ SFX (FIXED)
+  setAudioSrc('s_ding', 'assets/audio/ding.mp3');
+  setAudioSrc('s_fart', 'assets/audio/fart.mp3');
+
+  // ✅ Result cards
   setAudioSrc('s_r05',   'assets/audio/result_0-5.mp3');
   setAudioSrc('s_r610',  'assets/audio/result_6-10.mp3');
   setAudioSrc('s_r1114', 'assets/audio/result_11-14.mp3');
   setAudioSrc('s_r15',   'assets/audio/result_15.mp3');
 }
-initResultAudioPaths();
+initAllAudioPaths();
 
-/* Safer playback (iOS-friendly) */
+/* =========================================================
+   ///*** [AUDIO PLAYBACK] iOS-safe SFX + endcard
+   ========================================================= */
+function playSFX(el){
+  if(!el) return;
+  try{
+    const a = el.cloneNode(true);
+    a.setAttribute('playsinline','');
+    a.currentTime = 0;
+    document.body.appendChild(a);
+    a.play().catch(()=>{}).finally(()=>setTimeout(()=>a.remove(), 2500));
+  }catch(_){}
+}
 function playEndCard(el){
   if(!el) return;
   const a = el.cloneNode(true);
@@ -480,11 +583,9 @@ function playEndCard(el){
   a.play().catch(()=>{}).finally(()=>setTimeout(()=>a.remove(), 12000));
 }
 
-/* =========================
-   //* CHANGE 5/6: Sage audio naming + base path (usually never changes)
-   - Files live in: week#/audio/vocab/
-   - Filenames: v01_word.mp3 ... v15_word.mp3 (word = item.en)
-   ========================= */
+/* =========================================================
+   ///*** [SAGE VOICE] Future-proof mapping by index
+   ========================================================= */
 const sageVoice = document.getElementById('sageVoice');
 let sagePrimed = false;
 
@@ -558,6 +659,9 @@ function playSage(word, onend){
   }
 }
 
+/* =========================================================
+   ///*** [CONFETTI]
+   ========================================================= */
 function confettiBurst(el,count=60){
   const r=el.getBoundingClientRect();
   for(let i=0;i<count;i++){
@@ -574,11 +678,21 @@ function confettiBurst(el,count=60){
   }
 }
 
+/* =========================================================
+   ///*** [DOM HOOKS]
+   ========================================================= */
 const stripeInner=$('#stripeInner');
 const jpTxt=$('#jpTxt'), hiraTxt=$('#hiraTxt');
 const answerBox=$('#answerBox'), answerText=$('#answerText');
 const micBtn=$('#micBtn'), nextBtn=$('#nextBtn'), counterEl=$('#counter');
 
+// ✅ SFX elements (FIXED)
+const sDing = $('#s_ding');
+const sFart = $('#s_fart');
+
+/* =========================================================
+   ///*** [STATE]
+   ========================================================= */
 let order=shuffle([...MASTER]);
 let idx=0,score=0,stripeIx=0;
 const stripeSets=['sv1','sv2','sv3','sv4','sv5'];
@@ -598,6 +712,9 @@ if(isIOS){
   document.body.classList.add('ios');
 }
 
+/* =========================================================
+   ///*** [iOS NOTICE]
+   ========================================================= */
 if(isIOS){
   const iosNotice = document.getElementById('iosNotice');
   const iosNoticeOk = document.getElementById('iosNoticeOk');
@@ -607,10 +724,16 @@ if(isIOS){
   }
 }
 
+/* =========================================================
+   ///*** [iOS MIC BUTTON] Switch to checkmark
+   ========================================================= */
 if(isIOS){
   micBtn.innerHTML = '<span style="font-size:1.55rem;font-weight:900;">✔</span>';
 }
 
+/* =========================================================
+   ///*** [SPEECH RECOGNITION] Android/Desktop only
+   ========================================================= */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 
 if(SR && !isIOS){
@@ -669,6 +792,9 @@ function startRecognitionCore(){
   }
 }
 
+/* =========================================================
+   ///*** [iOS SIMPLE MODE] Auto-correct + play audio
+   ========================================================= */
 function iosCheckFlow(){
   if(answered) return;
 
@@ -679,6 +805,9 @@ function iosCheckFlow(){
   answerText.textContent = item.en;
   answerBox.classList.remove('pulsing');
   answerBox.classList.add('correct');
+
+  // ✅ ding (FIXED)
+  playSFX(sDing);
 
   confettiBurst(answerBox,60);
 
@@ -693,6 +822,9 @@ function iosCheckFlow(){
   }, 250);
 }
 
+/* =========================================================
+   ///*** [INPUT] Start Listening / Check
+   ========================================================= */
 function startListening(){
   if(answered) return;
 
@@ -706,9 +838,11 @@ function startListening(){
   if(listening) return;
   startRecognitionCore();
 }
-
 micBtn.addEventListener('click', startListening);
 
+/* =========================================================
+   ///*** [RENDER] Counter + Card display
+   ========================================================= */
 function updateCounter(){ counterEl.textContent=`${idx+1}/15`; }
 
 function showCard(){
@@ -729,13 +863,20 @@ function showCard(){
   updateCounter();
 }
 
+/* =========================================================
+   ///*** [CHECK] Evaluate heard text
+   ========================================================= */
 function evaluate(heard){
   const correct=order[idx].en.toLowerCase().replace(/[^a-z]/g,'');
+
   if(heard===correct){
     answered=true;
     micBtn.classList.remove('pulsing');
     answerBox.classList.remove('pulsing');
     answerBox.classList.add('correct');
+
+    // ✅ ding (FIXED)
+    playSFX(sDing);
 
     confettiBurst(answerBox,60);
     score++;
@@ -749,8 +890,13 @@ function evaluate(heard){
         nextBtn.disabled=false;
       });
     }, 250);
+
   }else{
     answerBox.classList.add('wrong');
+
+    // ✅ fart (FIXED)
+    playSFX(sFart);
+
     setTimeout(()=>{
       answerBox.classList.remove('wrong');
       answerBox.style.background='#fff';
@@ -760,12 +906,18 @@ function evaluate(heard){
   }
 }
 
+/* =========================================================
+   ///*** [NEXT]
+   ========================================================= */
 nextBtn.addEventListener('click',()=>{
   idx++;
   if(idx<order.length) showCard();
   else showResults();
 });
 
+/* =========================================================
+   ///*** [RESULTS]
+   ========================================================= */
 function showResults(){
   $('#page-game').classList.remove('active');
   const res = $('#page-results');
@@ -803,6 +955,9 @@ function showResults(){
   }
 }
 
+/* =========================================================
+   ///*** [RESTART]
+   ========================================================= */
 $('#playAgain').addEventListener('click',()=>{
   order=shuffle([...MASTER]);
   idx=0;score=0;stripeIx=0;answered=false;
@@ -819,6 +974,9 @@ $('#playAgain').addEventListener('click',()=>{
 $('#backToMenu').addEventListener('click',()=>{ location.href='index.html'; });
 $('#quitBtn').addEventListener('click',()=>{ location.href='index.html'; });
 
+/* =========================================================
+   ///*** [PRELOAD] Sage + SFX + Results
+   ========================================================= */
 function preloadAll(){
   MASTER.forEach(i=>{
     const src = sagePathFor(i.en);
@@ -826,9 +984,17 @@ function preloadAll(){
     const a=new Audio(src);
     try{ a.load(); }catch{}
   });
-  ['s_r05','s_r610','s_r1114','s_r15'].forEach(id=>{ const el=$("#"+id); if(el) try{ el.load(); }catch{} });
+
+  // ✅ preload SFX
+  ['s_ding','s_fart','s_r05','s_r610','s_r1114','s_r15'].forEach(id=>{
+    const el=$("#"+id);
+    if(el) try{ el.load(); }catch{}
+  });
 }
 
+/* =========================================================
+   ///*** [HELP OVERLAY] Events
+   ========================================================= */
 const helpOverlay=$('#helpOverlay');
 $('#helpBtn').addEventListener('click',()=> helpOverlay.classList.add('show'));
 $('#helpClose').addEventListener('click',()=> helpOverlay.classList.remove('show'));
