@@ -23,18 +23,6 @@
 <meta name="theme-color" content="#0b1530" />
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
 
-<!-- =========================================================
-█████████████████████████████████████████████████████████████
-🎧 IMPORTANT: AUDIO NOTES (Future-proof)
-- iOS/Safari often starts audio “quiet/far away” unless audio is
-  unlocked by a user gesture AND warmed up.
-- This file now does:
-  ✅ "Audio unlock" on first tap (Start / ▶ / Retry / Next)
-  ✅ Warm-up silent play/pause to stabilize volume
-  ✅ Uses fixed volumes for Sage + SFX
-█████████████████████████████████████████████████████████████
-========================================================= -->
-
 <!-- Preload results + SFX -->
 <link rel="preload" as="audio" href="assets/audio/ding.mp3" />
 <link rel="preload" as="audio" href="assets/audio/fart.mp3" />
@@ -363,7 +351,7 @@ opacity:.95;
 <div class="panel">
 <div class="card">
 <div id="sweep" class="sweep"></div>
-<button id="playBtn" class="playBtn">▶</button>
+<button id="playBtn" class="playBtn" type="button">▶</button>
 <div id="en" class="en">Press スタート to start</div>
 </div>
 <div id="jp" class="jp"></div>
@@ -378,9 +366,9 @@ opacity:.95;
 </div>
 
 <div class="btnRow">
-<button id="beginBtn" class="btn begin">スタート<br><small>Start</small></button>
-<button id="retryBtn" class="btn retry" style="display:none">もう一回<br><small>Retry</small></button>
-<button id="nextBtn" class="btn next" style="display:none">つぎへ<br><small>Next</small></button>
+<button id="beginBtn" class="btn begin" type="button">スタート<br><small>Start</small></button>
+<button id="retryBtn" class="btn retry" type="button" style="display:none">もう一回<br><small>Retry</small></button>
+<button id="nextBtn" class="btn next" type="button" style="display:none">つぎへ<br><small>Next</small></button>
 </div>
 <div id="scoreBox" class="scoreBox" style="display:none"></div>
 </div>
@@ -449,7 +437,7 @@ iPad / iPhone 版は、
 <div class="resultCenter"><div>
 <div id="msgRed" class="resultMsg">ブーリキュラム見てないでしょ！</div>
 <div id="scoreRed" class="resultScore">0/15（0%）</div>
-<div><button class="btnSmall btnRestart" data-restart>もう一度</button><a class="btnSmall btnMenu" href="index.html">メニューへ</a></div>
+<div><button class="btnSmall btnRestart" data-restart type="button">もう一度</button><a class="btnSmall btnMenu" href="index.html">メニューへ</a></div>
 </div></div>
 <footer>Bryan’s English School</footer>
 </div></div>
@@ -463,7 +451,7 @@ iPad / iPhone 版は、
 <div class="resultCenter"><div>
 <div id="msgOrange" class="resultMsg">YouTube見すぎ！ブーリキュラムもやろう！</div>
 <div id="scoreOrange" class="resultScore">0/15（0%）</div>
-<div><button class="btnSmall btnRestart" data-restart>もう一度</button><a class="btnSmall btnMenu" href="index.html">メニューへ</a></div>
+<div><button class="btnSmall btnRestart" data-restart type="button">もう一度</button><a class="btnSmall btnMenu" href="index.html">メニューへ</a></div>
 </div></div>
 <footer>Bryan’s English School</footer>
 </div></div>
@@ -477,7 +465,7 @@ iPad / iPhone 版は、
 <div class="resultCenter"><div>
 <div id="msgBlue" class="resultMsg">いいね！あと少しでパーフェクト！</div>
 <div id="scoreBlue" class="resultScore">0/15（0%）</div>
-<div><button class="btnSmall btnRestart" data-restart>もう一度</button><a class="btnSmall btnMenu" href="index.html">メニューへ</a></div>
+<div><button class="btnSmall btnRestart" data-restart type="button">もう一度</button><a class="btnSmall btnMenu" href="index.html">メニューへ</a></div>
 </div></div>
 <footer>Bryan’s English School</footer>
 </div></div>
@@ -491,7 +479,7 @@ iPad / iPhone 版は、
 <div class="resultCenter"><div>
 <div id="msgGold" class="resultMsg">すごい！あなたは地球で一番頭がいい！</div>
 <div id="scoreGold" class="resultScore">15/15（100%）</div>
-<div><button class="btnSmall btnRestart" data-restart>もう一度</button><a class="btnSmall btnMenu" href="index.html">メニューへ</a></div>
+<div><button class="btnSmall btnRestart" data-restart type="button">もう一度</button><a class="btnSmall btnMenu" href="index.html">メニューへ</a></div>
 </div></div>
 <footer>Bryan’s English School</footer>
 </div></div>
@@ -517,27 +505,23 @@ const WEEK_LABEL = {
 /* =========================================================
 █████████████████████████████████████████████████████████████
 ✅✅✅ CHANGE 4/6: ROUND + MIC SETTINGS (tuning)
-- PASS_SCORE: less strict (mic feels smoother)
-- GRACE_MS: ignore the tiny "first blip" when mic turns on
-- EXTRA_END_MS: short settle time before scoring (less clunky)
 █████████████████████████████████████████████████████████████
 ========================================================= */
 const SETTINGS = {
   DUR_MS: 7500,
-  WARMUP_MS: 650,          // SR warm-up (prevents clipped first word)
+  WARMUP_MS: 650,          // SpeechRecognition warm-up (NOT audio warmup)
   GO_DELAY_MS: 120,
 
-  // ✅ smoother mic
-  PASS_SCORE: 88,          // was effectively 100% only; now "good enough" passes
-  GRACE_MS: 280,           // ignore first tiny noise right after GO
-  EXTRA_END_MS: 140,       // let final transcript land before scoring
-  MAX_FUZZY_TOKEN: 1,      // allow 1 token mismatch without killing score
+  PASS_SCORE: 88,
+  GRACE_MS: 280,
+  EXTRA_END_MS: 140,
+  MAX_FUZZY_TOKEN: 1,
 
-  // ✅ audio stability (fix “far away” Sage + unclear SFX)
+  // audio
   SAGE_VOL: 1.00,
   SFX_VOL: 0.95,
   RESULT_VOL: 1.00,
-  AUDIO_UNLOCK_RETRY_MS: 120
+  UNLOCK_RETRY_MS: 120
 };
 
 /* =========================================================
@@ -567,8 +551,6 @@ const ITEMS_SRC = [
 /* =========================================================
 █████████████████████████████████████████████████████████████
 ✅✅✅ CHANGE 6/6 (OPTIONAL): iOS Practice Finish Message (JP)
-- iPad/iPhone do NOT show scores.
-- End screen is Japanese practice-finished only.
 █████████████████████████████████████████████████████████████
 ========================================================= */
 const IOS_FINISH_MESSAGE_JP =
@@ -578,9 +560,7 @@ const IOS_FINISH_MESSAGE_JP =
   "英文を大きい声で読めばOK！";
 
 /* =========================================================
-█████████████████████████████████████████████████████████████
 ///*** [0] INTERNAL (do not change)
-█████████████████████████████████████████████████████████████
 ========================================================= */
 let idx = 0, SR = null, listening = false, streamAllowed = false, isBusy = false;
 const firstScores = new Array(15).fill(null);
@@ -611,14 +591,12 @@ const isIOS = isIpad || isIOSPhone;
 })();
 
 /* =========================================================
-█████████████████████████████████████████████████████████████
-🎧 AUDIO ENGINE (fix: "Sage starts far away", unclear ding/fart)
-- We force an "audio unlock" on first user gesture.
-- We warm up Sage + SFX with silent play/pause.
-█████████████████████████████████████████████████████████████
+🎧 AUDIO (CLEANED)
+- iOS fix: DO NOT "warm up" by silently playing multiple sounds.
+- Only do a ONE-TIME silent unlock (single sound) on first user gesture.
+- Sage never runs during unlock.
 ========================================================= */
 let audioUnlocked = false;
-let audioWarmDone = false;
 
 function setAudioProps(a, vol){
   if(!a) return;
@@ -646,7 +624,7 @@ Object.values(RES).forEach(a=>setAudioProps(a, SETTINGS.RESULT_VOL));
 /* Shuffle ITEMS once */
 const ITEMS = ITEMS_SRC.slice().sort(()=>Math.random()-0.5);
 
-/* Preload Sage */
+/* Sage bank (preloaded) */
 const sageBank = {};
 ITEMS.forEach(it=>{
   const a = new Audio('audio/sentences/' + it.audio);
@@ -657,90 +635,78 @@ ITEMS.forEach(it=>{
 const sleep = ms => new Promise(r=>setTimeout(r, ms));
 
 async function safePlay(a){
-  if(!a) return;
-  // Always force volume before play (helps “quiet start” weirdness)
-  a.volume = a.volume ?? 1;
-  try{ a.pause(); a.currentTime = 0; }catch(e){}
-  const p = a.play();
-  if(p && p.then){
-    try{ await p; }catch(e){
-      // iOS/Safari: retry shortly
-      await sleep(SETTINGS.AUDIO_UNLOCK_RETRY_MS);
-      try{ await a.play(); }catch(e2){}
+  if(!a) return false;
+  try{
+    a.pause();
+    a.currentTime = 0;
+  }catch(e){}
+  try{
+    const p = a.play();
+    if(p && p.then){
+      await p;
+    }
+    return true;
+  }catch(e){
+    // iOS/Safari: a second try after a tiny delay sometimes helps
+    await sleep(SETTINGS.UNLOCK_RETRY_MS);
+    try{
+      const p2 = a.play();
+      if(p2 && p2.then) await p2;
+      return true;
+    }catch(e2){
+      return false;
     }
   }
 }
 
-async function audioUnlock(){
+function waitEnded(a, fallbackMs){
+  return new Promise(resolve=>{
+    if(!a){ resolve(); return; }
+    let done = false;
+    const finish = ()=>{ if(done) return; done=true; a.removeEventListener('ended', finish); resolve(); };
+    a.addEventListener('ended', finish, {once:true});
+    setTimeout(finish, fallbackMs);
+  });
+}
+
+async function playAndWait(a, volOverride){
+  if(!a) return;
+  await ensureAudioReady(); // unlock only (no multi-play warmup)
+  if(typeof volOverride === 'number') a.volume = volOverride;
+
+  // tiny offset can reduce Safari clipping on some devices
+  try{
+    a.pause();
+    a.currentTime = (a === SFX.ding) ? 0.03 : 0;
+  }catch(e){}
+
+  const ok = await safePlay(a);
+  if(!ok) return;
+
+  const ms = Math.max(900, ((a.duration || 1.2) * 1000) + 250);
+  await waitEnded(a, ms);
+}
+
+async function ensureAudioReady(){
   if(audioUnlocked) return true;
 
-  // Try a tiny silent unlock using SFX (volume 0 then restore)
+  // SINGLE silent unlock: only ding at volume 0, pause immediately.
   try{
     const a = SFX.ding;
     const oldVol = a.volume;
     a.volume = 0;
-    await safePlay(a);
+
+    const ok = await safePlay(a);
     await sleep(40);
     try{ a.pause(); a.currentTime = 0; }catch(e){}
     a.volume = oldVol;
-    audioUnlocked = true;
-    return true;
+
+    audioUnlocked = !!ok;
+    return audioUnlocked;
   }catch(e){
-    // If blocked, still mark false; user will tap again anyway
     audioUnlocked = false;
     return false;
   }
-}
-
-async function audioWarmUp(){
-  if(audioWarmDone) return;
-  // Warm up: brief silent play/pause on key sounds so volume is stable
-  try{
-    await audioUnlock();
-    const pack = [SFX.ding, SFX.fart, ...Object.values(sageBank).slice(0,3)];
-    for(const a of pack){
-      const old = a.volume;
-      a.volume = 0;
-      await safePlay(a);
-      await sleep(45);
-      try{ a.pause(); a.currentTime = 0; }catch(e){}
-      a.volume = old;
-      await sleep(45);
-    }
-    audioWarmDone = true;
-  }catch(e){
-    // no-op (game still works)
-    audioWarmDone = true;
-  }
-}
-
-function playAudioWithWait(a){
-  return new Promise(async (resolve)=>{
-    if(!a){ resolve(); return; }
-
-    // Ensure unlocked + warmed (fix far-away start + unclear SFX)
-    await audioUnlock();
-    await audioWarmUp();
-
-    // Force crisp restart
-    // Force crisp restart (✅ Fix A: prevent ding cut-off on iOS/Safari)
-try{
-  a.pause();
-  a.currentTime = (a === SFX.ding) ? 0.03 : 0;
-}catch(e){}
-    a.volume = (a === SFX.ding || a === SFX.fart) ? SETTINGS.SFX_VOL : (a.volume ?? 1);
-
-    const done=()=>{ a.onended=null; resolve(); };
-    const safety=setTimeout(()=>{ a.onended=null; resolve(); }, Math.max(2500,(a.duration||2.5)*1000+260));
-    a.addEventListener('ended',()=>clearTimeout(safety),{once:true});
-    a.onended=done;
-
-    try{
-      await safePlay(a);
-    }catch(e){
-      resolve();
-    }
-  });
 }
 
 /* =========================================================
@@ -757,7 +723,6 @@ function normalize(s){
 
 function normalizeToken(t){
   let s = normalize(t);
-  // basic de-plural / common endings (gentle)
   if(s.endsWith("s") && s.length>3) s = s.slice(0,-1);
   if(s.endsWith("ing") && s.length>5) s = s.slice(0,-3);
   return s;
@@ -789,10 +754,6 @@ function finalizeColors(){
   });
 }
 
-/* More forgiving score:
-   - counts meaningful tokens (len>=2)
-   - allows 1 token miss (SETTINGS.MAX_FUZZY_TOKEN)
-*/
 function keywordScore(target, spoken){
   const tgt = tokensOf(target).filter(x=>x.length>=2);
   const said = tokenSet(spoken);
@@ -801,7 +762,6 @@ function keywordScore(target, spoken){
   let hit = 0;
 
   for(const t of tgt){
-    // ignore ultra-common fillers
     if(t === "a" || t === "an" || t === "the") continue;
     total++;
     if(said.has(t)) hit++;
@@ -809,7 +769,6 @@ function keywordScore(target, spoken){
 
   if(!total) return 0;
 
-  // Soft forgiveness (so it feels less strict)
   const miss = total - hit;
   const forgiven = Math.min(miss, SETTINGS.MAX_FUZZY_TOKEN);
   const adjHit = hit + forgiven;
@@ -906,9 +865,6 @@ function showBurst(kind){
 
 /* =========================================================
 🍎 iOS PRACTICE MODE (NO SCORE)
-- No scoreBox
-- No result audio
-- End message is JP practice finished
 ========================================================= */
 async function beginRoundIOS(){
   if(isBusy) return;
@@ -917,9 +873,8 @@ async function beginRoundIOS(){
   resetVisuals();
   disableControls(true);
 
-  // audio stability: unlock/warm on start tap
-  await audioUnlock();
-  await audioWarmUp();
+  // unlock only (no warm-up multi-play)
+  await ensureAudioReady();
 
   await countdown321();
   meterText.innerHTML=`<span class="popNum flashGo" style="color:#fff680">GO!</span>`;
@@ -932,7 +887,6 @@ async function beginRoundIOS(){
   setFinished();
   stopSweep();
 
-  // iOS: no score, always allow Next/Retry
   scoreBox.style.display='none';
   beginBtn.style.display='none';
   retryBtn.style.display='inline-block';
@@ -943,7 +897,10 @@ async function beginRoundIOS(){
 }
 
 /* =========================================================
-🤖 ANDROID/DESKTOP MIC MODE (LESS STRICT + LESS CLUNKY)
+🤖 ANDROID/DESKTOP MIC MODE
+- Correct: ding (wait)
+- Wrong: fart (wait)
+- No rushing / no overlap
 ========================================================= */
 async function beginRound(){
   if(isIOS) return beginRoundIOS();
@@ -957,9 +914,7 @@ async function beginRound(){
     return;
   }
 
-  // unlock audio before mic (prevents weird volume ramp)
-  await audioUnlock();
-  await audioWarmUp();
+  await ensureAudioReady();
 
   if(!streamAllowed){
     await ensureMicPermission();
@@ -979,8 +934,6 @@ async function beginRound(){
   if(SR){
     SR.onresult=(e)=>{
       if(!collecting) return;
-
-      // ignore tiny first blip
       if(Date.now() - collectingStartTs < SETTINGS.GRACE_MS) return;
 
       let txt="";
@@ -994,7 +947,6 @@ async function beginRound(){
     try{ SR.start(); }catch(e){}
   }
 
-  // Wake SR to avoid clipping the first word
   await sleep(SETTINGS.WARMUP_MS);
 
   await countdown321();
@@ -1011,7 +963,6 @@ async function beginRound(){
 
   await sleep(SETTINGS.DUR_MS);
 
-  // Let final transcript land (less clunky)
   await sleep(SETTINGS.EXTRA_END_MS);
 
   collecting = false;
@@ -1031,24 +982,21 @@ async function beginRound(){
     if(s>=SETTINGS.PASS_SCORE) firstPerfectCount++;
   }
 
+  beginBtn.style.display='none';
+
   if(s>=SETTINGS.PASS_SCORE){
     showBurst('ok');
-
-    // ✅ crisp ding
-    await playAudioWithWait(SFX.ding);
-
-    nextBtn.style.display='inline-block';
     retryBtn.style.display='none';
-    beginBtn.style.display='none';
+    nextBtn.style.display='inline-block';
+
+    await playAndWait(SFX.ding, SETTINGS.SFX_VOL);
+
   }else{
     showBurst('ng');
-
-    // ✅ crisp fart
-    await playAudioWithWait(SFX.fart);
-
-    retryBtn.style.display='inline-block';
     nextBtn.style.display='none';
-    beginBtn.style.display='none';
+    retryBtn.style.display='inline-block';
+
+    await playAndWait(SFX.fart, SETTINGS.SFX_VOL);
   }
 
   disableControls(false);
@@ -1068,7 +1016,6 @@ function hideAllResults(){
 }
 
 async function showResults(){
-  // ✅ iOS: NO score, NO result audio. JP practice finished only.
   if(isIOS){
     hideAllResults();
     const msgBlue = document.getElementById('msgBlue');
@@ -1092,7 +1039,8 @@ async function showResults(){
 
   hideAllResults();
   $('#'+page).style.display='block';
-  await playAudioWithWait(snd);
+
+  await playAndWait(snd, SETTINGS.RESULT_VOL);
 
   if(page==='resGold'){
     for(let i=0;i<160;i++){
@@ -1111,8 +1059,7 @@ async function showResults(){
 
 /* Buttons */
 beginBtn.addEventListener('click', async()=>{
-  await audioUnlock();
-  await audioWarmUp();
+  await ensureAudioReady();
 
   if(isIOS){
     showItem();
@@ -1126,15 +1073,13 @@ beginBtn.addEventListener('click', async()=>{
 });
 
 retryBtn.addEventListener('click', async ()=>{
-  await audioUnlock();
-  await audioWarmUp();
+  await ensureAudioReady();
   showItem();
   beginRound();
 });
 
 nextBtn.addEventListener('click', async ()=>{
-  await audioUnlock();
-  await audioWarmUp();
+  await ensureAudioReady();
 
   if(isBusy) return;
   idx++;
@@ -1151,13 +1096,12 @@ nextBtn.addEventListener('click', async ()=>{
   beginBtn.style.display='inline-block';
 });
 
-/* Sage: play only when NOT listening / busy */
+/* Sage: ONLY when you tap ▶ */
 let sageNow=null;
 playBtn.addEventListener('click', async()=>{
   if(isBusy || listening) return;
 
-  await audioUnlock();
-  await audioWarmUp();
+  await ensureAudioReady();
 
   const it=ITEMS[idx];
   const a=sageBank[it.audio] || new Audio('audio/sentences/' + it.audio);
@@ -1168,13 +1112,13 @@ playBtn.addEventListener('click', async()=>{
     try{ sageNow.currentTime=0; }catch(e){}
   }
   sageNow=a;
-  await playAudioWithWait(a);
+
+  await playAndWait(a, SETTINGS.SAGE_VOL);
 });
 
 /* Restart */
 Array.from(document.querySelectorAll('[data-restart]')).forEach(b=>b.addEventListener('click', async ()=>{
-  await audioUnlock();
-  await audioWarmUp();
+  await ensureAudioReady();
 
   hideAllResults();
   for(let i=0;i<firstScores.length;i++) firstScores[i]=null;
@@ -1208,23 +1152,17 @@ const iosNoticeBtn=document.getElementById('iosNoticeBtn');
 if(isIOS && iosNotice && iosNoticeBtn){
   iosNotice.classList.add('show');
   iosNotice.setAttribute('aria-hidden','false');
+
+  // IMPORTANT: overlay tap ONLY unlocks. No warmup multi-play.
   iosNoticeBtn.addEventListener('click', async ()=>{
     iosNotice.classList.remove('show');
     iosNotice.setAttribute('aria-hidden','true');
-
-    // iOS: unlock audio as soon as they tap OK (helps Sage volume)
-    await audioUnlock();
-    await audioWarmUp();
-  });
+    await ensureAudioReady();
+  }, {once:true});
 }
 
-// Extra: unlock audio on ANY first tap (very iOS-safe)
-window.addEventListener('pointerdown', async ()=>{
-  if(!audioUnlocked){
-    await audioUnlock();
-    await audioWarmUp();
-  }
-}, {once:true});
+/* Extra: unlock on first real gesture anywhere (ONE silent ding only) */
+window.addEventListener('pointerdown', ()=>{ ensureAudioReady(); }, {once:true});
 </script>
 </body>
 </html>
