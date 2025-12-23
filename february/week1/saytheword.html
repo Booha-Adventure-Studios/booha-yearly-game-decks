@@ -509,7 +509,7 @@ body.ios #counter{margin-top:2px;}
    - PREVENT_MIC_SAGE_SPEAK = never auto-speak on mic press
    ========================================================= */
 const SETTINGS = {
-  AUDIO_AFTER_DING_MS: 400,     // ✅ requested: 0.4s pause
+  AUDIO_AFTER_DING_MS: 500,     // ✅ requested: 0.5s pause
   PREVENT_MIC_SAGE_SPEAK: true, // ✅ prevents accidental “happy” on mic press
 };
 
@@ -542,6 +542,28 @@ const MASTER = [
 const $=s=>document.querySelector(s);
 function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);}
 const wait = (ms)=>new Promise(res=>setTimeout(res, ms));
+
+/* =========================================================
+   ///*** [1.1] UI TEXT HELPERS (JP first, then EN)
+   - SR output often adds Capital + punctuation (Happy.)
+   - We show clean lowercase or the correct target.
+   ========================================================= */
+function cleanDisplay(s){
+  return (s||'')
+    .toString()
+    .trim()
+    .replace(/[.?!。！？]+$/g,'')
+    .toLowerCase();
+}
+function showHeard(raw){
+  // student feedback while listening (cleaned)
+  const txt = cleanDisplay(raw);
+  answerText.textContent = txt ? txt : '';
+}
+function showCorrectWord(word){
+  // always show the real answer (prevents "chi" display)
+  answerText.textContent = cleanDisplay(word);
+}
 
 /* =========================
    //* CHANGE 4/6: Week folder prefix (ONLY change week number)
@@ -620,7 +642,7 @@ async function primeSageAudio(){
   sagePrimed = true;
 
   try{
-    // ✅ PRIME = LOAD ONLY (NO PLAY) so it can NEVER speak "happy"
+    // ✅ PRIME = LOAD ONLY (NO PLAY) so it can NEVER speak on mic press
     const testWord = MASTER?.[0]?.en || '';
     const src = sagePathFor(testWord);
     if(src){
@@ -670,7 +692,7 @@ function playSageNow(word, onend){
   }
 }
 
-/* --- high-level: after ding, wait 0.3s, then speak (cancellable) --- */
+/* --- high-level: after ding, wait, then speak (cancellable) --- */
 async function speakCorrectAfterDing(word, onend){
   const my = ++sageTicket; // newest request wins
   await wait(SETTINGS.AUDIO_AFTER_DING_MS);
@@ -719,6 +741,9 @@ const stripeSets=['sv1','sv2','sv3','sv4','sv5'];
 let recognition=null;
 let listening=false;
 let answered=false;
+
+// ✅ NEW: first-try scoring (wrong once = no points for this card)
+let firstTryEligible=true;
 
 const ua = navigator.userAgent || '';
 const platform = navigator.platform || '';
@@ -774,10 +799,10 @@ if(SR && !isIOS){
 
     const raw = e.results[0][0].transcript;
 
-    // ✅ show what SR heard immediately (nice feedback)
-    answerText.textContent = raw.trim();
+    // ✅ JP/EN: show cleaned "heard" (lowercase, no punctuation)
+    showHeard(raw);
 
-    // ✅ FIX: evaluate() expects RAW transcript (future-proof matching + display)
+    // ✅ evaluate expects RAW transcript
     evaluate(raw);
   };
 
@@ -799,7 +824,7 @@ if(SR && !isIOS){
 
 function startRecognitionCore(){
   if(!SR || !recognition){
-    alert('Speech Recognition not supported on this browser.');
+    alert('音声認識に対応していません。\nSpeech Recognition not supported on this browser.');
     return;
   }
   if(listening || answered) return;
@@ -814,28 +839,31 @@ function startRecognitionCore(){
 }
 
 /* =========================================================
-   ///*** [11] iOS SIMPLE MODE (reveal + ding + pause + Sage)
+   ///*** [11] iOS PRACTICE MODE (reveal + ding + pause + Sage)
+   - ✅ iOS results = "練習おわり / Practice Complete"
+   - ✅ No fake 100%
    ========================================================= */
 async function iosCheckFlow(){
   if(answered) return;
 
   answered = true;
-  score = Math.min(15, score + 1);
 
   const item = order[idx];
-  answerText.textContent = item.en;
+
+  // ✅ Always show correct answer (lowercase)
+  showCorrectWord(item.en);
+
   answerBox.classList.remove('pulsing');
   answerBox.classList.add('correct');
 
   // ✅ ding
   playSFX(sDing);
-
   confettiBurst(answerBox,60);
 
   nextBtn.style.display = 'none';
   nextBtn.disabled = true;
 
-  // ✅ requested: pause AFTER ding then Sage speaks
+  // ✅ pause AFTER ding then Sage speaks
   speakCorrectAfterDing(item.en, ()=>{
     nextBtn.style.display = 'inline-block';
     nextBtn.disabled = false;
@@ -844,12 +872,12 @@ async function iosCheckFlow(){
 
 /* =========================================================
    ///*** [12] INPUT: Mic press must NOT auto-speak anything
-   - Fixes: "Sage says happy whenever mic pressed"
+   - Fixes: accidental Sage voice on mic press
    ========================================================= */
 function startListening(){
   if(answered) return;
 
-  // ✅ SAFETY: cancel any pending "after ding" speak + stop any current Sage
+  // ✅ cancel any pending "after ding" speak + stop any current Sage
   sageTicket++;
   stopSage();
 
@@ -886,15 +914,16 @@ function showCard(){
   nextBtn.style.display='none';
   nextBtn.disabled=false;
   answered=false;
+
+  // ✅ reset first-try scoring for this card
+  firstTryEligible = true;
+
   updateCounter();
 }
 
 /* =========================================================
    ///*** [SPEECH MATCH] Future-proof "close enough" checker
-   - Fixes short-word SR misses (shy→chi, etc.)
-   - Works for ALL weeks without per-word lists
    ========================================================= */
-
 function normWord(s){
   return (s||"")
     .toLowerCase()
@@ -905,23 +934,18 @@ function normWord(s){
 // lightweight "sounds-like" normalization for SR quirks
 function normSound(s){
   s = normWord(s);
-
-  // common SR confusions (keep small + safe)
   s = s
-    .replace(/^ch/, "sh")   // chi→shi-ish (helps shy/shi)
-    .replace(/^shi/, "sh")  // shi→sh
+    .replace(/^ch/, "sh")
+    .replace(/^shi/, "sh")
     .replace(/^ci/, "si")
     .replace(/ph/g, "f")
     .replace(/ck/g, "k")
     .replace(/qu/g, "kw")
     .replace(/x/g, "ks");
-
-  // end-letter quirks
-  s = s.replace(/i$/,"y");  // i → y (shy/shi)
+  s = s.replace(/i$/,"y");
   return s;
 }
 
-// Levenshtein distance
 function levenshtein(a,b){
   a = a||""; b = b||"";
   const m=a.length,n=b.length;
@@ -943,7 +967,6 @@ function levenshtein(a,b){
   return dp[m][n];
 }
 
-// similarity score 0..1 (1 = identical)
 function similarity(a,b){
   a = a||""; b = b||"";
   const L = Math.max(a.length,b.length);
@@ -951,19 +974,14 @@ function similarity(a,b){
   return 1 - (levenshtein(a,b)/L);
 }
 
-// dynamic threshold: forgiving for short words, stricter for long
 function requiredScore(len){
-  if(len <= 2) return 1.00; // "an", "to" -> be strict
-  if(len === 3) return 0.34; // 1 edit allowed (shy/chi often distance=2/3 => ~0.33)
-  if(len === 4) return 0.50; // 2 edits max
-  if(len <= 6) return 0.67;  // 2 edits-ish
-  return 0.75;               // longer words: must be pretty close
+  if(len <= 2) return 1.00;
+  if(len === 3) return 0.34;
+  if(len === 4) return 0.50;
+  if(len <= 6) return 0.67;
+  return 0.75;
 }
 
-/**
- * Returns true if transcript is "close enough" to target word.
- * Use rawTranscript for best results (not just cleaned heard).
- */
 function matchesTarget(rawTranscript, targetWord){
   const t0 = normWord(targetWord);
   const h0 = normWord(rawTranscript);
@@ -971,7 +989,6 @@ function matchesTarget(rawTranscript, targetWord){
   if(!t0 || !h0) return false;
   if(h0 === t0) return true;
 
-  // compare sound-normalized versions
   const t = normSound(t0);
   const h = normSound(h0);
   if(h === t) return true;
@@ -981,15 +998,15 @@ function matchesTarget(rawTranscript, targetWord){
 }
 
 /* =========================================================
-   ///*** [14] CHECK: Evaluate heard text (Future-proof match)
-   - Uses matchesTarget() helper (edit-distance + sound-normalize)
-   - Ensures Sage only plays AFTER ding + pause
+   ///*** [14] CHECK: Evaluate heard text
+   - ✅ Correct display = always the target (lowercase)
+   - ✅ Score = only if correct on FIRST attempt
    ========================================================= */
 function evaluate(rawTranscript){
   const target = order[idx].en;
 
-  // ✅ Always show what SR heard (helps debugging + student feedback)
-  if(rawTranscript != null) answerText.textContent = String(rawTranscript).trim();
+  // show cleaned "heard" (lowercase) while evaluating
+  showHeard(rawTranscript);
 
   if(matchesTarget(rawTranscript, target)){
     answered = true;
@@ -1002,22 +1019,31 @@ function evaluate(rawTranscript){
     answerBox.classList.remove('pulsing');
     answerBox.classList.add('correct');
 
+    // ✅ ALWAYS show correct target (prevents "chi" display)
+    showCorrectWord(target);
+
     // ✅ ding
     playSFX(sDing);
 
     confettiBurst(answerBox, 60);
-    score++;
+
+    // ✅ Score only if first try is still eligible
+    if(firstTryEligible){
+      score++;
+    }
 
     nextBtn.style.display = 'none';
     nextBtn.disabled = true;
 
-    // ✅ pause AFTER ding, then Sage speaks the TARGET
     speakCorrectAfterDing(target, ()=>{
       nextBtn.style.display = 'inline-block';
       nextBtn.disabled = false;
     });
 
   } else {
+    // ✅ after ANY wrong attempt, no points for this card anymore
+    firstTryEligible = false;
+
     answerBox.classList.add('wrong');
 
     // ✅ fart
@@ -1043,6 +1069,7 @@ nextBtn.addEventListener('click',()=>{
 
 /* =========================================================
    ///*** [16] RESULTS
+   - ✅ iOS = Practice Complete / 練習おわり (no %)
    ========================================================= */
 function showResults(){
   $('#page-game').classList.remove('active');
@@ -1050,26 +1077,30 @@ function showResults(){
   res.classList.add('active');
 
   if(isIOS){
-    score = 15;
+    // ✅ JP first, EN second (requested)
+    $('#resultMsg').textContent = '練習おわり';
+    $('#resultScore').textContent = 'Practice Complete';
+    // ✅ optional: do not play score-based end cards on iOS
+    return;
   }
 
   const pct = Math.round((score / order.length) * 100);
 
-  let msg = 'いいね！あと少しでパーフェクト！';
+  let msg = 'いいね！あと少しでパーフェクト！\nNice! Almost perfect!';
   let snd = $('#s_r1114');
 
   if(score <= 5){
-    msg = 'ブーリキュラム見てないでしょ！';
+    msg = 'ブーリキュラム見てないでしょ！\nYou didn’t study the Boo-riculum!';
     snd = $('#s_r05');
   } else if(score <= 10){
-    msg = 'YouTube見すぎ！ブーリキュラムもやろう！';
+    msg = 'YouTube見すぎ！ブーリキュラムもやろう！\nToo much YouTube—do the Boo-riculum!';
     snd = $('#s_r610');
   } else if(score === 15){
-    msg = 'すごい！あなたは地球で一番頭がいい！';
+    msg = 'すごい！あなたは地球で一番頭がいい！\nWow! You’re the smartest person on Earth!';
     snd = $('#s_r15');
   }
 
-  $('#resultMsg').textContent = msg;
+  $('#resultMsg').textContent = msg.split('\n')[0];
   $('#resultScore').textContent = `${score}/15（${pct}%）`;
 
   playEndCard(snd);
@@ -1087,6 +1118,7 @@ function showResults(){
 $('#playAgain').addEventListener('click',()=>{
   order=shuffle([...MASTER]);
   idx=0;score=0;stripeIx=0;answered=false;
+  firstTryEligible = true;
   $('#page-results').classList.remove('active');
   $('#page-game').classList.add('active');
   showCard();
@@ -1094,9 +1126,7 @@ $('#playAgain').addEventListener('click',()=>{
 
 /* =========================
    //* CHANGE 6/6: Menu links (only if folder depth changes)
-   - If this file is inside week1/ then index.html is fine.
-   - If you move it deeper, change to ../index.html
-   ========================= */
+   ========================================================= */
 $('#backToMenu').addEventListener('click',()=>{ location.href='index.html'; });
 $('#quitBtn').addEventListener('click',()=>{ location.href='index.html'; });
 
