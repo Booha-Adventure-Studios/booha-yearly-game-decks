@@ -890,13 +890,119 @@ function showCard(){
 }
 
 /* =========================================================
-   ///*** [14] CHECK: Evaluate heard text
+   ///*** [SPEECH MATCH] Future-proof "close enough" checker
+   - Fixes short-word SR misses (shy→chi, etc.)
+   - Works for ALL weeks without per-word lists
    ========================================================= */
-function evaluate(heard){
-  const correct=order[idx].en.toLowerCase().replace(/[^a-z]/g,'');
 
-  if(heard===correct){
-    answered=true;
+function normWord(s){
+  return (s||"")
+    .toLowerCase()
+    .replace(/[^a-z]/g,"")
+    .trim();
+}
+
+// lightweight "sounds-like" normalization for SR quirks
+function normSound(s){
+  s = normWord(s);
+
+  // common SR confusions (keep small + safe)
+  s = s
+    .replace(/^ch/, "sh")   // chi→shi-ish (helps shy/shi)
+    .replace(/^shi/, "sh")  // shi→sh
+    .replace(/^ci/, "si")
+    .replace(/ph/g, "f")
+    .replace(/ck/g, "k")
+    .replace(/qu/g, "kw")
+    .replace(/x/g, "ks");
+
+  // end-letter quirks
+  s = s.replace(/i$/,"y");  // i → y (shy/shi)
+  return s;
+}
+
+// Levenshtein distance
+function levenshtein(a,b){
+  a = a||""; b = b||"";
+  const m=a.length,n=b.length;
+  if(!m) return n;
+  if(!n) return m;
+  const dp = Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=0;i<=m;i++) dp[i][0]=i;
+  for(let j=0;j<=n;j++) dp[0][j]=j;
+  for(let i=1;i<=m;i++){
+    for(let j=1;j<=n;j++){
+      const cost = a[i-1]===b[j-1] ? 0 : 1;
+      dp[i][j] = Math.min(
+        dp[i-1][j] + 1,
+        dp[i][j-1] + 1,
+        dp[i-1][j-1] + cost
+      );
+    }
+  }
+  return dp[m][n];
+}
+
+// similarity score 0..1 (1 = identical)
+function similarity(a,b){
+  a = a||""; b = b||"";
+  const L = Math.max(a.length,b.length);
+  if(L===0) return 1;
+  return 1 - (levenshtein(a,b)/L);
+}
+
+// dynamic threshold: forgiving for short words, stricter for long
+function requiredScore(len){
+  if(len <= 2) return 1.00; // "an", "to" -> be strict
+  if(len === 3) return 0.34; // 1 edit allowed (shy/chi often distance=2/3 => ~0.33)
+  if(len === 4) return 0.50; // 2 edits max
+  if(len <= 6) return 0.67;  // 2 edits-ish
+  return 0.75;               // longer words: must be pretty close
+}
+
+/**
+ * Returns true if transcript is "close enough" to target word.
+ * Use rawTranscript for best results (not just cleaned heard).
+ */
+function matchesTarget(rawTranscript, targetWord){
+  const t0 = normWord(targetWord);
+  const h0 = normWord(rawTranscript);
+
+  if(!t0 || !h0) return false;
+  if(h0 === t0) return true;
+
+  // compare sound-normalized versions
+  const t = normSound(t0);
+  const h = normSound(h0);
+  if(h === t) return true;
+
+  const score = similarity(h, t);
+  return score >= requiredScore(t.length);
+}
+
+
+
+
+     
+/* =========================================================
+   ///*** [14] CHECK: Evaluate heard text (Future-proof match)
+   - Uses matchesTarget() helper (edit-distance + sound-normalize)
+   - Ensures Sage only plays AFTER ding + 0.3s pause
+   ========================================================= */
+function evaluate(rawTranscript){
+  const target = order[idx].en;
+
+  // ✅ Always show what SR heard (helps debugging + student feedback)
+  // (If you already set answerText in onresult, this is harmless.)
+  if(rawTranscript != null) answerText.textContent = String(rawTranscript).trim();
+
+  if(matchesTarget(rawTranscript, target)){
+    answered = true;
+
+    // stop any pending/overlapping Sage (extra safety)
+    sageTicket++;
+    stopSage();
+
     micBtn.classList.remove('pulsing');
     answerBox.classList.remove('pulsing');
     answerBox.classList.add('correct');
@@ -904,19 +1010,19 @@ function evaluate(heard){
     // ✅ ding
     playSFX(sDing);
 
-    confettiBurst(answerBox,60);
+    confettiBurst(answerBox, 60);
     score++;
 
-    nextBtn.style.display='none';
-    nextBtn.disabled=true;
+    nextBtn.style.display = 'none';
+    nextBtn.disabled = true;
 
-    // ✅ requested: 0.3s pause AFTER ding
-    speakCorrectAfterDing(order[idx].en, ()=>{
-      nextBtn.style.display='inline-block';
-      nextBtn.disabled=false;
+    // ✅ 0.3s pause AFTER ding, then Sage speaks the TARGET
+    speakCorrectAfterDing(target, ()=>{
+      nextBtn.style.display = 'inline-block';
+      nextBtn.disabled = false;
     });
 
-  }else{
+  } else {
     answerBox.classList.add('wrong');
 
     // ✅ fart
@@ -924,12 +1030,13 @@ function evaluate(heard){
 
     setTimeout(()=>{
       answerBox.classList.remove('wrong');
-      answerBox.style.background='#fff';
-      answerBox.style.color='#111';
-      answerText.textContent='';
-    },700);
+      answerBox.style.background = '#fff';
+      answerBox.style.color = '#111';
+      answerText.textContent = '';
+    }, 700);
   }
 }
+
 
 /* =========================================================
    ///*** [15] NEXT
