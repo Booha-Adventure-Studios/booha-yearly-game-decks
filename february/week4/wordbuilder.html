@@ -621,31 +621,41 @@ function playSfx(name){
 }
 
 /* ---------- [6F] Speak button (Sage) ---------- */
+/* =========================================================
+   line 625 — 25DEC25 — UPDATE
+   FIX: iOS / Safari Sage audio goes silent after 2 plays
+   SOLUTION: New Audio() per click (no element reuse)
+   ========================================================= */
+
 async function speak(){
   await unlockAudioOnce();
 
   const word = WORDS[index];
-  const a = sage.get(word);
-  if(!a){ console.warn("[Sage] missing audio for:", word); return; }
 
-  stopAllSage();
+  // Get the cached audio ONLY to read its src (don’t reuse the element)
+  const cached = sage.get(word);
+  if(!cached){
+    console.warn("[Sage] missing audio for:", word);
+    return;
+  }
+
+  stopAllSage();                 // fine to keep
   play.classList.add("fizzy");
 
-  // Important: don’t spam currentTime resets during buffering
-  try{
-    a.pause();
-    a.currentTime = 0;
-  }catch{}
+  // ✅ Safari fix: NEW Audio instance each time
+  const a = new Audio(cached.src);
+  a.preload = "auto";
+  a.playsInline = true;
+  a.crossOrigin = "anonymous";
 
   const clear = ()=> play.classList.remove("fizzy");
   a.onended = clear;
 
-  const p = a.play();
-  if(p && p.catch){
-    p.catch(err=>{
-      console.warn("[Sage] play blocked/missing:", err, a.src);
-      clear();
-    });
+  try{
+    await a.play();
+  }catch(err){
+    console.warn("[Sage] play blocked/missing:", err, a.src);
+    clear();
   }
 }
 play.addEventListener("click", speak);
