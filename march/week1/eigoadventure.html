@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Booha Eigo Adventure – February Week 1</title>
+<title>Booha Eigo Adventure – March Week 1</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">  
 <meta name="theme-color" content="#0b1530" />
@@ -426,8 +426,8 @@ footer{text-align:center;color:#fff;padding:16px 0 22px;font-family:'Cinzel',ser
 
 <header>
   <div class="h1">THE BOO-RICULUM</div>
-  <div class="h2">Eigo Adventure – February Week 1</div>
-  <div class="h3">2月第2週 – 英語アドベンチャー</div>
+  <div class="h2">Eigo Adventure – March Week 1</div>
+  <div class="h3">3月第1週 – 英語アドベンチャー</div>
 </header>
 
 <main>
@@ -682,57 +682,116 @@ function setMicStatus(on){
 }
 
 /*------------------------------------------------------------
-  [E] QUESTIONS — February Week 1 (Feelings)
+  [E] QUESTIONS — March Week 1 (Feelings)
   Notes:
   - We shuffle answers but preserve the original correct string in q.correct.
 ------------------------------------------------------------*/
 const BASE_QUESTIONS = [
-  {index1:1, q:"How do you feel today?", a:0, answers:[
-    "I feel happy today.","I feel like a flying sandwich.","I feel seventeen bananas.","I feel like my socks are judging me."]},
+  {index1:1, q:"What do you want to be in the future?", a:0, answers:[
+    "I want to be a teacher.",
+    "I want to be a flying sandwich.",
+    "I want to be seventeen bananas.",
+    "I want to be my socks’ manager."
+  ]},
 
-  {index1:2, q:"What makes you happy?", a:0, answers:[
-    "Music and friends make me happy.","My toothbrush makes me a superhero.","A potato gives me life advice.","The ceiling tells me jokes."]},
+  {index1:2, q:"Why do you want that job?", a:0, answers:[
+    "Because I like helping people.",
+    "Because my pencil told me to.",
+    "Because jobs choose people at night.",
+    "Because Tuesday demanded it."
+  ]},
 
-  {index1:3, q:"What makes you nervous?", a:0, answers:[
-    "Tests make me nervous.","My shadow takes quizzes.","A spaghetti monster grades me.","My chair starts talking."]},
+  {index1:3, q:"Who inspires your dream?", a:0, answers:[
+    "My family or a teacher inspires me.",
+    "A mysterious potato inspires me.",
+    "My backpack gives motivational speeches.",
+    "A cloud whispered my future."
+  ]},
 
-  {index1:4, q:"When do you feel proud?", a:0, answers:[
-    "I feel proud when I do my best.","I feel proud when I become invisible.","I feel proud when pigeons clap.","I feel proud when my backpack sings."]},
+  {index1:4, q:"Do you know anyone with your dream job?", a:0, answers:[
+    "Yes, I know someone with that job.",
+    "No, only my shadow works there.",
+    "A cat once mentioned it.",
+    "My shoes are employed there."
+  ]},
 
-  {index1:5, q:"What do you do when you feel sad?", a:0, answers:[
-    "I talk to someone or listen to music.","I wrestle a cloud politely.","I send my sadness to the moon.","I hide inside a sandwich."]},
+  {index1:5, q:"What job looks fun to you?", a:0, answers:[
+    "Being a pilot looks fun to me.",
+    "Professional bubble watcher looks fun.",
+    "I want to test invisible chairs.",
+    "I review sandwiches for a living."
+  ]},
 
-  {index1:6, q:"Do you get bored easily?", a:0, answers:[
-    "No, I don’t get bored easily.","Yes, I get bored in 2 seconds.","I get bored only on Tuesdays.","Boredom gets bored of me."]},
+  {index1:6, q:"Do you want to work in Japan or abroad?", a:0, answers:[
+    "I want to work in Japan or abroad.",
+    "I want to work on the moon.",
+    "I work only on weekends in dreams.",
+    "I work wherever my hat goes."
+  ]},
 
-  {index1:7, q:"What helps you calm down?", a:0, answers:[
-    "Deep breaths help me calm down.","A dragon gives me a massage.","I calm down by arguing with a pencil.","My shoes teach meditation."]},
+  {index1:7, q:"Do you think your dream job is hard?", a:0, answers:[
+    "Yes, I think it is hard.",
+    "No, jobs are powered by magic.",
+    "Only my alarm clock works hard.",
+    "Hard work runs away from me."
+  ]},
 
-  {index1:8, q:"Are you shy with new people?", a:0, answers:[
-    "Yes, I’m shy with new people.","No, I’m a professional giraffe.","I’m shy only with spaghetti.","New people are shy with me."]},
+  {index1:8, q:"What do you want to learn for your future?", a:0, answers:[
+    "I want to learn English or science.",
+    "I want to learn how to talk to walls.",
+    "I study spaghetti behavior.",
+    "I major in advanced napping."
+  ]},
 
-  {index1:9, q:"When do you feel excited?", a:0, answers:[
-    "I feel excited before a trip.","I feel excited when my spoon wins.","I feel excited at 3:00 a.m. in space.","I feel excited when my homework disappears."]},
+  {index1:9, q:"What job helps people?", a:0, answers:[
+    "Doctors and nurses help people.",
+    "Professional clappers help people.",
+    "Mirrors give life advice.",
+    "Shoelaces solve problems."
+  ]},
 
-  {index1:10, q:"Do you feel hungry in the morning?", a:0, answers:[
-    "Yes, I feel hungry in the morning.","No, I eat sunlight for breakfast.","Only my hat feels hungry.","I feel hungry in the future."]},
+  {index1:10, q:"Do you like working in a team?", a:0, answers:[
+    "Yes, I like working in a team.",
+    "Only if the team is invisible.",
+    "I work with chairs emotionally.",
+    "Teams work for me."
+  ]},
 
-  {index1:11, q:"What music changes your mood?", a:0, answers:[
-    "Calm music changes my mood.","My fridge sings opera to me.","A trumpet argues with my brain.","My shoelaces play heavy metal."]},
+  {index1:11, q:"What job uses English?", a:0, answers:[
+    "A teacher or office worker uses English.",
+    "My refrigerator uses English.",
+    "Shoes negotiate in English.",
+    "English uses the job."
+  ]},
 
-  {index1:12, q:"Who cheers you up?", a:0, answers:[
-    "My friends or family cheer me up.","A mysterious pancake cheers me up.","My backpack tells jokes.","A squirrel gives speeches."]},
+  {index1:12, q:"What do you think is an easy job?", a:0, answers:[
+    "I think some jobs look easy.",
+    "All jobs are easy for dragons.",
+    "Easy jobs hide from people.",
+    "My pillow has the easiest job."
+  ]},
 
-  {index1:13, q:"Do you talk about your feelings?", a:0, answers:[
-    "Yes, I talk about my feelings.","No, my feelings talk to my socks.","I only talk to my feelings on weekends.","My feelings are on airplane mode."]},
+  {index1:13, q:"What do your parents do?", a:0, answers:[
+    "They have jobs and work hard.",
+    "They secretly train squirrels.",
+    "They manage the moon schedule.",
+    "They retire my homework."
+  ]},
 
-  {index1:14, q:"How do you show kindness to others’ feelings?", a:0, answers:[
-    "I listen and use kind words.","I throw confetti at emotions.","I politely challenge feelings to a duel.","I teach feelings karate."]},
+  {index1:14, q:"Would you like the same job as them?", a:0, answers:[
+    "Yes, I would like that job.",
+    "Only if the job wears a cape.",
+    "I trade jobs with my lunch.",
+    "My future decides later."
+  ]},
 
-  {index1:15, q:"What color matches your mood today?", a:0, answers:[
-    "Blue matches my mood today.","Transparent matches my mood.","Potato-colored matches my mood.","Neon spaghetti matches my mood."]}
+  {index1:15, q:"What job do you think I have?", a:0, answers:[
+    "I think you are a teacher.",
+    "You are clearly a time traveler.",
+    "You manage invisible penguins.",
+    "You train pencils professionally."
+  ]}
 ];
-
 
 function shuffle(a){
   for(let i=a.length-1;i>0;i--){
@@ -768,70 +827,70 @@ let iosSelectedIndex=null;
 let iosFirstAttempt=true;
 
 /*------------------------------------------------------------
-  [F] CORRECT ANSWER TRANSLATIONS — February Week 1 (Feelings)
+  [F] CORRECT ANSWER TRANSLATIONS — March Week 1 (Feelings)
   Notes:
   - Single strings (no arrays) so TTS/reading is always natural.
 ------------------------------------------------------------*/
 const ANSWER_TRANSLATIONS = {
-  1:{ en:"I feel happy today.", 
-      jp:"今日はうれしいです。", 
-      hi:"きょう は うれしい です" },
+  1:{ en:"I want to be a teacher.", 
+      jp:"先生になりたいです。", 
+      hi:"せんせい に なりたい です" },
 
-  2:{ en:"Music and friends make me happy.", 
-      jp:"音楽や友だちは私を幸せにします。", 
-      hi:"おんがく や ともだち は わたし を しあわせ に します" },
+  2:{ en:"I want to be a doctor because I like helping people.", 
+      jp:"人を助けるのが好きなので医者になりたいです。", 
+      hi:"ひと を たすける の が すき なので いしゃ に なりたい です" },
 
-  3:{ en:"Tests make me nervous.", 
-      jp:"テストは私を緊張させます。", 
-      hi:"てすと は わたし を きんちょう させます" },
+  3:{ en:"I want to be a pilot and travel the world.", 
+      jp:"パイロットになって世界を旅したいです。", 
+      hi:"ぱいろっと に なって せかい を たび したい です" },
 
-  4:{ en:"I feel proud when I do my best.", 
-      jp:"ベストを尽くしたとき誇りに思います。", 
-      hi:"べすと を つくした とき ほこり に おもいます" },
+  4:{ en:"I want to be an artist because I love drawing.", 
+      jp:"絵を描くことが大好きなので芸術家になりたいです。", 
+      hi:"え を かく こと が だいすき なので げいじゅつか に なりたい です" },
 
-  5:{ en:"I talk to someone or listen to music.", 
-      jp:"誰かと話したり音楽を聞いたりします。", 
-      hi:"だれか と はなしたり おんがく を きいたり します" },
+  5:{ en:"I want to work in an office.", 
+      jp:"事務所で働きたいです。", 
+      hi:"じむしょ で はたらきたい です" },
 
-  6:{ en:"No, I don’t get bored easily.", 
-      jp:"いいえ、あまり退屈しません。", 
-      hi:"いいえ あまり たいくつ しません" },
+  6:{ en:"I want to help my town.", 
+      jp:"町の役に立ちたいです。", 
+      hi:"まち の やく に たちたい です" },
 
-  7:{ en:"Deep breaths help me calm down.", 
-      jp:"深呼吸は私を落ち着かせてくれます。", 
-      hi:"しんこきゅう は わたし を おちつかせて くれます" },
+  7:{ en:"I want to cook in a restaurant.", 
+      jp:"レストランで料理をしたいです。", 
+      hi:"れすとらん で りょうり を したい です" },
 
-  8:{ en:"Yes, I’m shy with new people.", 
-      jp:"はい、新しい人の前では恥ずかしいです。", 
-      hi:"はい あたらしい ひと の まえ で は はずかしい です" },
+  8:{ en:"I want to study science in the future.", 
+      jp:"将来は科学を勉強したいです。", 
+      hi:"しょうらい は かがく を べんきょう したい です" },
 
-  9:{ en:"I feel excited before a trip.", 
-      jp:"旅行の前はわくわくします。", 
-      hi:"りょこう の まえ は わくわく します" },
+  9:{ en:"I want to be a nurse like my mother.", 
+      jp:"母のように看護師になりたいです。", 
+      hi:"はは の よう に かんごし に なりたい です" },
 
-  10:{ en:"Yes, I feel hungry in the morning.", 
-       jp:"はい、朝はおなかがすきます。", 
-       hi:"はい あさ は おなか が すきます" },
+  10:{ en:"I want to design games someday.", 
+       jp:"いつかゲームを作りたいです。", 
+       hi:"いつか げーむ を つくりたい です" },
 
-  11:{ en:"Calm music changes my mood.", 
-       jp:"落ち着いた音楽は気分を変えます。", 
-       hi:"おちついた おんがく は きぶん を かえます" },
+  11:{ en:"I want to work outside.", 
+       jp:"外で働きたいです。", 
+       hi:"そと で はたらきたい です" },
 
-  12:{ en:"My friends or family cheer me up.", 
-       jp:"友だちや家族が私を元気づけてくれます。", 
-       hi:"ともだち や かぞく が わたし を げんきづけて くれます" },
+  12:{ en:"I want to use English in my job.", 
+       jp:"仕事で英語を使いたいです。", 
+       hi:"しごと で えいご を つかいたい です" },
 
-  13:{ en:"Yes, I talk about my feelings.", 
-       jp:"はい、自分の気持ちについて話します。", 
-       hi:"はい じぶん の きもち に ついて はなします" },
+  13:{ en:"I want to help children learn.", 
+       jp:"子どもたちの学びを助けたいです。", 
+       hi:"こどもたち の まなび を たすけたい です" },
 
-  14:{ en:"I listen and use kind words.", 
-       jp:"話を聞いて優しい言葉を使います。", 
-       hi:"はなし を きいて やさしい ことば を つかいます" },
+  14:{ en:"I want to work hard and be happy.", 
+       jp:"一生懸命働いて幸せになりたいです。", 
+       hi:"いっしょうけんめい はたらいて しあわせ に なりたい です" },
 
-  15:{ en:"Blue matches my mood today.", 
-       jp:"今日は青が今の気分に合います。", 
-       hi:"きょう は あお が いま の きぶん に あいます" }
+  15:{ en:"I don’t know yet, but I want to try many things.", 
+       jp:"まだ分かりませんが、いろいろ試したいです。", 
+       hi:"まだ わかりません が、いろいろ ためしたい です" }
 };
 
 
