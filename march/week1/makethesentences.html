@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
 <!-- //* CHANGE 1/7: Page <title> (week label) *// -->
-<title>Booha Make the Sentences – February Week 1</title>
+<title>Booha Make the Sentences – March Week 1</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">
 <meta name="theme-color" content="#0b1530" />
@@ -355,8 +355,8 @@ footer{text-align:center;color:#c9d4ec;font-family:'Cinzel',serif;font-weight:70
   <div class="h2">MAKE THE SENTENCES</div>
 
   <!-- //* CHANGE 2/7: Week label text shown on page *// -->
-  <div class="h3">February Week 1 – Sentences</div>
-  <div class="h4">2月第1週 – 文の練習</div>
+  <div class="h3">March Week 1 – Sentences</div>
+  <div class="h4">3月第1週 – 文の練習</div>
 </header>
 
 <div class="wrap" id="page-round">
@@ -504,22 +504,67 @@ initAudioPaths();
    //* CHANGE 4/7: Sentence data (id 1..15 matches s01_.. s15_..)
    ========================= */
 const BASE_DATA = [
-  {id:1,  en:"I am happy today.",                   jp:"今日はうれしいです。",                 hira:"きょう は うれしい です"},
-  {id:2,  en:"I feel tired after school.",          jp:"学校のあとに疲れます。",               hira:"がっこう の あと に つかれます"},
-  {id:3,  en:"I am excited about the trip.",        jp:"旅行が楽しみです。",                   hira:"りょこう が たのしみ です"},
-  {id:4,  en:"I feel nervous before a test.",       jp:"テストの前に緊張します。",             hira:"てすと の まえ に きんちょう します"},
-  {id:5,  en:"I am proud of my work.",              jp:"自分の作品を誇りに思います。",         hira:"じぶん の さくひん を ほこり に おもいます"},
-  {id:6,  en:"I feel calm in the library.",         jp:"図書館にいると落ち着きます。",         hira:"としょかん に いる と おちつきます"},
-  {id:7,  en:"I am worried about my homework.",     jp:"宿題のことで心配です。",               hira:"しゅくだい の こと で しんぱい です"},
-  {id:8,  en:"I feel bored sometimes.",             jp:"ときどき退屈です。",                   hira:"ときどき たいくつ です"},
-  {id:9,  en:"I am shy with new people.",           jp:"初めての人の前では恥ずかしいです。",   hira:"はじめて の ひと の まえ で は はずかしい です"},
-  {id:10, en:"I feel hungry at noon.",              jp:"お昼におなかがすきます。",             hira:"おひる に おなか が すきます"},
-  {id:11, en:"Are you sad? — No, I’m fine.",        jp:"悲しいですか？— いいえ、大丈夫です。", hira:"かなしい です か — いいえ だいじょうぶ です"},
-  {id:12, en:"How do you feel today?",              jp:"今日はどんな気分ですか？",             hira:"きょう は どんな きぶん です か"},
-  {id:13, en:"I feel better now.",                  jp:"今は気分がよくなりました。",           hira:"いま は きぶん が よく なりました"},
-  {id:14, en:"Music makes me happy.",               jp:"音楽は私を幸せにします。",             hira:"おんがく は わたし を しあわせ に します"},
-  {id:15, en:"Friends help me feel calm.",          jp:"友だちは私を落ち着かせてくれます。",   hira:"ともだち は わたし を おちつかせて くれます"}
+  {id:1,  en:"I want to be a teacher.", 
+           jp:"先生になりたいです。", 
+           hira:"せんせい に なりたい です"},
+
+  {id:2,  en:"I want to be a doctor because I like helping people.", 
+           jp:"人を助けるのが好きなので医者になりたいです。", 
+           hira:"ひと を たすける の が すき なので いしゃ に なりたい です"},
+
+  {id:3,  en:"I want to be a pilot and travel the world.", 
+           jp:"パイロットになって世界を旅したいです。", 
+           hira:"ぱいろっと に なって せかい を たび したい です"},
+
+  {id:4,  en:"I want to be an artist because I love drawing.", 
+           jp:"絵を描くことが大好きなので芸術家になりたいです。", 
+           hira:"え を かく こと が だいすき なので げいじゅつか に なりたい です"},
+
+  {id:5,  en:"I want to work in an office.", 
+           jp:"事務所で働きたいです。", 
+           hira:"じむしょ で はたらきたい です"},
+
+  {id:6,  en:"I want to help my town.", 
+           jp:"町の役に立ちたいです。", 
+           hira:"まち の やく に たちたい です"},
+
+  {id:7,  en:"I want to cook in a restaurant.", 
+           jp:"レストランで料理をしたいです。", 
+           hira:"れすとらん で りょうり を したい です"},
+
+  {id:8,  en:"I want to study science in the future.", 
+           jp:"将来は科学を勉強したいです。", 
+           hira:"しょうらい は かがく を べんきょう したい です"},
+
+  {id:9,  en:"I want to be a nurse like my mother.", 
+           jp:"母のように看護師になりたいです。", 
+           hira:"はは の よう に かんごし に なりたい です"},
+
+  {id:10, en:"I want to design games someday.", 
+           jp:"いつかゲームを作りたいです。", 
+           hira:"いつか げーむ を つくりたい です"},
+
+  {id:11, en:"I want to work outside.", 
+           jp:"外で働きたいです。", 
+           hira:"そと で はたらきたい です"},
+
+  {id:12, en:"I want to use English in my job.", 
+           jp:"仕事で英語を使いたいです。", 
+           hira:"しごと で えいご を つかいたい です"},
+
+  {id:13, en:"I want to help children learn.", 
+           jp:"子どもたちの学びを助けたいです。", 
+           hira:"こどもたち の まなび を たすけたい です"},
+
+  {id:14, en:"I want to work hard and be happy.", 
+           jp:"一生懸命働いて幸せになりたいです。", 
+           hira:"いっしょうけんめい はたらいて しあわせ に なりたい です"},
+
+  {id:15, en:"I don’t know yet, but I want to try many things.", 
+           jp:"まだ分かりませんが、いろいろ試したいです。", 
+           hira:"まだ わかりません が、いろいろ ためしたい です"}
 ];
+
 
 
 /* Shuffle question order each refresh */
