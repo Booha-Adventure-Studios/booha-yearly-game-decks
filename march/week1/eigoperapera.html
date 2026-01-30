@@ -10,7 +10,7 @@
 - This appears on the browser tab + iPad app switcher.
 █████████████████████████████████████████████████████████████
 ========================================================= -->
-<title>Booha Eigo Pera Pera – February Week 1</title>
+<title>Booha Eigo Pera Pera – March Week 1</title>
 
 <!-- =========================================================
 █████████████████████████████████████████████████████████████
@@ -343,8 +343,8 @@ opacity:.95;
 - These are the big labels on the page.
 █████████████████████████████████████████████████████████████
 ========================================================= -->
-<div id="weekLabelEn" class="h3">February Week 1 – Speaking Practice</div>
-<div id="weekLabelJp" class="h4">2月第1週 – スピーキング練習</div>
+<div id="weekLabelEn" class="h3">March Week 1 – Speaking Practice</div>
+<div id="weekLabelJp" class="h4">3月第1週 – スピーキング練習</div>
 </header>
 
 <div class="wrap">
@@ -432,7 +432,7 @@ iPad / iPhone 版は、
 <header>
   <div class="h1">THE BOO-RICULUM</div>
   <div class="h2">EIGO PERA PERA</div>
-  <div class="h3" data-week-en>February Week 1 – Speaking Practice</div>
+  <div class="h3" data-week-en>March Week 1 – Speaking Practice</div>
 </header>
 <div class="resultCenter"><div>
 <div id="msgRed" class="resultMsg">ブーリキュラム見てないでしょ！</div>
@@ -446,7 +446,7 @@ iPad / iPhone 版は、
 <header>
   <div class="h1">THE BOO-RICULUM</div>
   <div class="h2">EIGO PERA PERA</div>
-  <div class="h3" data-week-en>February Week 1 – Speaking Practice</div>
+  <div class="h3" data-week-en>March Week 1 – Speaking Practice</div>
 </header>
 <div class="resultCenter"><div>
 <div id="msgOrange" class="resultMsg">YouTube見すぎ！ブーリキュラムもやろう！</div>
@@ -460,7 +460,7 @@ iPad / iPhone 版は、
 <header>
   <div class="h1">THE BOO-RICULUM</div>
   <div class="h2">EIGO PERA PERA</div>
-  <div class="h3" data-week-en>February Week 1 – Speaking Practice</div>
+  <div class="h3" data-week-en>March Week 1 – Speaking Practice</div>
 </header>
 <div class="resultCenter"><div>
 <div id="msgBlue" class="resultMsg">いいね！あと少しでパーフェクト！</div>
@@ -474,7 +474,7 @@ iPad / iPhone 版は、
 <header>
   <div class="h1">THE BOO-RICULUM</div>
   <div class="h2">EIGO PERA PERA</div>
-  <div class="h3" data-week-en>February Week 1 – Speaking Practice</div>
+  <div class="h3" data-week-en>March Week 1 – Speaking Practice</div>
 </header>
 <div class="resultCenter"><div>
 <div id="msgGold" class="resultMsg">すごい！あなたは地球で一番頭がいい！</div>
@@ -497,9 +497,9 @@ iPad / iPhone 版は、
 █████████████████████████████████████████████████████████████
 ========================================================= */
 const WEEK_LABEL = {
-  title: "Booha Eigo Pera Pera – February Week 1",
-  headerEn: "February Week 1 – Speaking Practice",
-  headerJp: "2月第1週 – スピーキング練習"
+  title: "Booha Eigo Pera Pera – March Week 1",
+  headerEn: "March Week 1 – Speaking Practice",
+  headerJp: "3月第1週 – スピーキング練習"
 };
 
 /* =========================================================
@@ -531,35 +531,80 @@ const SETTINGS = {
 █████████████████████████████████████████████████████████████
 ========================================================= */
 const ITEMS_SRC = [
-  { en:"I am happy today.", jp:"今日はうれしいです。", hira:"(きょうは うれしい です)", audio:"s01_i_am_happy_today.mp3" },
+  { en:"I want to be a teacher.", 
+    jp:"先生になりたいです。", 
+    hira:"(せんせい に なりたい です)", 
+    audio:"s01_i_want_to_be_a_teacher.mp3" },
 
-  { en:"I feel tired after school.", jp:"学校のあと、つかれます。", hira:"(がっこう の あと、つかれます)", audio:"s02_i_feel_tired_after_school.mp3" },
+  { en:"I want to be a doctor because I like helping people.", 
+    jp:"人を助けるのが好きなので医者になりたいです。", 
+    hira:"(ひと を たすける の が すき なので いしゃ に なりたい です)", 
+    audio:"s02_i_want_to_be_a_doctor_because_i_like_helping_people.mp3" },
 
-  { en:"I am excited about the trip.", jp:"旅行が楽しみです。", hira:"(りょこう が たのしみ です)", audio:"s03_i_am_excited_about_the_trip.mp3" },
+  { en:"I want to be a pilot and travel the world.", 
+    jp:"パイロットになって世界を旅したいです。", 
+    hira:"(ぱいろっと に なって せかい を たび したい です)", 
+    audio:"s03_i_want_to_be_a_pilot_and_travel_the_world.mp3" },
 
-  { en:"I feel nervous before a test.", jp:"テストの前はきんちょうします。", hira:"(てすと の まえ は きんちょう します)", audio:"s04_i_feel_nervous_before_a_test.mp3" },
+  { en:"I want to be an artist because I love drawing.", 
+    jp:"絵を描くことが大好きなので芸術家になりたいです。", 
+    hira:"(え を かく こと が だいすき なので げいじゅつか に なりたい です)", 
+    audio:"s04_i_want_to_be_an_artist_because_i_love_drawing.mp3" },
 
-  { en:"I am proud of my work.", jp:"自分のことを誇りに思います。", hira:"(じぶん の こと を ほこり に おもいます)", audio:"s05_i_am_proud_of_my_work.mp3" },
+  { en:"I want to work in an office.", 
+    jp:"事務所で働きたいです。", 
+    hira:"(じむしょ で はたらきたい です)", 
+    audio:"s05_i_want_to_work_in_an_office.mp3" },
 
-  { en:"I feel calm in the library.", jp:"図書館では落ち着きます。", hira:"(としょかん では おちつきます)", audio:"s06_i_feel_calm_in_the_library.mp3" },
+  { en:"I want to help my town.", 
+    jp:"町の役に立ちたいです。", 
+    hira:"(まち の やく に たちたい です)", 
+    audio:"s06_i_want_to_help_my_town.mp3" },
 
-  { en:"I am worried about my homework.", jp:"宿題がしんぱいです。", hira:"(しゅくだい が しんぱい です)", audio:"s07_i_am_worried_about_my_homework.mp3" },
+  { en:"I want to cook in a restaurant.", 
+    jp:"レストランで料理をしたいです。", 
+    hira:"(れすとらん で りょうり を したい です)", 
+    audio:"s07_i_want_to_cook_in_a_restaurant.mp3" },
 
-  { en:"I feel bored sometimes.", jp:"ときどき退屈です。", hira:"(ときどき たいくつ です)", audio:"s08_i_feel_bored_sometimes.mp3" },
+  { en:"I want to study science in the future.", 
+    jp:"将来は科学を勉強したいです。", 
+    hira:"(しょうらい は かがく を べんきょう したい です)", 
+    audio:"s08_i_want_to_study_science_in_the_future.mp3" },
 
-  { en:"I am shy with new people.", jp:"はじめての人には、はずかしいです。", hira:"(はじめて の ひと には、はずかしい です)", audio:"s09_i_am_shy_with_new_people.mp3" },
+  { en:"I want to be a nurse like my mother.", 
+    jp:"母のように看護師になりたいです。", 
+    hira:"(はは の よう に かんごし に なりたい です)", 
+    audio:"s09_i_want_to_be_a_nurse_like_my_mother.mp3" },
 
-  { en:"I feel hungry at noon.", jp:"お昼におなかがすきます。", hira:"(おひる に おなか が すきます)", audio:"s10_i_feel_hungry_at_noon.mp3" },
+  { en:"I want to design games someday.", 
+    jp:"いつかゲームを作りたいです。", 
+    hira:"(いつか げーむ を つくりたい です)", 
+    audio:"s10_i_want_to_design_games_someday.mp3" },
 
-  { en:"Are you sad? No, I’m fine.", jp:"かなしいの？ ううん、だいじょうぶ。", hira:"(かなしい の？ ううん、だいじょうぶ)", audio:"s11_are_you_sad_no_im_fine.mp3" },
+  { en:"I want to work outside.", 
+    jp:"外で働きたいです。", 
+    hira:"(そと で はたらきたい です)", 
+    audio:"s11_i_want_to_work_outside.mp3" },
 
-  { en:"How do you feel today?", jp:"今日はどんな気分？", hira:"(きょう は どんな きぶん？)", audio:"s12_how_do_you_feel_today.mp3" },
+  { en:"I want to use English in my job.", 
+    jp:"仕事で英語を使いたいです。", 
+    hira:"(しごと で えいご を つかいたい です)", 
+    audio:"s12_i_want_to_use_english_in_my_job.mp3" },
 
-  { en:"I feel better now.", jp:"今はよくなりました。", hira:"(いま は よくなりました)", audio:"s13_i_feel_better_now.mp3" },
+  { en:"I want to help children learn.", 
+    jp:"子どもたちの学びを助けたいです。", 
+    hira:"(こどもたち の まなび を たすけたい です)", 
+    audio:"s13_i_want_to_help_children_learn.mp3" },
 
-  { en:"Music makes me happy.", jp:"音楽を聞くとうれしくなります。", hira:"(おんがく を きく と うれしく なります)", audio:"s14_music_makes_me_happy.mp3" },
+  { en:"I want to work hard and be happy.", 
+    jp:"一生懸命働いて幸せになりたいです。", 
+    hira:"(いっしょうけんめい はたらいて しあわせ に なりたい です)", 
+    audio:"s14_i_want_to_work_hard_and_be_happy.mp3" },
 
-  { en:"Friends help me feel calm.", jp:"友だちは安心させてくれます。", hira:"(ともだち は あんしん させて くれます)", audio:"s15_friends_help_me_feel_calm.mp3" }
+  { en:"I don’t know yet, but I want to try many things.", 
+    jp:"まだ分かりませんが、いろいろ試したいです。", 
+    hira:"(まだ わかりません が、いろいろ ためしたい です)", 
+    audio:"s15_i_dont_know_yet_but_i_want_to_try_many_things.mp3" }
 ];
 
   
