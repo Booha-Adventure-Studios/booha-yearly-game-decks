@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
 <!-- //* CHANGE 1/7: Page <title> (week label) *// -->
-<title>Booha Make the Sentences – February Week 2</title>
+<title>Booha Make the Sentences – March Week 2</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">
 <meta name="theme-color" content="#0b1530" />
@@ -355,8 +355,8 @@ footer{text-align:center;color:#c9d4ec;font-family:'Cinzel',serif;font-weight:70
   <div class="h2">MAKE THE SENTENCES</div>
 
   <!-- //* CHANGE 2/7: Week label text shown on page *// -->
-  <div class="h3">February Week 2 – Sentences</div>
-  <div class="h4">2月第2週 – 文の練習</div>
+  <div class="h3">March Week 2 – Sentences</div>
+  <div class="h4">3月第2週 – 文の練習</div>
 </header>
 
 <div class="wrap" id="page-round">
@@ -504,24 +504,23 @@ initAudioPaths();
    //* CHANGE 4/7: Sentence data (id 1..15 matches s01_.. s15_..)
    ========================= */
 const BASE_DATA = [
-  {id:1,  en:"My class is friendlier this year.",          jp:"今年のクラスは前より仲がいいです。",           hira:"ことし の くらす は まえ より なか が いい です"},
-  {id:2,  en:"I am kinder to new students.",              jp:"新しい生徒にもっと親切です。",                 hira:"あたらしい せいと に もっと しんせつ です"},
-  {id:3,  en:"Sharing is better than fighting.",          jp:"分け合うことはけんかよりいいです。",           hira:"わけあう こと は けんか より いい です"},
-  {id:4,  en:"Listening is more important than speaking sometimes.", 
-                                                       jp:"ときどき聞くことのほうが話すことより大切です。", hira:"ときどき きく こと の ほう が はなす こと より たいせつ です"},
-  {id:5,  en:"Today I am more patient than yesterday.",   jp:"今日は昨日より我慢強いです。",                 hira:"きょう は きのう より がまんづよい です"},
-  {id:6,  en:"This team is stronger because we help each other.", 
-                                                       jp:"このチームは助け合うので強いです。",             hira:"この ちーむ は たすけあう ので つよい です"},
-  {id:7,  en:"Being honest is the best choice.",          jp:"正直でいることが一番いい選択です。",           hira:"しょうじき で いる こと が いちばん いい せんたく です"},
-  {id:8,  en:"My friend is braver than me.",              jp:"友だちは私より勇敢です。",                     hira:"ともだち は わたし より ゆうかん です"},
-  {id:9,  en:"I feel happier when I help.",               jp:"手伝うとき、もっと幸せな気持ちになります。",   hira:"てつだう とき もっと しあわせ な きもち に なります"},
-  {id:10, en:"It’s easier to study with friends.",        jp:"友だちと勉強するほうが簡単です。",             hira:"ともだち と べんきょう する ほう が かんたん です"},
-  {id:11, en:"I try to be more polite.",                   jp:"もっと丁寧にしようとします。",                 hira:"もっと ていねい に しよう と します"},
-  {id:12, en:"I include everyone in games.",              jp:"ゲームにみんなを入れます。",                   hira:"げーむ に みんな を いれます"},
-  {id:13, en:"We respect different ideas.",               jp:"私たちはいろいろな考えを大切にします。",       hira:"わたしたち は いろいろ な かんがえ を たいせつ に します"},
-  {id:14, en:"Trust makes friendship stronger.",          jp:"信頼は友情を強くします。",                     hira:"しんらい は ゆうじょう を つよく します"},
-  {id:15, en:"The kindest words are “Thank you.”",        jp:"一番優しい言葉は「ありがとう」です。",         hira:"いちばん やさしい ことば は ありがとう です"}
+  {id:1,  en:"I can sing well.",                    jp:"上手に歌えます。",                     hira:"じょうず に うたえ ます"},
+  {id:2,  en:"I can draw animals.",                 jp:"動物の絵が描けます。",                 hira:"どうぶつ の え が かけ ます"},
+  {id:3,  en:"I can cook Japanese food.",           jp:"和食を作れます。",                     hira:"わしょく を つくれ ます"},
+  {id:4,  en:"I can use a computer.",               jp:"コンピュータを使えます。",             hira:"こんぴゅーた を つかえ ます"},
+  {id:5,  en:"I can fix small things.",             jp:"小さいものを直せます。",               hira:"ちいさい もの を なおせ ます"},
+  {id:6,  en:"I can play the piano.",               jp:"ピアノを弾けます。",                   hira:"ぴあの を ひけ ます"},
+  {id:7,  en:"I can speak a little English.",       jp:"少し英語が話せます。",                 hira:"すこし えいご が はなせ ます"},
+  {id:8,  en:"I can ride a bike.",                  jp:"自転車に乗れます。",                   hira:"じてんしゃ に のれ ます"},
+  {id:9,  en:"I can build with blocks.",            jp:"ブロックで組み立てられます。",         hira:"ぶろっく で くみたてられ ます"},
+  {id:10, en:"I’m good at listening to others.",    jp:"人の話を聞くのが得意です。",           hira:"ひと の はなし を きく の が とくい です"},
+  {id:11, en:"I’m good at sports.",                 jp:"スポーツが得意です。",                 hira:"すぽーつ が とくい です"},
+  {id:12, en:"I’m not good at math.",               jp:"数学は得意ではありません。",           hira:"すうがく は とくい では ありません"},
+  {id:13, en:"He’s good at drawing manga.",         jp:"彼は漫画を描くのが得意です。",         hira:"かれ は まんが を かく の が とくい です"},
+  {id:14, en:"She’s good at singing.",              jp:"彼女は歌うのが得意です。",             hira:"かのじょ は うたう の が とくい です"},
+  {id:15, en:"We can learn new skills together.",   jp:"いっしょに新しいスキルを学べます。",   hira:"いっしょ に あたらしい すきる を まなべ ます"}
 ];
+
 
 
 /* Shuffle question order each refresh */
