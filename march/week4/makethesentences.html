@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
 <!-- //* CHANGE 1/7: Page <title> (week label) *// -->
-<title>Booha Make the Sentences – February Week 4</title>
+<title>Booha Make the Sentences – March Week 4</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">
 <meta name="theme-color" content="#0b1530" />
@@ -355,8 +355,8 @@ footer{text-align:center;color:#c9d4ec;font-family:'Cinzel',serif;font-weight:70
   <div class="h2">MAKE THE SENTENCES</div>
 
   <!-- //* CHANGE 2/7: Week label text shown on page *// -->
-  <div class="h3">February Week 4 – Sentences</div>
-  <div class="h4">2月第4週 – 文の練習</div>
+  <div class="h3">March Week 4 – Sentences</div>
+  <div class="h4">3月第4週 – 文の練習</div>
 </header>
 
 <div class="wrap" id="page-round">
@@ -504,21 +504,65 @@ initAudioPaths();
    //* CHANGE 4/7: Sentence data (id 1..15 matches s01_.. s15_..)
    ========================= */
 const BASE_DATA = [
-  {id:1,  en:"Can you help me?",                     jp:"手伝ってくれますか？",               hira:"てつだって くれます か"},
-  {id:2,  en:"Could you carry this box?",            jp:"この箱を運んでもらえますか？",       hira:"この はこ を はこんで もらえます か"},
-  {id:3,  en:"Can I borrow a pen?",                  jp:"ペンを借りてもいいですか？",         hira:"ぺん を かりて も いい です か"},
-  {id:4,  en:"May I open the window?",               jp:"窓を開けてもいいですか？",           hira:"まど を あけて も いい です か"},
-  {id:5,  en:"Shall I help you?",                    jp:"手伝いましょうか？",               hira:"てつだい ましょう か"},
-  {id:6,  en:"Would you like some help?",            jp:"手伝いましょうか？",               hira:"てつだい ましょう か"},
-  {id:7,  en:"Please give me directions.",           jp:"道を教えてください。",               hira:"みち を おしえて ください"},
-  {id:8,  en:"Can you fix this?",                    jp:"これを直してくれますか？",           hira:"これ を なおして くれます か"},
-  {id:9,  en:"Can I sit here?",                      jp:"ここに座ってもいいですか？",         hira:"ここ に すわって も いい です か"},
-  {id:10, en:"Could you speak slowly?",              jp:"ゆっくり話してもらえますか？",       hira:"ゆっくり はなして もらえます か"},
-  {id:11, en:"Can you open the door, please?",       jp:"ドアを開けてください。",             hira:"どあ を あけて ください"},
-  {id:12, en:"May I use your ruler?",                jp:"あなたの定規を使ってもいいですか？", hira:"あなた の じょうぎ を つかって も いい です か"},
-  {id:13, en:"Shall we study together?",             jp:"一緒に勉強しましょうか？",           hira:"いっしょ に べんきょう しましょう か"},
-  {id:14, en:"Could I ask a question?",              jp:"質問してもいいですか？",             hira:"しつもん して も いい です か"},
-  {id:15, en:"Thank you. — You’re welcome.",         jp:"ありがとう。— どういたしまして。",   hira:"ありがとう — どう いたしまして"}
+  {id:1,  en:"There is a computer on the desk.",
+          jp:"机の上にコンピュータがあります。",
+          hira:"つくえ の うえ に こんぴゅーた が あり ます"},
+
+  {id:2,  en:"There are many workers in the factory.",
+          jp:"工場には働く人がたくさんいます。",
+          hira:"こうじょう に は はたらく ひと が たくさん い ます"},
+
+  {id:3,  en:"There is a kitchen in the restaurant.",
+          jp:"レストランにはキッチンがあります。",
+          hira:"れすとらん に は きっちん が あり ます"},
+
+  {id:4,  en:"There are doctors in the hospital.",
+          jp:"病院には医者がいます。",
+          hira:"びょういん に は いしゃ が い ます"},
+
+  {id:5,  en:"There is a big office in the city.",
+          jp:"街には大きなオフィスがあります。",
+          hira:"まち に は おおきな おふぃす が あり ます"},
+
+  {id:6,  en:"There are tools on the table.",
+          jp:"テーブルの上に道具があります。",
+          hira:"てーぶる の うえ に どうぐ が あり ます"},
+
+  {id:7,  en:"There is a machine next to the window.",
+          jp:"窓のとなりに機械があります。",
+          hira:"まど の となり に きかい が あり ます"},
+
+  {id:8,  en:"There are students in the classroom.",
+          jp:"教室には生徒がいます。",
+          hira:"きょうしつ に は せいと が い ます"},
+
+  {id:9,  en:"There is a shop near the station.",
+          jp:"駅の近くに店があります。",
+          hira:"えき の ちかく に みせ が あり ます"},
+
+  {id:10, en:"There are uniforms for staff.",
+          jp:"スタッフ用の制服があります。",
+          hira:"すたっふ よう の せいふく が あり ます"},
+
+  {id:11, en:"There is a clock on the wall.",
+          jp:"壁に時計があります。",
+          hira:"かべ に とけい が あり ます"},
+
+  {id:12, en:"There are books on the shelf.",
+          jp:"棚に本があります。",
+          hira:"たな に ほん が あり ます"},
+
+  {id:13, en:"There is a teacher at the front.",
+          jp:"前には先生がいます。",
+          hira:"まえ に は せんせい が い ます"},
+
+  {id:14, en:"There are chairs for everyone.",
+          jp:"みんなのためのいすがあります。",
+          hira:"みんな の ため の いす が あり ます"},
+
+  {id:15, en:"There is an idea for every problem.",
+          jp:"どんな問題にもアイデアがあります。",
+          hira:"どんな もんだい に も あいであ が あり ます"}
 ];
 
 
