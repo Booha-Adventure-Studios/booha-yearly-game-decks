@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Booha Eigo Adventure – February Week 4</title>
+<title>Booha Eigo Adventure – March Week 4</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">  
 <meta name="theme-color" content="#0b1530" />
@@ -426,8 +426,8 @@ footer{text-align:center;color:#fff;padding:16px 0 22px;font-family:'Cinzel',ser
 
 <header>
   <div class="h1">THE BOO-RICULUM</div>
-  <div class="h2">Eigo Adventure – February Week 4</div>
-  <div class="h3">2月第4週 – 英語アドベンチャー</div>
+  <div class="h2">Eigo Adventure – March Week 4</div>
+  <div class="h3">3月第4週 – 英語アドベンチャー</div>
 </header>
 
 <main>
@@ -682,56 +682,117 @@ function setMicStatus(on){
 }
 
 /*------------------------------------------------------------
-  [E] QUESTIONS — February Week 4 (Help / Polite requests)
+  [E] QUESTIONS — March Week 4 (Help / Polite requests)
   Notes:
   - We shuffle answers but preserve the original correct string in q.correct.
 ------------------------------------------------------------*/
 const BASE_QUESTIONS = [
-  {index1:1, q:"How do you ask for help in English?", a:0, answers:[
-    "I say, “Can you help me, please?”","I scream very loudly.","I throw my bag in the air.","I ask my shoe for help."]},
+  {index1:1, q:"Where do you want to work?", a:0, answers:[
+    "I want to work at an office.",
+    "I want to work inside a sandwich.",
+    "I want to work on the sun.",
+    "I want to work under my desk."
+  ]},
 
-  {index1:2, q:"When did you help someone?", a:0, answers:[
-    "I helped someone yesterday.","I helped someone in the future.","I helped someone before I was born.","I helped someone on the moon."]},
+  {index1:2, q:"What do you see in your school?", a:0, answers:[
+    "I see classrooms and teachers.",
+    "I see flying pencils.",
+    "I see invisible chairs.",
+    "I see dancing walls."
+  ]},
 
-  {index1:3, q:"What can you do when a bag is heavy?", a:0, answers:[
-    "I can ask someone to help me.","I can fly with the bag.","I can yell at the bag.","I can become the bag."]},
+  {index1:3, q:"Is there a library in your school?", a:0, answers:[
+    "Yes, there is a library.",
+    "No, the books ran away.",
+    "Only ghosts read there.",
+    "The library is imaginary."
+  ]},
 
-  {index1:4, q:"How do you ask for directions?", a:0, answers:[
-    "I ask politely for directions.","I run in random directions.","I ask a cat for directions.","I close my eyes and walk."]},
+  {index1:4, q:"How many computers are in your classroom?", a:0, answers:[
+    "There are several computers.",
+    "There are one million computers.",
+    "Only bananas use computers.",
+    "The computers hide at night."
+  ]},
 
-  {index1:5, q:"What can you lend to a friend?", a:0, answers:[
-    "I can lend a pen to a friend.","I can lend my homework forever.","I can lend my house.","I can lend the sun."]},
+  {index1:5, q:"Is there a kitchen in your house?", a:0, answers:[
+    "Yes, there is a kitchen.",
+    "No, we cook with magic.",
+    "Only the fridge eats.",
+    "The kitchen moved out."
+  ]},
 
-  {index1:6, q:"How do you refuse politely?", a:0, answers:[
-    "I say, “Sorry, I can’t.”","I shout “NO!” very loudly.","I run away screaming.","I pretend to disappear."]},
+  {index1:6, q:"What is on your desk?", a:0, answers:[
+    "There is a computer on my desk.",
+    "There is a dragon on my desk.",
+    "There is a beach on my desk.",
+    "My desk is on the computer."
+  ]},
 
-  {index1:7, q:"When do you say “You’re welcome”?", a:0, answers:[
-    "I say it after someone thanks me.","I say it before I sleep.","I say it to my lunch.","I say it to the wall."]},
+  {index1:7, q:"Are there many people at your job?", a:0, answers:[
+    "Yes, there are many people.",
+    "Only one invisible person.",
+    "Everyone is a robot.",
+    "No people, only chairs."
+  ]},
 
-  {index1:8, q:"What help do you need this week?", a:0, answers:[
-    "I need help with my homework.","I need help becoming invisible.","I need help talking to clouds.","I need help stopping time."]},
+  {index1:8, q:"What tools do you use every day?", a:0, answers:[
+    "I use pens and tools.",
+    "I use magic spoons.",
+    "I use cloud software.",
+    "I use imaginary buttons."
+  ]},
 
-  {index1:9, q:"How do you help at school?", a:0, answers:[
-    "I help by cleaning the classroom.","I help by sleeping in class.","I help by eating the chalk.","I help by hiding under my desk."]},
+  {index1:9, q:"Is there a train station near your home?", a:0, answers:[
+    "Yes, there is a station nearby.",
+    "No, trains avoid my house.",
+    "Only turtles stop there.",
+    "The station is in my bag."
+  ]},
 
-  {index1:10, q:"Can you give me an example of a polite request?", a:0, answers:[
-    "“Could you open the door, please?”","“OPEN IT NOW!”","“Door, open yourself.”","“I command the door.”"]},
+  {index1:10, q:"What uniforms do you see?", a:0, answers:[
+    "I see school or work uniforms.",
+    "I see superhero pajamas.",
+    "I see invisible clothes.",
+    "I see sandwich costumes."
+  ]},
 
-  {index1:11, q:"What should we do in an emergency?", a:0, answers:[
-    "We should ask for help.","We should panic forever.","We should sing loudly.","We should hide from everyone."]},
+  {index1:11, q:"Is there a restaurant you like?", a:0, answers:[
+    "Yes, there is a restaurant I like.",
+    "No, food scares me.",
+    "Only restaurants like me.",
+    "I eat ideas instead."
+  ]},
 
-  {index1:12, q:"Who helps you the most?", a:0, answers:[
-    "My family helps me the most.","My chair helps me the most.","My shadow helps me the most.","My homework helps me the most."]},
+  {index1:12, q:"Are there books in your bag?", a:0, answers:[
+    "Yes, there are books.",
+    "No, only snacks.",
+    "Only loud books.",
+    "My bag reads books."
+  ]},
 
-  {index1:13, q:"How do you thank people?", a:0, answers:[
-    "I say thank you.","I throw a potato.","I disappear quietly.","I shout into the sky."]},
+  {index1:13, q:"What’s near your office or school?", a:0, answers:[
+    "There is a shop or station nearby.",
+    "There is a volcano nearby.",
+    "There is a floating castle.",
+    "Nothing exists near it."
+  ]},
 
-  {index1:14, q:"Do you like helping others? Why?", a:0, answers:[
-    "Yes, because it makes people happy.","No, because helping is loud.","Yes, because I get magic powers.","No, because chairs need help more."]},
+  {index1:14, q:"Is there something you always bring to work?", a:0, answers:[
+    "Yes, I always bring my bag.",
+    "Yes, I bring a dolphin.",
+    "No, I bring memories.",
+    "Only my shadow goes."
+  ]},
 
-  {index1:15, q:"When is it hard to ask for help?", a:0, answers:[
-    "It is hard when I feel shy.","It is hard when gravity stops.","It is hard on invisible days.","It is never hard on Mars."]}
+  {index1:15, q:"What’s in your pencil case?", a:0, answers:[
+    "There are pens and pencils.",
+    "There is soup inside.",
+    "Only secrets live there.",
+    "My pencil case is empty air."
+  ]}
 ];
+
 
 function shuffle(a){
   for(let i=a.length-1;i>0;i--){
@@ -767,26 +828,86 @@ let iosSelectedIndex=null;
 let iosFirstAttempt=true;
 
 /*------------------------------------------------------------
-  [F] CORRECT ANSWER TRANSLATIONS — February Week 4
+  [F] CORRECT ANSWER TRANSLATIONS — March Week 4
   Notes:
   - Single strings (no arrays) so TTS/reading is always natural.
 ------------------------------------------------------------*/
 const ANSWER_TRANSLATIONS = {
-  1:{ en:"I say, “Can you help me, please?”", jp:"「手伝ってもらえますか」と言います。", hi:"てつだって もらえますか と いいます" },
-  2:{ en:"I helped someone yesterday.", jp:"私は昨日だれかを手伝いました。", hi:"わたしは きのう だれか を てつだいました" },
-  3:{ en:"I can ask someone to help me.", jp:"だれかに手伝ってもらうことができます。", hi:"だれかに てつだって もらう ことが できます" },
-  4:{ en:"I ask politely for directions.", jp:"道をていねいに聞きます。", hi:"みちを ていねいに ききます" },
-  5:{ en:"I can lend a pen to a friend.", jp:"友だちにペンを貸すことができます。", hi:"ともだちに ぺん を かす ことが できます" },
-  6:{ en:"I say, “Sorry, I can’t.”", jp:"「ごめんなさい、できません」と言います。", hi:"ごめんなさい できません と いいます" },
-  7:{ en:"I say it after someone thanks me.", jp:"だれかに感謝されたあとに言います。", hi:"だれかに かんしゃ された あとに いいます" },
-  8:{ en:"I need help with my homework.", jp:"宿題の手伝いが必要です。", hi:"しゅくだい の てつだい が ひつよう です" },
-  9:{ en:"I help by cleaning the classroom.", jp:"教室をそうじして手伝います。", hi:"きょうしつ を そうじ して てつだいます" },
-  10:{ en:"“Could you open the door, please?”", jp:"「ドアを開けていただけますか？」", hi:"どあ を あけて いただけますか" },
-  11:{ en:"We should ask for help.", jp:"助けを求めるべきです。", hi:"たすけ を もとめる べき です" },
-  12:{ en:"My family helps me the most.", jp:"一番助けてくれるのは家族です。", hi:"いちばん たすけて くれる のは かぞく です" },
-  13:{ en:"I say thank you.", jp:"ありがとうと言います。", hi:"ありがとう と いいます" },
-  14:{ en:"Yes, because it makes people happy.", jp:"はい、人を幸せにできるからです。", hi:"はい ひとを しあわせに できる から です" },
-  15:{ en:"It is hard when I feel shy.", jp:"はずかしいときは難しいです。", hi:"はずかしい ときは むずかしい です" }
+  1:{
+    en:"I want to work at an office.",
+    jp:"私は事務所で働きたいです。",
+    hi:"わたし は じむしょ で はたらきたい です"
+  },
+  2:{
+    en:"I see classrooms and teachers.",
+    jp:"教室や先生が見えます。",
+    hi:"きょうしつ や せんせい が みえます"
+  },
+  3:{
+    en:"Yes, there is a library.",
+    jp:"はい、図書室があります。",
+    hi:"はい としょしつ が あります"
+  },
+  4:{
+    en:"There are several computers.",
+    jp:"コンピュータがいくつかあります。",
+    hi:"こんぴゅーた が いくつか あります"
+  },
+  5:{
+    en:"Yes, there is a kitchen.",
+    jp:"はい、キッチンがあります。",
+    hi:"はい きっちん が あります"
+  },
+  6:{
+    en:"There is a computer on my desk.",
+    jp:"机の上にコンピュータがあります。",
+    hi:"つくえ の うえ に こんぴゅーた が あります"
+  },
+  7:{
+    en:"Yes, there are many people.",
+    jp:"はい、人がたくさんいます。",
+    hi:"はい ひと が たくさん います"
+  },
+  8:{
+    en:"I use pens and tools.",
+    jp:"ペンや道具を使います。",
+    hi:"ぺん や どうぐ を つかいます"
+  },
+  9:{
+    en:"Yes, there is a station nearby.",
+    jp:"はい、近くに駅があります。",
+    hi:"はい ちかく に えき が あります"
+  },
+  10:{
+    en:"I see school or work uniforms.",
+    jp:"学校や仕事の制服を見ます。",
+    hi:"がっこう や しごと の せいふく を みます"
+  },
+  11:{
+    en:"Yes, there is a restaurant I like.",
+    jp:"はい、好きなレストランがあります。",
+    hi:"はい すきな れすとらん が あります"
+  },
+  12:{
+    en:"Yes, there are books.",
+    jp:"はい、本があります。",
+    hi:"はい ほん が あります"
+  },
+  13:{
+    en:"There is a shop or station nearby.",
+    jp:"近くに店や駅があります。",
+    hi:"ちかく に みせ や えき が あります"
+  },
+  14:{
+    en:"Yes, I always bring my bag.",
+    jp:"はい、いつもかばんを持っていきます。",
+    hi:"はい いつも かばん を もって いきます"
+  },
+  15:{
+    en:"There are pens and pencils.",
+    jp:"ペンやえんぴつがあります。",
+    hi:"ぺん や えんぴつ が あります"
+  }
 };
 
 
