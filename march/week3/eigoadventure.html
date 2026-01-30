@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Booha Eigo Adventure – February Week 3</title>
+<title>Booha Eigo Adventure – March Week 3</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">  
 <meta name="theme-color" content="#0b1530" />
@@ -426,8 +426,8 @@ footer{text-align:center;color:#fff;padding:16px 0 22px;font-family:'Cinzel',ser
 
 <header>
   <div class="h1">THE BOO-RICULUM</div>
-  <div class="h2">Eigo Adventure – February Week 3</div>
-  <div class="h3">2月第3週 – 英語アドベンチャー</div>
+  <div class="h2">Eigo Adventure – March Week 3</div>
+  <div class="h3">3月第3週 – 英語アドベンチャー</div>
 </header>
 
 <main>
@@ -682,56 +682,117 @@ function setMicStatus(on){
 }
 
 /*------------------------------------------------------------
-  [E] QUESTIONS — February Week 3 (Family / relationships)
+  [E] QUESTIONS — March Week 3 (Family / relationships)
   Notes:
   - We shuffle answers but preserve the original correct string in q.correct.
 ------------------------------------------------------------*/
 const BASE_QUESTIONS = [
-  {index1:1, q:"Who is in your family?", a:0, answers:[
-    "My family is my mother, father, and me.","My family is five cats and one sandwich.","My family is a dragon and a toaster.","My family is the moon and a jellyfish."]},
+  {index1:1, q:"What are you going to do this weekend?", a:0, answers:[
+    "I’m going to meet my friends this weekend.",
+    "I’m going to race a sandwich.",
+    "I’m going to become seventeen bananas.",
+    "My socks are going to take a vacation."
+  ]},
 
-  {index1:2, q:"What do you do together?", a:0, answers:[
-    "We eat dinner and talk together.","We ride dinosaurs to school.","We practice invisibility.","We yell at the refrigerator."]},
+  {index1:2, q:"What are you going to study next?", a:0, answers:[
+    "I’m going to study English next.",
+    "I’m going to study dragon math.",
+    "I’m going to study invisible homework.",
+    "I’m going to study the language of chairs."
+  ]},
 
-  {index1:3, q:"Who cooks at home?", a:0, answers:[
-    "My mother cooks at home.","My shoes cook at home.","A magic spoon cooks at home.","The TV cooks at home."]},
+  {index1:3, q:"Are you going to travel during vacation?", a:0, answers:[
+    "Yes, I’m going to travel during vacation.",
+    "No, I’m going to travel inside my pencil.",
+    "Yes, I’m going to travel to the moon cafeteria.",
+    "No, vacation is traveling without me."
+  ]},
 
-  {index1:4, q:"Do you write letters or messages?", a:0, answers:[
-    "Yes, I write messages.","No, I only write on clouds.","I send messages to my goldfish.","I write letters to the floor."]},
+  {index1:4, q:"Who are you going to meet?", a:0, answers:[
+    "I’m going to meet my friends.",
+    "I’m going to meet a talking potato.",
+    "I’m going to meet my backpack’s lawyer.",
+    "I’m going to meet the ceiling fan."
+  ]},
 
-  {index1:5, q:"How do you celebrate birthdays?", a:0, answers:[
-    "We eat cake and say happy birthday.","We celebrate by sleeping for 100 years.","We celebrate by fighting a cake monster.","We celebrate by turning into potatoes."]},
+  {index1:5, q:"What are you going to buy soon?", a:0, answers:[
+    "I’m going to buy a new bag soon.",
+    "I’m going to buy a sandwich factory.",
+    "I’m going to buy invisible rocks.",
+    "I’m going to buy seventeen hats."
+  ]},
 
-  {index1:6, q:"What is a good family rule?", a:0, answers:[
-    "A good family rule is to be kind.","A good family rule is to eat only pizza.","A good family rule is to talk to walls.","A good family rule is to never blink."]},
+  {index1:6, q:"Are you going to join any clubs?", a:0, answers:[
+    "Yes, I’m going to join a new club.",
+    "No, I’m joining the Secret Potato Society.",
+    "Yes, I’m joining the Moon Sandwich Club.",
+    "No, clubs are allergic to me."
+  ]},
 
-  {index1:7, q:"Who gives good advice?", a:0, answers:[
-    "My father gives good advice.","My backpack gives good advice.","A noisy robot gives good advice.","My pencil gives good advice at midnight."]},
+  {index1:7, q:"What are you going to learn this year?", a:0, answers:[
+    "I’m going to learn English this year.",
+    "I’m going to learn how to disappear politely.",
+    "I’m going to learn dolphin karate.",
+    "I’m going to learn sandwich engineering."
+  ]},
 
-  {index1:8, q:"What is your favorite family memory?", a:0, answers:[
-    "My favorite family memory is a trip we took.","My favorite memory is becoming a banana.","My favorite memory is falling into a volcano.","My favorite memory is forgetting every memory."]},
+  {index1:8, q:"Are you going to move houses?", a:0, answers:[
+    "Yes, I’m going to move next month.",
+    "No, my house is going to move without me.",
+    "Yes, I’m moving to a cloud apartment.",
+    "No, I live inside a vending machine."
+  ]},
 
-  {index1:9, q:"Do you help your family? How?", a:0, answers:[
-    "Yes, I help by cleaning my room.","Yes, I help by commanding penguins.","No, my family helps my homework.","I help by hiding under the bed."]},
+  {index1:9, q:"When are you going to graduate?", a:0, answers:[
+    "I’m going to graduate next year.",
+    "I’m going to graduate tomorrow in space.",
+    "I graduated in a dream last night.",
+    "Graduation is scared of me."
+  ]},
 
-  {index1:10, q:"Who is the funniest person?", a:0, answers:[
-    "My brother is the funniest person.","My chair is the funniest person.","The wind is the funniest person.","My shadow is the funniest person."]},
+  {index1:10, q:"What are you going to eat tonight?", a:0, answers:[
+    "I’m going to eat dinner tonight.",
+    "I’m going to eat sunlight for dinner.",
+    "I’m going to eat a homework sandwich.",
+    "Tonight I eat only whispering noodles."
+  ]},
 
-  {index1:11, q:"What gifts do you like to give?", a:0, answers:[
-    "I like to give small gifts.","I like to give homework as a gift.","I like to give invisible rocks.","I like to give loud socks that scream."]},
+  {index1:11, q:"Are you going to start something new?", a:0, answers:[
+    "Yes, I’m going to start a diary.",
+    "No, I’m starting a chair collection.",
+    "Yes, I’m starting a potato orchestra.",
+    "No, new things start me."
+  ]},
 
-  {index1:12, q:"Do you have a family photo you love?", a:0, answers:[
-    "Yes, I have a family photo I love.","No, my photos run away.","Yes, I have a photo of a dinosaur wedding.","No, my camera is allergic to families."]},
+  {index1:12, q:"What are you going to stop doing?", a:0, answers:[
+    "I’m going to stop playing games too much.",
+    "I’m going to stop being a sandwich.",
+    "I’m going to stop my shadow from talking.",
+    "I’m going to stop the moon from blinking."
+  ]},
 
-  {index1:13, q:"Who do you talk to when you worry?", a:0, answers:[
-    "I talk to my mother when I worry.","I talk to my sandwich when I worry.","I talk to a mailbox when I worry.","I talk to the ceiling when I worry."]},
+  {index1:13, q:"Who are you going to help?", a:0, answers:[
+    "I’m going to help my family more.",
+    "I’m going to help my shoes do homework.",
+    "I’m going to help a dragon write emails.",
+    "I’m going to help a cloud learn math."
+  ]},
 
-  {index1:14, q:"What do you respect about your parents?", a:0, answers:[
-    "I respect that my parents work hard.","I respect that my parents can fly.","I respect that my parents are secret ninjas.","I respect that my parents are made of spaghetti."]},
+  {index1:14, q:"How are you going to practice English?", a:0, answers:[
+    "I’m going to practice English every day.",
+    "I practice English by arguing with pencils.",
+    "I practice English with invisible ducks.",
+    "English practices me at midnight."
+  ]},
 
-  {index1:15, q:"What do you want to do with your family next?", a:0, answers:[
-    "I want to go on a trip with my family next.","I want to live inside a vending machine.","I want to race snails professionally.","I want to move to the sun for vacation."]}
+  {index1:15, q:"What are you going to do after school?", a:0, answers:[
+    "I’m going to read every night after school.",
+    "I’m going to fly home on a sandwich.",
+    "I’m going to move to the sun for homework.",
+    "I’m going to become a banana professionally."
+  ]}
 ];
+
 
 
 function shuffle(a){
@@ -768,27 +829,72 @@ let iosSelectedIndex=null;
 let iosFirstAttempt=true;
 
 /*------------------------------------------------------------
-  [F] CORRECT ANSWER TRANSLATIONS — February Week 3
+  [F] CORRECT ANSWER TRANSLATIONS — March Week 3
   Notes:
   - Single strings (no arrays) so TTS/reading is always natural.
 ------------------------------------------------------------*/
 const ANSWER_TRANSLATIONS = {
-  1:{ en:"My family is my mother, father, and me.", jp:"私の家族は、お母さんとお父さんと私です。", hi:"わたしの かぞくは おかあさん と おとうさん と わたし です" },
-  2:{ en:"We eat dinner and talk together.", jp:"私たちはいっしょに夕ごはんを食べて話します。", hi:"わたしたちは いっしょに ゆうごはん を たべて はなします" },
-  3:{ en:"My mother cooks at home.", jp:"家ではお母さんが料理します。", hi:"いえでは おかあさんが りょうり します" },
-  4:{ en:"Yes, I write messages.", jp:"はい、メッセージを書きます。", hi:"はい めっせーじ を かきます" },
-  5:{ en:"We eat cake and say happy birthday.", jp:"ケーキを食べて「お誕生日おめでとう」と言います。", hi:"けーき を たべて おたんじょうび おめでとう と いいます" },
-  6:{ en:"A good family rule is to be kind.", jp:"良い家族のルールは、やさしくすることです。", hi:"よい かぞくの るーるは やさしく する こと です" },
-  7:{ en:"My father gives good advice.", jp:"お父さんが良いアドバイスをくれます。", hi:"おとうさんが よい あどばいす を くれます" },
-  8:{ en:"My favorite family memory is a trip we took.", jp:"一番好きな家族の思い出は、旅行に行ったことです。", hi:"いちばん すきな かぞくの おもいで は りょこう に いった こと です" },
-  9:{ en:"Yes, I help by cleaning my room.", jp:"はい、部屋をそうじして手伝います。", hi:"はい へや を そうじ して てつだいます" },
-  10:{ en:"My brother is the funniest person.", jp:"一番おもしろい人は兄（弟）です。", hi:"いちばん おもしろい ひとは あに（おとうと） です" },
-  11:{ en:"I like to give small gifts.", jp:"私は小さなプレゼントをあげるのが好きです。", hi:"わたしは ちいさな ぷれぜんと を あげる のが すき です" },
-  12:{ en:"Yes, I have a family photo I love.", jp:"はい、大好きな家族写真があります。", hi:"はい だいすきな かぞくしゃしん が あります" },
-  13:{ en:"I talk to my mother when I worry.", jp:"心配なときはお母さんに話します。", hi:"しんぱいな ときは おかあさんに はなします" },
-  14:{ en:"I respect that my parents work hard.", jp:"両親が一生けんめい働くところを尊敬しています。", hi:"りょうしんが いっしょうけんめい はたらく ところ を そんけい しています" },
-  15:{ en:"I want to go on a trip with my family next.", jp:"次は家族と旅行に行きたいです。", hi:"つぎは かぞくと りょこう に いきたい です" }
+  1:{ en:"I’m going to meet my friends this weekend.",
+      jp:"今週末は友だちに会うつもりです。",
+      hi:"こんしゅうまつ は ともだち に あう つもり です" },
+
+  2:{ en:"I’m going to study English next.",
+      jp:"次は英語を勉強するつもりです。",
+      hi:"つぎ は えいご を べんきょう する つもり です" },
+
+  3:{ en:"Yes, I’m going to travel during vacation.",
+      jp:"はい、休みの間に旅行するつもりです。",
+      hi:"はい やすみ の あいだ に りょこう する つもり です" },
+
+  4:{ en:"I’m going to meet my friends.",
+      jp:"友だちに会うつもりです。",
+      hi:"ともだち に あう つもり です" },
+
+  5:{ en:"I’m going to buy a new bag soon.",
+      jp:"もうすぐ新しいかばんを買うつもりです。",
+      hi:"もうすぐ あたらしい かばん を かう つもり です" },
+
+  6:{ en:"Yes, I’m going to join a new club.",
+      jp:"はい、新しいクラブに入るつもりです。",
+      hi:"はい あたらしい くらぶ に はいる つもり です" },
+
+  7:{ en:"I’m going to learn English this year.",
+      jp:"今年は英語を学ぶつもりです。",
+      hi:"ことし は えいご を まなぶ つもり です" },
+
+  8:{ en:"Yes, I’m going to move next month.",
+      jp:"はい、来月引っ越すつもりです。",
+      hi:"はい らいげつ ひっこす つもり です" },
+
+  9:{ en:"I’m going to graduate next year.",
+      jp:"来年卒業するつもりです。",
+      hi:"らいねん そつぎょう する つもり です" },
+
+  10:{ en:"I’m going to eat dinner tonight.",
+       jp:"今夜は夕ごはんを食べるつもりです。",
+       hi:"こんや は ゆうごはん を たべる つもり です" },
+
+  11:{ en:"Yes, I’m going to start a diary.",
+       jp:"はい、日記を始めるつもりです。",
+       hi:"はい にっき を はじめる つもり です" },
+
+  12:{ en:"I’m going to stop playing games too much.",
+       jp:"ゲームをやりすぎるのをやめるつもりです。",
+       hi:"げーむ を やりすぎる の を やめる つもり です" },
+
+  13:{ en:"I’m going to help my family more.",
+       jp:"もっと家族を手伝うつもりです。",
+       hi:"もっと かぞく を てつだう つもり です" },
+
+  14:{ en:"I’m going to practice English every day.",
+       jp:"毎日英語を練習するつもりです。",
+       hi:"まいにち えいご を れんしゅう する つもり です" },
+
+  15:{ en:"I’m going to read every night after school.",
+       jp:"放課後は毎晩読むつもりです。",
+       hi:"ほうかご は まいばん よむ つもり です" }
 };
+
 
 /*------------------------------------------------------------
   [G] SAGE QUESTION AUDIO
