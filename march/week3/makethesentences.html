@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
 <!-- //* CHANGE 1/7: Page <title> (week label) *// -->
-<title>Booha Make the Sentences – February Week 3</title>
+<title>Booha Make the Sentences – March Week 3</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">
 <meta name="theme-color" content="#0b1530" />
@@ -355,8 +355,8 @@ footer{text-align:center;color:#c9d4ec;font-family:'Cinzel',serif;font-weight:70
   <div class="h2">MAKE THE SENTENCES</div>
 
   <!-- //* CHANGE 2/7: Week label text shown on page *// -->
-  <div class="h3">February Week 3 – Sentences</div>
-  <div class="h4">2月第3週 – 文の練習</div>
+  <div class="h3">March Week 3 – Sentences</div>
+  <div class="h4">3月第3週 – 文の練習</div>
 </header>
 
 <div class="wrap" id="page-round">
@@ -504,22 +504,23 @@ initAudioPaths();
    //* CHANGE 4/7: Sentence data (id 1..15 matches s01_.. s15_..)
    ========================= */
 const BASE_DATA = [
-  {id:1,  en:"I have a small family.",                  jp:"私には小さい家族がいます。",                 hira:"わたし に は ちいさい かぞく が います"},
-  {id:2,  en:"She has two brothers.",                   jp:"彼女には兄弟が二人います。",                 hira:"かのじょ に は きょうだい が ふたり います"},
-  {id:3,  en:"We have a family dinner on Sunday.",      jp:"日曜日に家族の食事があります。",             hira:"にちようび に かぞく の しょくじ が あります"},
-  {id:4,  en:"My grandmother has a garden.",            jp:"祖母には庭があります。",                     hira:"そぼ に は にわ が あります"},
-  {id:5,  en:"He has a kind smile.",                    jp:"彼は優しい笑顔です。",                     hira:"かれ は やさしい えがお です"},
-  {id:6,  en:"I have a letter for my cousin.",          jp:"いとこへの手紙があります。",               hira:"いとこ へ の てがみ が あります"},
-  {id:7,  en:"My parents have a day off tomorrow.",     jp:"両親は明日休みがあります。",                 hira:"りょうしん は あした やすみ が あります"},
-  {id:8,  en:"Does your sister have a cat?",            jp:"あなたの妹は猫がいますか？",               hira:"あなた の いもうと は ねこ が います か"},
-  {id:9,  en:"Our family has many photos.",             jp:"私たちの家族には写真がたくさんあります。",   hira:"わたしたち の かぞく に は しゃしん が たくさん あります"},
-  {id:10, en:"I have chocolate for everyone.",          jp:"みんなのためのチョコレートがあります。",   hira:"みんな の ため の ちょこれーと が あります"},
-  {id:11, en:"My father has a new job.",                jp:"父には新しい仕事があります。",             hira:"ちち に は あたらしい しごと が あります"},
-  {id:12, en:"We have a plan to celebrate.",            jp:"お祝いする計画があります。",               hira:"おいわい する けいかく が あります"},
-  {id:13, en:"She has a big heart.",                    jp:"彼女は心が広いです。",                     hira:"かのじょ は こころ が ひろい です"},
-  {id:14, en:"Do you have any relatives in Tokyo?",     jp:"東京に親せきはいますか？",                 hira:"とうきょう に しんせき は います か"},
-  {id:15, en:"I have a happy memory with my family.",   jp:"家族との楽しい思い出があります。",         hira:"かぞく と の たのしい おもいで が あります"}
+  {id:1,  en:"I’m going to study hard this year.",         jp:"今年は一生懸命勉強するつもりです。",           hira:"ことし は いっしょうけんめい べんきょう する つもり です"},
+  {id:2,  en:"I’m going to visit my grandparents.",        jp:"祖父母を訪ねるつもりです。",                     hira:"そふぼ を たずねる つもり です"},
+  {id:3,  en:"I’m going to join a new club.",              jp:"新しいクラブに入るつもりです。",                 hira:"あたらしい くらぶ に はいる つもり です"},
+  {id:4,  en:"I’m going to travel this summer.",           jp:"この夏は旅行するつもりです。",                   hira:"この なつ は りょこう する つもり です"},
+  {id:5,  en:"I’m going to buy a new bag.",                jp:"新しいかばんを買うつもりです。",                 hira:"あたらしい かばん を かう つもり です"},
+  {id:6,  en:"I’m going to save money.",                   jp:"お金を貯めるつもりです。",                       hira:"おかね を ためる つもり です"},
+  {id:7,  en:"I’m going to move next month.",              jp:"来月引っ越すつもりです。",                       hira:"らいげつ ひっこす つもり です"},
+  {id:8,  en:"I’m going to learn English online.",         jp:"オンラインで英語を学ぶつもりです。",             hira:"おんらいん で えいご を まなぶ つもり です"},
+  {id:9,  en:"I’m going to graduate next year.",           jp:"来年卒業するつもりです。",                       hira:"らいねん そつぎょう する つもり です"},
+  {id:10, en:"I’m going to help my family more.",          jp:"もっと家族を手伝うつもりです。",                 hira:"もっと かぞく を てつだう つもり です"},
+  {id:11, en:"I’m going to meet my friends.",              jp:"友だちに会うつもりです。",                       hira:"ともだち に あう つもり です"},
+  {id:12, en:"I’m going to change my study habits.",       jp:"勉強の習慣を変えるつもりです。",                 hira:"べんきょう の しゅうかん を かえる つもり です"},
+  {id:13, en:"I’m going to start a diary.",                jp:"日記を始めるつもりです。",                       hira:"にっき を はじめる つもり です"},
+  {id:14, en:"I’m going to read every night.",             jp:"毎晩読むつもりです。",                           hira:"まいばん よむ つもり です"},
+  {id:15, en:"I’m going to keep trying.",                  jp:"これからも挑戦し続けるつもりです。",             hira:"これから も ちょうせん し つづける つもり です"}
 ];
+
 
   
 /* Shuffle question order each refresh */
