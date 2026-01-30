@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Booha Eigo Adventure – February Week 2</title>
+<title>Booha Eigo Adventure – March Week 2</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">  
 <meta name="theme-color" content="#0b1530" />
@@ -426,8 +426,8 @@ footer{text-align:center;color:#fff;padding:16px 0 22px;font-family:'Cinzel',ser
 
 <header>
   <div class="h1">THE BOO-RICULUM</div>
-  <div class="h2">Eigo Adventure – February Week 2</div>
-  <div class="h3">2月第2週 – 英語アドベンチャー</div>
+  <div class="h2">Eigo Adventure – March Week 2</div>
+  <div class="h3">3月第2週 – 英語アドベンチャー</div>
 </header>
 
 <main>
@@ -682,55 +682,115 @@ function setMicStatus(on){
 }
 
 /*------------------------------------------------------------
-  [E] QUESTIONS — February Week 2 (Kindness & Friendship)
+  [E] QUESTIONS — March Week 2 (Kindness & Friendship)
   Notes:
   - We shuffle answers but preserve the original correct string in q.correct.
 ------------------------------------------------------------*/
 const BASE_QUESTIONS = [
-  {index1:1, q:"What makes a good friend?", a:0, answers:[
-    "A good friend is kind and honest.","A good friend eats homework.","A good friend lives in a shoe.","A good friend is a talking cloud."]},
+  {index1:1, q:"What can you do well?", a:0, answers:[
+    "I can sing well.",
+    "I can fly like a sandwich.",
+    "I can speak banana fluently.",
+    "My socks can judge perfectly."
+  ]},
 
-  {index1:2, q:"How do you show kindness?", a:0, answers:[
-    "I use kind words and help others.","I throw kindness sandwiches.","I shout kindness loudly.","I hide kindness under my bed."]},
+  {index1:2, q:"What are you good at?", a:0, answers:[
+    "I’m good at sports.",
+    "I’m good at invisible homework.",
+    "I’m good at arguing with pencils.",
+    "I’m good at being a talking cloud."
+  ]},
 
-  {index1:3, q:"Do you like teamwork? Why?", a:0, answers:[
-    "Yes, because we help each other.","No, teamwork eats my lunch.","Only on the moon.","Teamwork argues with me."]},
+  {index1:3, q:"What are you not good at?", a:0, answers:[
+    "I’m not good at math.",
+    "I’m not good at breathing on Mars.",
+    "I’m not good at fighting spaghetti.",
+    "I’m not good at being a chair."
+  ]},
 
-  {index1:4, q:"When is it hard to be honest?", a:0, answers:[
-    "It is hard when I’m afraid of making mistakes.","It is hard on purple days.","It is hard when chairs listen.","It is hard during sandwich time."]},
+  {index1:4, q:"Can you play an instrument?", a:0, answers:[
+    "Yes, I can play the piano.",
+    "Yes, I play the spoon professionally.",
+    "No, my instrument is a potato.",
+    "Only my backpack plays drums."
+  ]},
 
-  {index1:5, q:"Who is patient in your class?", a:0, answers:[
-    "My teacher or a classmate is patient.","The classroom door is patient.","My pencil waits patiently.","The clock teaches patience."]},
+  {index1:5, q:"Can you cook?", a:0, answers:[
+    "Yes, I can cook Japanese food.",
+    "Yes, I cook sunlight for breakfast.",
+    "No, my oven is afraid of me.",
+    "Only my hat can cook."
+  ]},
 
-  {index1:6, q:"How do you invite someone to play?", a:0, answers:[
-    "I ask them kindly to join me.","I challenge them to a duel.","I throw a whistle.","I whisper to the floor."]},
+  {index1:6, q:"What skill do you want to learn?", a:0, answers:[
+    "I want to learn English.",
+    "I want to learn how to disappear.",
+    "I want to learn dolphin math.",
+    "I want to learn sandwich karate."
+  ]},
 
-  {index1:7, q:"How do you include everyone?", a:0, answers:[
-    "I invite everyone to join the game.","I include only my shoes.","I ask the wall to play.","I close my eyes and run away."]},
+  {index1:7, q:"Who is good at English in your class?", a:0, answers:[
+    "My teacher is good at English.",
+    "The classroom door is fluent.",
+    "My pencil teaches English.",
+    "A squirrel gives English speeches."
+  ]},
 
-  {index1:8, q:"When did someone help you?", a:0, answers:[
-    "Someone helped me when I needed help.","Someone helped me in my dream.","A sandwich helped me yesterday.","My backpack saved the day."]},
+  {index1:8, q:"Can you use a computer?", a:0, answers:[
+    "Yes, I can use a computer.",
+    "No, my computer uses me.",
+    "Only my shoes can type.",
+    "I use a banana as a keyboard."
+  ]},
 
-  {index1:9, q:"What can you do better this week?", a:0, answers:[
-    "I can be more patient and kind.","I can become invisible.","I can argue with homework.","I can sleep in class forever."]},
+  {index1:9, q:"Can you swim?", a:0, answers:[
+    "Yes, I can swim.",
+    "No, I swim only in soup.",
+    "My hat swims for me.",
+    "I swim in the future."
+  ]},
 
-  {index1:10, q:"Is saying “sorry” easy for you?", a:0, answers:[
-    "Sometimes it is hard, but I try.","Yes, I say sorry to chairs.","No, sorry is allergic to me.","I only say sorry to robots."]},
+  {index1:10, q:"What talent do you want?", a:0, answers:[
+    "I want the talent to draw well.",
+    "I want the talent to become invisible.",
+    "I want the talent to talk to walls.",
+    "I want the talent to be a potato."
+  ]},
 
-  {index1:11, q:"What words are polite in English?", a:0, answers:[
-    "Please, thank you, and excuse me.","Potato, banana, spaceship.","Whisper, shout, explode.","Only the word sandwich."]},
+  {index1:11, q:"Who can draw well?", a:0, answers:[
+    "He can draw manga well.",
+    "My backpack draws the moon.",
+    "A chair paints portraits.",
+    "Spaghetti makes art."
+  ]},
 
-  {index1:12, q:"Who do you trust, and why?", a:0, answers:[
-    "I trust my friends because they help me.","I trust my backpack’s advice.","I trust the ceiling fan.","I trust invisible ducks."]},
+  {index1:12, q:"Can you sing karaoke?", a:0, answers:[
+    "Yes, I can sing karaoke.",
+    "Only my fridge sings karaoke.",
+    "No, karaoke sings me.",
+    "I sing karaoke in space."
+  ]},
 
-  {index1:13, q:"Tell me about a friendly person.", a:0, answers:[
-    "They are kind and help others.","They roar at people.","They hide under tables.","They speak only to walls."]},
+  {index1:13, q:"Do you like learning new skills?", a:0, answers:[
+    "Yes, I like learning new skills.",
+    "No, skills are allergic to me.",
+    "Only on purple Tuesdays.",
+    "I learn skills from sandwiches."
+  ]},
 
-  {index1:14, q:"What is the kindest thing you did?", a:0, answers:[
-    "I helped someone who needed help.","I fed kindness to my shoes.","I hugged a homework monster.","I waved at a sandwich."]},
+  {index1:14, q:"What can you teach your friends?", a:0, answers:[
+    "I can teach them how to use a computer.",
+    "I teach pencils to dance.",
+    "I teach shoes to argue.",
+    "I teach clouds to clap."
+  ]},
 
-  {index1:15, q:"How can English help friendships?", a:0, answers:[
-    "English helps us talk and understand each other.","English makes chairs friendly.","English argues with friendships.","English only talks to cats."]}
+  {index1:15, q:"Can you think of a future skill you’ll need?", a:0, answers:[
+    "I think I will need English.",
+    "I will need rocket-banana language.",
+    "I will need invisible homework power.",
+    "I will need sandwich management."
+  ]}
 ];
 
 function shuffle(a){
@@ -767,71 +827,72 @@ let iosSelectedIndex=null;
 let iosFirstAttempt=true;
 
 /*------------------------------------------------------------
-  [F] CORRECT ANSWER TRANSLATIONS — February Week 2
+  [F] CORRECT ANSWER TRANSLATIONS — March Week 2
   Notes:
   - Single strings (no arrays) so TTS/reading is always natural.
 ------------------------------------------------------------*/
 const ANSWER_TRANSLATIONS = {
-  1:{ en:"A good friend is kind and honest.",
-      jp:"良い友だちは親切で正直です。",
-      hi:"よい ともだち は しんせつ で しょうじき です" },
+  1:{ en:"I can sing well.",
+      jp:"上手に歌えます。",
+      hi:"じょうず に うたえ ます" },
 
-  2:{ en:"I use kind words and help others.",
-      jp:"優しい言葉を使って人を助けます。",
-      hi:"やさしい ことば を つかって ひと を たすけます" },
+  2:{ en:"I can draw animals.",
+      jp:"動物の絵が描けます。",
+      hi:"どうぶつ の え が かけ ます" },
 
-  3:{ en:"Yes, because we help each other.",
-      jp:"はい、お互いに助け合うからです。",
-      hi:"はい おたがい に たすけあう から です" },
+  3:{ en:"I can cook Japanese food.",
+      jp:"和食を作れます。",
+      hi:"わしょく を つくれ ます" },
 
-  4:{ en:"It is hard when I’m afraid of making mistakes.",
-      jp:"間違えるのが怖いときは正直になるのが難しいです。",
-      hi:"まちがえる の が こわい とき は しょうじき に なる の が むずかしい です" },
+  4:{ en:"I can use a computer.",
+      jp:"コンピュータを使えます。",
+      hi:"こんぴゅーた を つかえ ます" },
 
-  5:{ en:"My teacher or a classmate is patient.",
-      jp:"先生やクラスメートが我慢強いです。",
-      hi:"せんせい や くらすめーと が がまんづよい です" },
+  5:{ en:"I can fix small things.",
+      jp:"小さいものを直せます。",
+      hi:"ちいさい もの を なおせ ます" },
 
-  6:{ en:"I ask them kindly to join me.",
-      jp:"一緒に遊ぼうと優しく声をかけます。",
-      hi:"いっしょ に あそぼう と やさしく こえ を かけます" },
+  6:{ en:"I can play the piano.",
+      jp:"ピアノを弾けます。",
+      hi:"ぴあの を ひけ ます" },
 
-  7:{ en:"I invite everyone to join the game.",
-      jp:"みんなをゲームに誘います。",
-      hi:"みんな を げーむ に さそいます" },
+  7:{ en:"I can speak a little English.",
+      jp:"少し英語が話せます。",
+      hi:"すこし えいご が はなせ ます" },
 
-  8:{ en:"Someone helped me when I needed help.",
-      jp:"困っているときに誰かが助けてくれました。",
-      hi:"こまって いる とき に だれか が たすけて くれました" },
+  8:{ en:"I can ride a bike.",
+      jp:"自転車に乗れます。",
+      hi:"じてんしゃ に のれ ます" },
 
-  9:{ en:"I can be more patient and kind.",
-      jp:"もっと我慢強く親切になれます。",
-      hi:"もっと がまんづよく しんせつ に なれます" },
+  9:{ en:"I can build with blocks.",
+      jp:"ブロックで組み立てられます。",
+      hi:"ぶろっく で くみたてられ ます" },
 
-  10:{ en:"Sometimes it is hard, but I try.",
-       jp:"ときどき難しいですが、努力します。",
-       hi:"ときどき むずかしい です が どりょく します" },
+  10:{ en:"I’m good at listening to others.",
+       jp:"人の話を聞くのが得意です。",
+       hi:"ひと の はなし を きく の が とくい です" },
 
-  11:{ en:"Please, thank you, and excuse me.",
-       jp:"「お願いします」「ありがとう」「すみません」です。",
-       hi:"おねがいします ありがとう すみません です" },
+  11:{ en:"I’m good at sports.",
+       jp:"スポーツが得意です。",
+       hi:"すぽーつ が とくい です" },
 
-  12:{ en:"I trust my friends because they help me.",
-       jp:"助けてくれるので友だちを信頼しています。",
-       hi:"たすけて くれる ので ともだち を しんらい して います" },
+  12:{ en:"I’m not good at math.",
+       jp:"数学は得意ではありません。",
+       hi:"すうがく は とくい では ありません" },
 
-  13:{ en:"They are kind and help others.",
-       jp:"その人は親切で人を助けます。",
-       hi:"その ひと は しんせつ で ひと を たすけます" },
+  13:{ en:"He’s good at drawing manga.",
+       jp:"彼は漫画を描くのが得意です。",
+       hi:"かれ は まんが を かく の が とくい です" },
 
-  14:{ en:"I helped someone who needed help.",
-       jp:"困っている人を助けました。",
-       hi:"こまって いる ひと を たすけました" },
+  14:{ en:"She’s good at singing.",
+       jp:"彼女は歌うのが得意です。",
+       hi:"かのじょ は うたう の が とくい です" },
 
-  15:{ en:"English helps us talk and understand each other.",
-       jp:"英語は話したり理解したりする助けになります。",
-       hi:"えいご は はなしたり りかい したり する たすけ に なります" }
+  15:{ en:"We can learn new skills together.",
+       jp:"いっしょに新しいスキルを学べます。",
+       hi:"いっしょ に あたらしい すきる を まなべ ます" }
 };
+
 
 
 /*------------------------------------------------------------
