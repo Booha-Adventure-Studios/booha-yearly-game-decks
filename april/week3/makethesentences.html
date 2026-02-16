@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
 <!-- //* CHANGE 1/7: Page <title> (week label) *// -->
-<title>Booha Make the Sentences – February Week 3</title>
+<title>Booha Make the Sentences – April Week 3</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">
 <meta name="theme-color" content="#0b1530" />
@@ -355,8 +355,8 @@ footer{text-align:center;color:#c9d4ec;font-family:'Cinzel',serif;font-weight:70
   <div class="h2">MAKE THE SENTENCES</div>
 
   <!-- //* CHANGE 2/7: Week label text shown on page *// -->
-  <div class="h3">February Week 3 – Sentences</div>
-  <div class="h4">2月第3週 – 文の練習</div>
+  <div class="h3">April Week 3 – Sentences</div>
+  <div class="h4">4月第3週 – 文の練習</div>
 </header>
 
 <div class="wrap" id="page-round">
@@ -504,21 +504,21 @@ initAudioPaths();
    //* CHANGE 4/7: Sentence data (id 1..15 matches s01_.. s15_..)
    ========================= */
 const BASE_DATA = [
-  {id:1,  en:"I have a small family.",                  jp:"私には小さい家族がいます。",                 hira:"わたし に は ちいさい かぞく が います"},
-  {id:2,  en:"She has two brothers.",                   jp:"彼女には兄弟が二人います。",                 hira:"かのじょ に は きょうだい が ふたり います"},
-  {id:3,  en:"We have a family dinner on Sunday.",      jp:"日曜日に家族の食事があります。",             hira:"にちようび に かぞく の しょくじ が あります"},
-  {id:4,  en:"My grandmother has a garden.",            jp:"祖母には庭があります。",                     hira:"そぼ に は にわ が あります"},
-  {id:5,  en:"He has a kind smile.",                    jp:"彼は優しい笑顔です。",                     hira:"かれ は やさしい えがお です"},
-  {id:6,  en:"I have a letter for my cousin.",          jp:"いとこへの手紙があります。",               hira:"いとこ へ の てがみ が あります"},
-  {id:7,  en:"My parents have a day off tomorrow.",     jp:"両親は明日休みがあります。",                 hira:"りょうしん は あした やすみ が あります"},
-  {id:8,  en:"Does your sister have a cat?",            jp:"あなたの妹は猫がいますか？",               hira:"あなた の いもうと は ねこ が います か"},
-  {id:9,  en:"Our family has many photos.",             jp:"私たちの家族には写真がたくさんあります。",   hira:"わたしたち の かぞく に は しゃしん が たくさん あります"},
-  {id:10, en:"I have chocolate for everyone.",          jp:"みんなのためのチョコレートがあります。",   hira:"みんな の ため の ちょこれーと が あります"},
-  {id:11, en:"My father has a new job.",                jp:"父には新しい仕事があります。",             hira:"ちち に は あたらしい しごと が あります"},
-  {id:12, en:"We have a plan to celebrate.",            jp:"お祝いする計画があります。",               hira:"おいわい する けいかく が あります"},
-  {id:13, en:"She has a big heart.",                    jp:"彼女は心が広いです。",                     hira:"かのじょ は こころ が ひろい です"},
-  {id:14, en:"Do you have any relatives in Tokyo?",     jp:"東京に親せきはいますか？",                 hira:"とうきょう に しんせき は います か"},
-  {id:15, en:"I have a happy memory with my family.",   jp:"家族との楽しい思い出があります。",         hira:"かぞく と の たのしい おもいで が あります"}
+  {id:1,  en:"Japan is different from my friend’s country.",   jp:"日本は友だちの国とちがいます。",               hira:"にほん は ともだち の くに と ちがい ます"},
+  {id:2,  en:"People bow in Japan.",                           jp:"日本ではおじぎをします。",                     hira:"にほん で は おじぎ を します"},
+  {id:3,  en:"People shake hands in many countries.",          jp:"多くの国では握手をします。",                   hira:"おおく の くに で は あくしゅ を します"},
+  {id:4,  en:"We take off shoes at the door.",                 jp:"私たちは玄関で靴をぬぎます。",                 hira:"わたしたち は げんかん で くつ を ぬぎ ます"},
+  {id:5,  en:"Some people eat with chopsticks.",               jp:"箸で食べる人もいます。",                       hira:"はし で たべる ひと も い ます"},
+  {id:6,  en:"I prefer rice to bread.",                        jp:"私はパンよりご飯のほうが好きです。",           hira:"わたし は ぱん より ごはん の ほう が すき です"},
+  {id:7,  en:"I prefer tea to coffee.",                        jp:"私はコーヒーよりお茶のほうが好きです。",       hira:"わたし は こーひー より おちゃ の ほう が すき です"},
+  {id:8,  en:"Summer festivals are exciting.",                 jp:"夏祭りはわくわくします。",                     hira:"なつまつり は わくわく します"},
+  {id:9,  en:"New Year is an important holiday.",              jp:"お正月は大切な祝日です。",                     hira:"おしょうがつ は たいせつ な しゅくじつ です"},
+  {id:10, en:"Gift-giving is part of the culture.",            jp:"贈り物をすることは文化の一部です。",           hira:"おくりもの を する こと は ぶんか の いちぶ です"},
+  {id:11, en:"It is polite to say “thank you.”",               jp:"「ありがとう」と言うのは丁寧です。",           hira:"ありがとう と いう の は ていねい です"},
+  {id:12, en:"Let’s compare two customs.",                     jp:"二つのしきたりを比べましょう。",               hira:"ふたつ の しきたり を くらべましょう"},
+  {id:13, en:"This rule is the same at my school.",            jp:"このルールは私の学校でも同じです。",           hira:"この るーる は わたし の がっこう でも おなじ です"},
+  {id:14, en:"Food is different in each country.",             jp:"国ごとに食べ物はちがいます。",                 hira:"くに ごと に たべもの は ちがい ます"},
+  {id:15, en:"I like learning about traditions.",              jp:"伝統について学ぶのが好きです。",               hira:"でんとう について まなぶ の が すき です"}
 ];
 
   
