@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Booha Eigo Adventure – February Week 2</title>
+<title>Booha Eigo Adventure – April Week 2</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">  
 <meta name="theme-color" content="#0b1530" />
@@ -426,8 +426,8 @@ footer{text-align:center;color:#fff;padding:16px 0 22px;font-family:'Cinzel',ser
 
 <header>
   <div class="h1">THE BOO-RICULUM</div>
-  <div class="h2">Eigo Adventure – February Week 2</div>
-  <div class="h3">2月第2週 – 英語アドベンチャー</div>
+  <div class="h2">Eigo Adventure – April Week 2</div>
+  <div class="h3">4月第2週 – 英語アドベンチャー</div>
 </header>
 
 <main>
@@ -682,55 +682,55 @@ function setMicStatus(on){
 }
 
 /*------------------------------------------------------------
-  [E] QUESTIONS — February Week 2 (Kindness & Friendship)
+  [E] QUESTIONS — April Week 2 (Kindness & Friendship)
   Notes:
   - We shuffle answers but preserve the original correct string in q.correct.
 ------------------------------------------------------------*/
 const BASE_QUESTIONS = [
-  {index1:1, q:"What makes a good friend?", a:0, answers:[
-    "A good friend is kind and honest.","A good friend eats homework.","A good friend lives in a shoe.","A good friend is a talking cloud."]},
+  {index1:1, q:"What landmarks do you know in Japan?", a:0, answers:[
+    "I know temples, shrines, and castles.","I know sandwich mountain.","I know invisible tower.","I know homework palace."]},
 
-  {index1:2, q:"How do you show kindness?", a:0, answers:[
-    "I use kind words and help others.","I throw kindness sandwiches.","I shout kindness loudly.","I hide kindness under my bed."]},
+  {index1:2, q:"What can you see in Kyoto?", a:0, answers:[
+    "You can see temples and shrines.","You can see flying chairs.","You can see invisible noodles.","You can see secret sandwich temple."]},
 
-  {index1:3, q:"Do you like teamwork? Why?", a:0, answers:[
-    "Yes, because we help each other.","No, teamwork eats my lunch.","Only on the moon.","Teamwork argues with me."]},
+  {index1:3, q:"Is there a shrine near your house?", a:0, answers:[
+    "Yes, there is a shrine near my house.","No, only homework lives there.","Yes, a sandwich shrine.","No, only invisible statues."]},
 
-  {index1:4, q:"When is it hard to be honest?", a:0, answers:[
-    "It is hard when I’m afraid of making mistakes.","It is hard on purple days.","It is hard when chairs listen.","It is hard during sandwich time."]},
+  {index1:4, q:"What is your favorite park?", a:0, answers:[
+    "My favorite park is near my house.","My favorite park is my backpack.","My favorite park is sandwich park.","My favorite park is invisible park."]},
 
-  {index1:5, q:"Who is patient in your class?", a:0, answers:[
-    "My teacher or a classmate is patient.","The classroom door is patient.","My pencil waits patiently.","The clock teaches patience."]},
+  {index1:5, q:"Have you been to a museum recently?", a:0, answers:[
+    "Yes, I went to a museum recently.","No, museums visit me.","Yes, I live in a museum.","No, only my pencil goes there."]},
 
-  {index1:6, q:"How do you invite someone to play?", a:0, answers:[
-    "I ask them kindly to join me.","I challenge them to a duel.","I throw a whistle.","I whisper to the floor."]},
+  {index1:6, q:"Where is a good place to take photos?", a:0, answers:[
+    "A landmark or park is a good place.","My shoe is a good place.","My sandwich is famous.","My homework takes photos."]},
 
-  {index1:7, q:"How do you include everyone?", a:0, answers:[
-    "I invite everyone to join the game.","I include only my shoes.","I ask the wall to play.","I close my eyes and run away."]},
+  {index1:7, q:"What famous bridges do you know?", a:0, answers:[
+    "I know famous bridges in Japan.","I know floating sandwich bridge.","I know invisible bridge.","I know homework bridge."]},
 
-  {index1:8, q:"When did someone help you?", a:0, answers:[
-    "Someone helped me when I needed help.","Someone helped me in my dream.","A sandwich helped me yesterday.","My backpack saved the day."]},
+  {index1:8, q:"What landmark do you want to visit?", a:0, answers:[
+    "I want to visit a famous castle.","I want to visit sandwich tower.","I want to visit invisible palace.","I want to visit homework temple."]},
 
-  {index1:9, q:"What can you do better this week?", a:0, answers:[
-    "I can be more patient and kind.","I can become invisible.","I can argue with homework.","I can sleep in class forever."]},
+  {index1:9, q:"How do you buy a ticket?", a:0, answers:[
+    "I buy a ticket at the station.","I buy a ticket from my shoe.","I ask sandwich machine.","Ticket buys me instead."]},
 
-  {index1:10, q:"Is saying “sorry” easy for you?", a:0, answers:[
-    "Sometimes it is hard, but I try.","Yes, I say sorry to chairs.","No, sorry is allergic to me.","I only say sorry to robots."]},
+  {index1:10, q:"What is a famous castle in Japan?", a:0, answers:[
+    "Himeji Castle is famous.","Sandwich castle is famous.","My house is famous castle.","Invisible castle is famous."]},
 
-  {index1:11, q:"What words are polite in English?", a:0, answers:[
-    "Please, thank you, and excuse me.","Potato, banana, spaceship.","Whisper, shout, explode.","Only the word sandwich."]},
+  {index1:11, q:"What is your city famous for?", a:0, answers:[
+    "My city is famous for landmarks.","My city is famous for sandwiches.","My city is famous for homework.","My city is famous for invisible towers."]},
 
-  {index1:12, q:"Who do you trust, and why?", a:0, answers:[
-    "I trust my friends because they help me.","I trust my backpack’s advice.","I trust the ceiling fan.","I trust invisible ducks."]},
+  {index1:12, q:"Where can you see cherry blossoms?", a:0, answers:[
+    "You can see cherry blossoms in parks.","You can see them on homework.","You can see them in my backpack.","You can see them in sandwich land."]},
 
-  {index1:13, q:"Tell me about a friendly person.", a:0, answers:[
-    "They are kind and help others.","They roar at people.","They hide under tables.","They speak only to walls."]},
+  {index1:13, q:"What is a landmark in Tokyo?", a:0, answers:[
+    "Tokyo Tower is a famous landmark.","My pencil is landmark.","My shoe is Tokyo Tower.","Invisible tower is Tokyo Tower."]},
 
-  {index1:14, q:"What is the kindest thing you did?", a:0, answers:[
-    "I helped someone who needed help.","I fed kindness to my shoes.","I hugged a homework monster.","I waved at a sandwich."]},
+  {index1:14, q:"Is there a market in your town?", a:0, answers:[
+    "Yes, there is a market in my town.","No, only sandwich market.","Yes, invisible market.","No, homework market only."]},
 
-  {index1:15, q:"How can English help friendships?", a:0, answers:[
-    "English helps us talk and understand each other.","English makes chairs friendly.","English argues with friendships.","English only talks to cats."]}
+  {index1:15, q:"What landmark is near your school?", a:0, answers:[
+    "There is a park near my school.","There is sandwich palace.","There is invisible shrine.","There is homework temple."]}
 ];
 
 function shuffle(a){
@@ -767,70 +767,70 @@ let iosSelectedIndex=null;
 let iosFirstAttempt=true;
 
 /*------------------------------------------------------------
-  [F] CORRECT ANSWER TRANSLATIONS — February Week 2
+  [F] CORRECT ANSWER TRANSLATIONS — April Week 2
   Notes:
   - Single strings (no arrays) so TTS/reading is always natural.
 ------------------------------------------------------------*/
 const ANSWER_TRANSLATIONS = {
-  1:{ en:"A good friend is kind and honest.",
-      jp:"良い友だちは親切で正直です。",
-      hi:"よい ともだち は しんせつ で しょうじき です" },
+  1:{ en:"I know temples, shrines, and castles.",
+      jp:"私は寺や神社や城を知っています。",
+      hi:"わたし は てら や じんじゃ や しろ を しって います" },
 
-  2:{ en:"I use kind words and help others.",
-      jp:"優しい言葉を使って人を助けます。",
-      hi:"やさしい ことば を つかって ひと を たすけます" },
+  2:{ en:"You can see temples and shrines.",
+      jp:"寺や神社を見ることができます。",
+      hi:"てら や じんじゃ を みる こと が できます" },
 
-  3:{ en:"Yes, because we help each other.",
-      jp:"はい、お互いに助け合うからです。",
-      hi:"はい おたがい に たすけあう から です" },
+  3:{ en:"Yes, there is a shrine near my house.",
+      jp:"はい、家の近くに神社があります。",
+      hi:"はい、いえ の ちかく に じんじゃ が あり ます" },
 
-  4:{ en:"It is hard when I’m afraid of making mistakes.",
-      jp:"間違えるのが怖いときは正直になるのが難しいです。",
-      hi:"まちがえる の が こわい とき は しょうじき に なる の が むずかしい です" },
+  4:{ en:"My favorite park is near my house.",
+      jp:"私の好きな公園は家の近くにあります。",
+      hi:"わたし の すき な こうえん は いえ の ちかく に あり ます" },
 
-  5:{ en:"My teacher or a classmate is patient.",
-      jp:"先生やクラスメートが我慢強いです。",
-      hi:"せんせい や くらすめーと が がまんづよい です" },
+  5:{ en:"Yes, I went to a museum recently.",
+      jp:"はい、最近博物館に行きました。",
+      hi:"はい、さいきん はくぶつかん に いき ました" },
 
-  6:{ en:"I ask them kindly to join me.",
-      jp:"一緒に遊ぼうと優しく声をかけます。",
-      hi:"いっしょ に あそぼう と やさしく こえ を かけます" },
+  6:{ en:"A landmark or park is a good place.",
+      jp:"名所や公園は良い場所です。",
+      hi:"めいしょ や こうえん は よい ばしょ です" },
 
-  7:{ en:"I invite everyone to join the game.",
-      jp:"みんなをゲームに誘います。",
-      hi:"みんな を げーむ に さそいます" },
+  7:{ en:"I know famous bridges in Japan.",
+      jp:"日本の有名な橋を知っています。",
+      hi:"にほん の ゆうめい な はし を しって います" },
 
-  8:{ en:"Someone helped me when I needed help.",
-      jp:"困っているときに誰かが助けてくれました。",
-      hi:"こまって いる とき に だれか が たすけて くれました" },
+  8:{ en:"I want to visit a famous castle.",
+      jp:"有名な城に行きたいです。",
+      hi:"ゆうめい な しろ に いきたい です" },
 
-  9:{ en:"I can be more patient and kind.",
-      jp:"もっと我慢強く親切になれます。",
-      hi:"もっと がまんづよく しんせつ に なれます" },
+  9:{ en:"I buy a ticket at the station.",
+      jp:"駅でチケットを買います。",
+      hi:"えき で ちけっと を かい ます" },
 
-  10:{ en:"Sometimes it is hard, but I try.",
-       jp:"ときどき難しいですが、努力します。",
-       hi:"ときどき むずかしい です が どりょく します" },
+  10:{ en:"Himeji Castle is famous.",
+       jp:"姫路城は有名です。",
+       hi:"ひめじじょう は ゆうめい です" },
 
-  11:{ en:"Please, thank you, and excuse me.",
-       jp:"「お願いします」「ありがとう」「すみません」です。",
-       hi:"おねがいします ありがとう すみません です" },
+  11:{ en:"My city is famous for landmarks.",
+       jp:"私の町は名所で有名です。",
+       hi:"わたし の まち は めいしょ で ゆうめい です" },
 
-  12:{ en:"I trust my friends because they help me.",
-       jp:"助けてくれるので友だちを信頼しています。",
-       hi:"たすけて くれる ので ともだち を しんらい して います" },
+  12:{ en:"You can see cherry blossoms in parks.",
+       jp:"公園で桜を見ることができます。",
+       hi:"こうえん で さくら を みる こと が できます" },
 
-  13:{ en:"They are kind and help others.",
-       jp:"その人は親切で人を助けます。",
-       hi:"その ひと は しんせつ で ひと を たすけます" },
+  13:{ en:"Tokyo Tower is a famous landmark.",
+       jp:"東京タワーは有名な名所です。",
+       hi:"とうきょう たわー は ゆうめい な めいしょ です" },
 
-  14:{ en:"I helped someone who needed help.",
-       jp:"困っている人を助けました。",
-       hi:"こまって いる ひと を たすけました" },
+  14:{ en:"Yes, there is a market in my town.",
+       jp:"はい、私の町に市場があります。",
+       hi:"はい、わたし の まち に いちば が あり ます" },
 
-  15:{ en:"English helps us talk and understand each other.",
-       jp:"英語は話したり理解したりする助けになります。",
-       hi:"えいご は はなしたり りかい したり する たすけ に なります" }
+  15:{ en:"There is a park near my school.",
+       jp:"学校の近くに公園があります。",
+       hi:"がっこう の ちかく に こうえん が あり ます" }
 };
 
 
