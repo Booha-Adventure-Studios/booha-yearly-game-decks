@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Booha Eigo Adventure – February Week 3</title>
+<title>Booha Eigo Adventure – April Week 3</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">  
 <meta name="theme-color" content="#0b1530" />
@@ -426,8 +426,8 @@ footer{text-align:center;color:#fff;padding:16px 0 22px;font-family:'Cinzel',ser
 
 <header>
   <div class="h1">THE BOO-RICULUM</div>
-  <div class="h2">Eigo Adventure – February Week 3</div>
-  <div class="h3">2月第3週 – 英語アドベンチャー</div>
+  <div class="h2">Eigo Adventure – April Week 3</div>
+  <div class="h3">4月第3週 – 英語アドベンチャー</div>
 </header>
 
 <main>
@@ -682,57 +682,56 @@ function setMicStatus(on){
 }
 
 /*------------------------------------------------------------
-  [E] QUESTIONS — February Week 3 (Family / relationships)
+  [E] QUESTIONS — April Week 3 (Family / relationships)
   Notes:
   - We shuffle answers but preserve the original correct string in q.correct.
 ------------------------------------------------------------*/
 const BASE_QUESTIONS = [
-  {index1:1, q:"Who is in your family?", a:0, answers:[
-    "My family is my mother, father, and me.","My family is five cats and one sandwich.","My family is a dragon and a toaster.","My family is the moon and a jellyfish."]},
+  {index1:1, q:"What customs do you know in Japan?", a:0, answers:[
+    "I know bowing and removing shoes.","I know sandwich greeting.","I know invisible customs.","I know homework tradition."]},
 
-  {index1:2, q:"What do you do together?", a:0, answers:[
-    "We eat dinner and talk together.","We ride dinosaurs to school.","We practice invisibility.","We yell at the refrigerator."]},
+  {index1:2, q:"Do you bow or shake hands?", a:0, answers:[
+    "I bow in Japan.","I shake hands with my shoes.","I bow to sandwiches.","I shake hands with invisible people."]},
 
-  {index1:3, q:"Who cooks at home?", a:0, answers:[
-    "My mother cooks at home.","My shoes cook at home.","A magic spoon cooks at home.","The TV cooks at home."]},
+  {index1:3, q:"What foods are popular in your town?", a:0, answers:[
+    "Rice and noodles are popular.","Sandwiches rule the town.","Only homework is popular.","Invisible soup is popular."]},
 
-  {index1:4, q:"Do you write letters or messages?", a:0, answers:[
-    "Yes, I write messages.","No, I only write on clouds.","I send messages to my goldfish.","I write letters to the floor."]},
+  {index1:4, q:"What holiday is important to your family?", a:0, answers:[
+    "New Year is important to my family.","Sandwich Day is important.","Homework Day is important.","Invisible Day is important."]},
 
-  {index1:5, q:"How do you celebrate birthdays?", a:0, answers:[
-    "We eat cake and say happy birthday.","We celebrate by sleeping for 100 years.","We celebrate by fighting a cake monster.","We celebrate by turning into potatoes."]},
+  {index1:5, q:"What do people wear at festivals?", a:0, answers:[
+    "People wear traditional clothes.","People wear sandwich hats.","People wear homework jackets.","People wear invisible shoes."]},
 
-  {index1:6, q:"What is a good family rule?", a:0, answers:[
-    "A good family rule is to be kind.","A good family rule is to eat only pizza.","A good family rule is to talk to walls.","A good family rule is to never blink."]},
+  {index1:6, q:"What is polite in your culture?", a:0, answers:[
+    "Saying thank you is polite.","Talking to walls is polite.","Eating homework is polite.","Ignoring gravity is polite."]},
 
-  {index1:7, q:"Who gives good advice?", a:0, answers:[
-    "My father gives good advice.","My backpack gives good advice.","A noisy robot gives good advice.","My pencil gives good advice at midnight."]},
+  {index1:7, q:"What is different from other countries?", a:0, answers:[
+    "Customs and food are different.","Sandwich customs are different.","Homework customs are different.","Invisible rules are different."]},
 
-  {index1:8, q:"What is your favorite family memory?", a:0, answers:[
-    "My favorite family memory is a trip we took.","My favorite memory is becoming a banana.","My favorite memory is falling into a volcano.","My favorite memory is forgetting every memory."]},
+  {index1:8, q:"What is the same?", a:0, answers:[
+    "People greet each other.","Sandwiches greet each other.","Homework greets people.","Invisible greetings happen."]},
 
-  {index1:9, q:"Do you help your family? How?", a:0, answers:[
-    "Yes, I help by cleaning my room.","Yes, I help by commanding penguins.","No, my family helps my homework.","I help by hiding under the bed."]},
+  {index1:9, q:"Do you prefer tea or coffee? Why?", a:0, answers:[
+    "I prefer tea because it is relaxing.","I prefer sandwich juice.","I prefer invisible coffee.","I prefer homework tea."]},
 
-  {index1:10, q:"Who is the funniest person?", a:0, answers:[
-    "My brother is the funniest person.","My chair is the funniest person.","The wind is the funniest person.","My shadow is the funniest person."]},
+  {index1:10, q:"Do you prefer rice or bread? Why?", a:0, answers:[
+    "I prefer rice because it is delicious.","I prefer sandwich rice.","I prefer invisible bread.","I prefer homework bread."]},
 
-  {index1:11, q:"What gifts do you like to give?", a:0, answers:[
-    "I like to give small gifts.","I like to give homework as a gift.","I like to give invisible rocks.","I like to give loud socks that scream."]},
+  {index1:11, q:"What gift is good to bring?", a:0, answers:[
+    "A small gift is good to bring.","A sandwich crown is good.","Homework is best gift.","Invisible gift is best."]},
 
-  {index1:12, q:"Do you have a family photo you love?", a:0, answers:[
-    "Yes, I have a family photo I love.","No, my photos run away.","Yes, I have a photo of a dinosaur wedding.","No, my camera is allergic to families."]},
+  {index1:12, q:"How do you greet teachers?", a:0, answers:[
+    "I greet teachers politely.","I greet teachers with sandwiches.","I greet teachers invisibly.","I greet teachers silently forever."]},
 
-  {index1:13, q:"Who do you talk to when you worry?", a:0, answers:[
-    "I talk to my mother when I worry.","I talk to my sandwich when I worry.","I talk to a mailbox when I worry.","I talk to the ceiling when I worry."]},
+  {index1:13, q:"What tradition would you like to try?", a:0, answers:[
+    "I would like to try a tea ceremony.","I would like to try sandwich ceremony.","I would like to try invisible ceremony.","I would like to try homework ceremony."]},
 
-  {index1:14, q:"What do you respect about your parents?", a:0, answers:[
-    "I respect that my parents work hard.","I respect that my parents can fly.","I respect that my parents are secret ninjas.","I respect that my parents are made of spaghetti."]},
+  {index1:14, q:"What tradition do you want to share?", a:0, answers:[
+    "I want to share my culture’s food.","I want to share sandwich tradition.","I want to share invisible tradition.","I want to share homework tradition."]},
 
-  {index1:15, q:"What do you want to do with your family next?", a:0, answers:[
-    "I want to go on a trip with my family next.","I want to live inside a vending machine.","I want to race snails professionally.","I want to move to the sun for vacation."]}
+  {index1:15, q:"How can we respect other cultures?", a:0, answers:[
+    "We can learn and be polite.","We can give sandwiches.","We can ignore everything.","We can become invisible."]}
 ];
-
 
 function shuffle(a){
   for(let i=a.length-1;i>0;i--){
@@ -768,26 +767,70 @@ let iosSelectedIndex=null;
 let iosFirstAttempt=true;
 
 /*------------------------------------------------------------
-  [F] CORRECT ANSWER TRANSLATIONS — February Week 3
+  [F] CORRECT ANSWER TRANSLATIONS — April Week 3
   Notes:
   - Single strings (no arrays) so TTS/reading is always natural.
 ------------------------------------------------------------*/
 const ANSWER_TRANSLATIONS = {
-  1:{ en:"My family is my mother, father, and me.", jp:"私の家族は、お母さんとお父さんと私です。", hi:"わたしの かぞくは おかあさん と おとうさん と わたし です" },
-  2:{ en:"We eat dinner and talk together.", jp:"私たちはいっしょに夕ごはんを食べて話します。", hi:"わたしたちは いっしょに ゆうごはん を たべて はなします" },
-  3:{ en:"My mother cooks at home.", jp:"家ではお母さんが料理します。", hi:"いえでは おかあさんが りょうり します" },
-  4:{ en:"Yes, I write messages.", jp:"はい、メッセージを書きます。", hi:"はい めっせーじ を かきます" },
-  5:{ en:"We eat cake and say happy birthday.", jp:"ケーキを食べて「お誕生日おめでとう」と言います。", hi:"けーき を たべて おたんじょうび おめでとう と いいます" },
-  6:{ en:"A good family rule is to be kind.", jp:"良い家族のルールは、やさしくすることです。", hi:"よい かぞくの るーるは やさしく する こと です" },
-  7:{ en:"My father gives good advice.", jp:"お父さんが良いアドバイスをくれます。", hi:"おとうさんが よい あどばいす を くれます" },
-  8:{ en:"My favorite family memory is a trip we took.", jp:"一番好きな家族の思い出は、旅行に行ったことです。", hi:"いちばん すきな かぞくの おもいで は りょこう に いった こと です" },
-  9:{ en:"Yes, I help by cleaning my room.", jp:"はい、部屋をそうじして手伝います。", hi:"はい へや を そうじ して てつだいます" },
-  10:{ en:"My brother is the funniest person.", jp:"一番おもしろい人は兄（弟）です。", hi:"いちばん おもしろい ひとは あに（おとうと） です" },
-  11:{ en:"I like to give small gifts.", jp:"私は小さなプレゼントをあげるのが好きです。", hi:"わたしは ちいさな ぷれぜんと を あげる のが すき です" },
-  12:{ en:"Yes, I have a family photo I love.", jp:"はい、大好きな家族写真があります。", hi:"はい だいすきな かぞくしゃしん が あります" },
-  13:{ en:"I talk to my mother when I worry.", jp:"心配なときはお母さんに話します。", hi:"しんぱいな ときは おかあさんに はなします" },
-  14:{ en:"I respect that my parents work hard.", jp:"両親が一生けんめい働くところを尊敬しています。", hi:"りょうしんが いっしょうけんめい はたらく ところ を そんけい しています" },
-  15:{ en:"I want to go on a trip with my family next.", jp:"次は家族と旅行に行きたいです。", hi:"つぎは かぞくと りょこう に いきたい です" }
+  1:{ en:"I know bowing and removing shoes.",
+      jp:"おじぎや靴をぬぐ習慣を知っています。",
+      hi:"おじぎ や くつ を ぬぐ しゅうかん を しって います" },
+
+  2:{ en:"I bow in Japan.",
+      jp:"日本ではおじぎをします。",
+      hi:"にほん で は おじぎ を します" },
+
+  3:{ en:"Rice and noodles are popular.",
+      jp:"ご飯やめん類が人気です。",
+      hi:"ごはん や めんるい が にんき です" },
+
+  4:{ en:"New Year is important to my family.",
+      jp:"お正月は私の家族にとって大切です。",
+      hi:"おしょうがつ は わたし の かぞく に とって たいせつ です" },
+
+  5:{ en:"People wear traditional clothes.",
+      jp:"人々は伝統的な服を着ます。",
+      hi:"ひとびと は でんとうてき な ふく を きます" },
+
+  6:{ en:"Saying thank you is polite.",
+      jp:"ありがとうと言うのは丁寧です。",
+      hi:"ありがとう と いう の は ていねい です" },
+
+  7:{ en:"Customs and food are different.",
+      jp:"しきたりや食べ物はちがいます。",
+      hi:"しきたり や たべもの は ちがい ます" },
+
+  8:{ en:"People greet each other.",
+      jp:"人々はお互いにあいさつします。",
+      hi:"ひとびと は おたがい に あいさつ します" },
+
+  9:{ en:"I prefer tea because it is relaxing.",
+      jp:"お茶のほうが落ち着くので好きです。",
+      hi:"おちゃ の ほう が おちつく ので すき です" },
+
+  10:{ en:"I prefer rice because it is delicious.",
+       jp:"ご飯はおいしいので好きです。",
+       hi:"ごはん は おいしい ので すき です" },
+
+  11:{ en:"A small gift is good to bring.",
+       jp:"小さな贈り物が良いです。",
+       hi:"ちいさな おくりもの が よい です" },
+
+  12:{ en:"I greet teachers politely.",
+       jp:"先生には丁寧にあいさつします。",
+       hi:"せんせい に は ていねい に あいさつ します" },
+
+  13:{ en:"I would like to try a tea ceremony.",
+       jp:"茶道をやってみたいです。",
+       hi:"さどう を やって みたい です" },
+
+  14:{ en:"I want to share my culture’s food.",
+       jp:"自分の文化の食べ物を紹介したいです。",
+       hi:"じぶん の ぶんか の たべもの を しょうかい したい です" },
+
+  15:{ en:"We can learn and be polite.",
+       jp:"学んで丁寧にすることができます。",
+       hi:"まなんで ていねい に する こと が できます" }
 };
 
 /*------------------------------------------------------------
