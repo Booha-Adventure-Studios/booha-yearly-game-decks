@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Booha Eigo Adventure – February Week 1</title>
+<title>Booha Eigo Adventure – April Week 1</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">  
 <meta name="theme-color" content="#0b1530" />
@@ -426,8 +426,8 @@ footer{text-align:center;color:#fff;padding:16px 0 22px;font-family:'Cinzel',ser
 
 <header>
   <div class="h1">THE BOO-RICULUM</div>
-  <div class="h2">Eigo Adventure – February Week 1</div>
-  <div class="h3">2月第2週 – 英語アドベンチャー</div>
+  <div class="h2">Eigo Adventure – April Week 1</div>
+  <div class="h3">4月第1週 – 英語アドベンチャー</div>
 </header>
 
 <main>
@@ -682,56 +682,57 @@ function setMicStatus(on){
 }
 
 /*------------------------------------------------------------
-  [E] QUESTIONS — February Week 1 (Feelings)
+  [E] QUESTIONS — April Week 1 (Feelings)
   Notes:
   - We shuffle answers but preserve the original correct string in q.correct.
 ------------------------------------------------------------*/
 const BASE_QUESTIONS = [
-  {index1:1, q:"How do you feel today?", a:0, answers:[
-    "I feel happy today.","I feel like a flying sandwich.","I feel seventeen bananas.","I feel like my socks are judging me."]},
+  {index1:1, q:"Where are you from?", a:0, answers:[
+    "I am from Japan.","I am from the moon’s kitchen.","I am from a secret sandwich nation.","I am from under my desk."]},
 
-  {index1:2, q:"What makes you happy?", a:0, answers:[
-    "Music and friends make me happy.","My toothbrush makes me a superhero.","A potato gives me life advice.","The ceiling tells me jokes."]},
+  {index1:2, q:"What languages do you speak?", a:0, answers:[
+    "I speak Japanese and English.","I speak fluent banana.","I speak to my socks only.","I speak dinosaur language."]},
 
-  {index1:3, q:"What makes you nervous?", a:0, answers:[
-    "Tests make me nervous.","My shadow takes quizzes.","A spaghetti monster grades me.","My chair starts talking."]},
+  {index1:3, q:"What is your nationality?", a:0, answers:[
+    "My nationality is Japanese.","My nationality is cloud.","My nationality is pizza citizen.","My nationality is invisible."]},
 
-  {index1:4, q:"When do you feel proud?", a:0, answers:[
-    "I feel proud when I do my best.","I feel proud when I become invisible.","I feel proud when pigeons clap.","I feel proud when my backpack sings."]},
+  {index1:4, q:"What countries do you want to visit?", a:0, answers:[
+    "I want to visit Canada and France.","I want to visit chair country.","I want to visit refrigerator land.","I want to visit homework island."]},
 
-  {index1:5, q:"What do you do when you feel sad?", a:0, answers:[
-    "I talk to someone or listen to music.","I wrestle a cloud politely.","I send my sadness to the moon.","I hide inside a sandwich."]},
+  {index1:5, q:"What is a famous city in Japan?", a:0, answers:[
+    "Tokyo is a famous city in Japan.","My backpack is a famous city.","My pencil lives in Tokyo.","My shoe visited Osaka yesterday."]},
 
-  {index1:6, q:"Do you get bored easily?", a:0, answers:[
-    "No, I don’t get bored easily.","Yes, I get bored in 2 seconds.","I get bored only on Tuesdays.","Boredom gets bored of me."]},
+  {index1:6, q:"Do you like maps?", a:0, answers:[
+    "Yes, I like maps.","No, maps like me.","Maps are afraid of me.","Maps disappear when I look at them."]},
 
-  {index1:7, q:"What helps you calm down?", a:0, answers:[
-    "Deep breaths help me calm down.","A dragon gives me a massage.","I calm down by arguing with a pencil.","My shoes teach meditation."]},
+  {index1:7, q:"What colors are on Japan’s flag?", a:0, answers:[
+    "Red and white are on Japan’s flag.","Blue and invisible.","Purple and sandwich.","Rainbow and potato."]},
 
-  {index1:8, q:"Are you shy with new people?", a:0, answers:[
-    "Yes, I’m shy with new people.","No, I’m a professional giraffe.","I’m shy only with spaghetti.","New people are shy with me."]},
+  {index1:8, q:"What is your favorite country and why?", a:0, answers:[
+    "Japan is my favorite country because it is beautiful.","My favorite country is homework.","My favorite country is cloud city.","My favorite country is my room."]},
 
-  {index1:9, q:"When do you feel excited?", a:0, answers:[
-    "I feel excited before a trip.","I feel excited when my spoon wins.","I feel excited at 3:00 a.m. in space.","I feel excited when my homework disappears."]},
+  {index1:9, q:"What is a famous island in Japan?", a:0, answers:[
+    "Hokkaido is a famous island in Japan.","My desk is an island.","My shoe is an island.","My pencil is an island nation."]},
 
-  {index1:10, q:"Do you feel hungry in the morning?", a:0, answers:[
-    "Yes, I feel hungry in the morning.","No, I eat sunlight for breakfast.","Only my hat feels hungry.","I feel hungry in the future."]},
+  {index1:10, q:"What languages do people speak in India?", a:0, answers:[
+    "People speak Hindi and English in India.","People speak dolphin.","People speak pizza language.","People speak mirror language."]},
 
-  {index1:11, q:"What music changes your mood?", a:0, answers:[
-    "Calm music changes my mood.","My fridge sings opera to me.","A trumpet argues with my brain.","My shoelaces play heavy metal."]},
+  {index1:11, q:"What is the capital of Australia?", a:0, answers:[
+    "Canberra is the capital of Australia.","Sandwich is the capital.","My room is the capital.","My backpack is the capital."]},
 
-  {index1:12, q:"Who cheers you up?", a:0, answers:[
-    "My friends or family cheer me up.","A mysterious pancake cheers me up.","My backpack tells jokes.","A squirrel gives speeches."]},
+  {index1:12, q:"Where is Mt. Fuji?", a:0, answers:[
+    "Mt. Fuji is in Japan.","Mt. Fuji is in my pocket.","Mt. Fuji is behind my chair.","Mt. Fuji is under my homework."]},
 
-  {index1:13, q:"Do you talk about your feelings?", a:0, answers:[
-    "Yes, I talk about my feelings.","No, my feelings talk to my socks.","I only talk to my feelings on weekends.","My feelings are on airplane mode."]},
+  {index1:13, q:"Do you want to learn another language?", a:0, answers:[
+    "Yes, I want to learn another language.","No, languages learn me.","Languages are afraid of me.","My pencil teaches languages."]},
 
-  {index1:14, q:"How do you show kindness to others’ feelings?", a:0, answers:[
-    "I listen and use kind words.","I throw confetti at emotions.","I politely challenge feelings to a duel.","I teach feelings karate."]},
+  {index1:14, q:"What culture interests you?", a:0, answers:[
+    "Japanese culture interests me.","Sandwich culture interests me.","Chair culture interests me.","Invisible culture interests me."]},
 
-  {index1:15, q:"What color matches your mood today?", a:0, answers:[
-    "Blue matches my mood today.","Transparent matches my mood.","Potato-colored matches my mood.","Neon spaghetti matches my mood."]}
+  {index1:15, q:"What festival do you want to see?", a:0, answers:[
+    "I want to see the cherry blossom festival.","I want to see sandwich festival.","I want to see homework festival.","I want to see pencil festival."]}
 ];
+
 
 
 function shuffle(a){
@@ -768,70 +769,70 @@ let iosSelectedIndex=null;
 let iosFirstAttempt=true;
 
 /*------------------------------------------------------------
-  [F] CORRECT ANSWER TRANSLATIONS — February Week 1 (Feelings)
+  [F] CORRECT ANSWER TRANSLATIONS — April Week 1 (Feelings)
   Notes:
   - Single strings (no arrays) so TTS/reading is always natural.
 ------------------------------------------------------------*/
 const ANSWER_TRANSLATIONS = {
-  1:{ en:"I feel happy today.", 
-      jp:"今日はうれしいです。", 
-      hi:"きょう は うれしい です" },
+  1:{ en:"I am from Japan.",
+      jp:"私は日本の出身です。",
+      hi:"わたし は にほん の しゅっしん です" },
 
-  2:{ en:"Music and friends make me happy.", 
-      jp:"音楽や友だちは私を幸せにします。", 
-      hi:"おんがく や ともだち は わたし を しあわせ に します" },
+  2:{ en:"I speak Japanese and English.",
+      jp:"私は日本語と英語を話します。",
+      hi:"わたし は にほんご と えいご を はなし ます" },
 
-  3:{ en:"Tests make me nervous.", 
-      jp:"テストは私を緊張させます。", 
-      hi:"てすと は わたし を きんちょう させます" },
+  3:{ en:"My nationality is Japanese.",
+      jp:"私の国籍は日本です。",
+      hi:"わたし の こくせき は にほん です" },
 
-  4:{ en:"I feel proud when I do my best.", 
-      jp:"ベストを尽くしたとき誇りに思います。", 
-      hi:"べすと を つくした とき ほこり に おもいます" },
+  4:{ en:"I want to visit Canada and France.",
+      jp:"カナダとフランスに行きたいです。",
+      hi:"かなだ と ふらんす に いきたい です" },
 
-  5:{ en:"I talk to someone or listen to music.", 
-      jp:"誰かと話したり音楽を聞いたりします。", 
-      hi:"だれか と はなしたり おんがく を きいたり します" },
+  5:{ en:"Tokyo is a famous city in Japan.",
+      jp:"東京は日本の有名な都市です。",
+      hi:"とうきょう は にほん の ゆうめい な とし です" },
 
-  6:{ en:"No, I don’t get bored easily.", 
-      jp:"いいえ、あまり退屈しません。", 
-      hi:"いいえ あまり たいくつ しません" },
+  6:{ en:"Yes, I like maps.",
+      jp:"はい、地図が好きです。",
+      hi:"はい、ちず が すき です" },
 
-  7:{ en:"Deep breaths help me calm down.", 
-      jp:"深呼吸は私を落ち着かせてくれます。", 
-      hi:"しんこきゅう は わたし を おちつかせて くれます" },
+  7:{ en:"Red and white are on Japan’s flag.",
+      jp:"日本の国旗は赤と白です。",
+      hi:"にほん の こっき は あか と しろ です" },
 
-  8:{ en:"Yes, I’m shy with new people.", 
-      jp:"はい、新しい人の前では恥ずかしいです。", 
-      hi:"はい あたらしい ひと の まえ で は はずかしい です" },
+  8:{ en:"Japan is my favorite country because it is beautiful.",
+      jp:"日本は美しいので好きな国です。",
+      hi:"にほん は うつくしい ので すき な くに です" },
 
-  9:{ en:"I feel excited before a trip.", 
-      jp:"旅行の前はわくわくします。", 
-      hi:"りょこう の まえ は わくわく します" },
+  9:{ en:"Hokkaido is a famous island in Japan.",
+      jp:"北海道は日本の有名な島です。",
+      hi:"ほっかいどう は にほん の ゆうめい な しま です" },
 
-  10:{ en:"Yes, I feel hungry in the morning.", 
-       jp:"はい、朝はおなかがすきます。", 
-       hi:"はい あさ は おなか が すきます" },
+  10:{ en:"People speak Hindi and English in India.",
+       jp:"インドではヒンディー語と英語を話します。",
+       hi:"いんど では ひんでぃーご と えいご を はなし ます" },
 
-  11:{ en:"Calm music changes my mood.", 
-       jp:"落ち着いた音楽は気分を変えます。", 
-       hi:"おちついた おんがく は きぶん を かえます" },
+  11:{ en:"Canberra is the capital of Australia.",
+       jp:"キャンベラはオーストラリアの首都です。",
+       hi:"きゃんべら は おーすとらりあ の しゅと です" },
 
-  12:{ en:"My friends or family cheer me up.", 
-       jp:"友だちや家族が私を元気づけてくれます。", 
-       hi:"ともだち や かぞく が わたし を げんきづけて くれます" },
+  12:{ en:"Mt. Fuji is in Japan.",
+       jp:"富士山は日本にあります。",
+       hi:"ふじさん は にほん に あり ます" },
 
-  13:{ en:"Yes, I talk about my feelings.", 
-       jp:"はい、自分の気持ちについて話します。", 
-       hi:"はい じぶん の きもち に ついて はなします" },
+  13:{ en:"Yes, I want to learn another language.",
+       jp:"はい、ほかの言語を学びたいです。",
+       hi:"はい、ほか の げんご を まなびたい です" },
 
-  14:{ en:"I listen and use kind words.", 
-       jp:"話を聞いて優しい言葉を使います。", 
-       hi:"はなし を きいて やさしい ことば を つかいます" },
+  14:{ en:"Japanese culture interests me.",
+       jp:"日本の文化に興味があります。",
+       hi:"にほん の ぶんか に きょうみ が あり ます" },
 
-  15:{ en:"Blue matches my mood today.", 
-       jp:"今日は青が今の気分に合います。", 
-       hi:"きょう は あお が いま の きぶん に あいます" }
+  15:{ en:"I want to see the cherry blossom festival.",
+       jp:"桜の祭りを見たいです。",
+       hi:"さくら の まつり を みたい です" }
 };
 
 
