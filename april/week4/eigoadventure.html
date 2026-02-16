@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Booha Eigo Adventure – February Week 4</title>
+<title>Booha Eigo Adventure – April Week 4</title>
 <link rel="icon" type="image/png" sizes="32x32" href="BoohaYellow.png">
 <link rel="apple-touch-icon" href="BoohaYellow.png">  
 <meta name="theme-color" content="#0b1530" />
@@ -426,8 +426,8 @@ footer{text-align:center;color:#fff;padding:16px 0 22px;font-family:'Cinzel',ser
 
 <header>
   <div class="h1">THE BOO-RICULUM</div>
-  <div class="h2">Eigo Adventure – February Week 4</div>
-  <div class="h3">2月第4週 – 英語アドベンチャー</div>
+  <div class="h2">Eigo Adventure – April Week 4</div>
+  <div class="h3">4月第4週 – 英語アドベンチャー</div>
 </header>
 
 <main>
@@ -682,56 +682,57 @@ function setMicStatus(on){
 }
 
 /*------------------------------------------------------------
-  [E] QUESTIONS — February Week 4 (Help / Polite requests)
+  [E] QUESTIONS — April Week 4 (Help / Polite requests)
   Notes:
   - We shuffle answers but preserve the original correct string in q.correct.
 ------------------------------------------------------------*/
 const BASE_QUESTIONS = [
-  {index1:1, q:"How do you ask for help in English?", a:0, answers:[
-    "I say, “Can you help me, please?”","I scream very loudly.","I throw my bag in the air.","I ask my shoe for help."]},
+  {index1:1, q:"Where would you like to go?", a:0, answers:[
+    "I would like to go to Okinawa.","I would like to go to the moon.","I would like to go inside my backpack.","I would like to go to a cloud city."]},
 
-  {index1:2, q:"When did you help someone?", a:0, answers:[
-    "I helped someone yesterday.","I helped someone in the future.","I helped someone before I was born.","I helped someone on the moon."]},
+  {index1:2, q:"What would you like to eat there?", a:0, answers:[
+    "I would like to eat local food.","I would like to eat invisible noodles.","I would like to eat lightning.","I would like to eat a rainbow."]},
 
-  {index1:3, q:"What can you do when a bag is heavy?", a:0, answers:[
-    "I can ask someone to help me.","I can fly with the bag.","I can yell at the bag.","I can become the bag."]},
+  {index1:3, q:"Who would you like to travel with?", a:0, answers:[
+    "I would like to travel with my friend.","I would like to travel with a ghost.","I would like to travel with my shadow.","I would like to travel with a robot."]},
 
-  {index1:4, q:"How do you ask for directions?", a:0, answers:[
-    "I ask politely for directions.","I run in random directions.","I ask a cat for directions.","I close my eyes and walk."]},
+  {index1:4, q:"When would you like to travel?", a:0, answers:[
+    "I would like to travel next summer.","I would like to travel at midnight forever.","I would like to travel in year 3000.","I would like to travel yesterday."]},
 
-  {index1:5, q:"What can you lend to a friend?", a:0, answers:[
-    "I can lend a pen to a friend.","I can lend my homework forever.","I can lend my house.","I can lend the sun."]},
+  {index1:5, q:"How will you get there?", a:0, answers:[
+    "I will get there by train.","I will get there by flying chair.","I will get there by teleporting.","I will get there by walking on air."]},
 
-  {index1:6, q:"How do you refuse politely?", a:0, answers:[
-    "I say, “Sorry, I can’t.”","I shout “NO!” very loudly.","I run away screaming.","I pretend to disappear."]},
+  {index1:6, q:"What will you pack?", a:0, answers:[
+    "I will pack my clothes and passport.","I will pack invisible rocks.","I will pack the sky.","I will pack a thunderstorm."]},
 
-  {index1:7, q:"When do you say “You’re welcome”?", a:0, answers:[
-    "I say it after someone thanks me.","I say it before I sleep.","I say it to my lunch.","I say it to the wall."]},
+  {index1:7, q:"Do you prefer a hotel or hostel?", a:0, answers:[
+    "I prefer a hotel.","I prefer sleeping in a tree.","I prefer floating in space.","I prefer living in a suitcase."]},
 
-  {index1:8, q:"What help do you need this week?", a:0, answers:[
-    "I need help with my homework.","I need help becoming invisible.","I need help talking to clouds.","I need help stopping time."]},
+  {index1:8, q:"Do you want to travel by train or plane?", a:0, answers:[
+    "I want to travel by plane.","I want to travel by dragon.","I want to travel by cloud.","I want to travel by dream."]},
 
-  {index1:9, q:"How do you help at school?", a:0, answers:[
-    "I help by cleaning the classroom.","I help by sleeping in class.","I help by eating the chalk.","I help by hiding under my desk."]},
+  {index1:9, q:"What famous place do you want to see?", a:0, answers:[
+    "I want to see a famous temple.","I want to see invisible mountains.","I want to see a secret door.","I want to see the end of the sky."]},
 
-  {index1:10, q:"Can you give me an example of a polite request?", a:0, answers:[
-    "“Could you open the door, please?”","“OPEN IT NOW!”","“Door, open yourself.”","“I command the door.”"]},
+  {index1:10, q:"Do you like to plan or be free?", a:0, answers:[
+    "I like to plan my trip.","I like to follow random stars.","I like to let the wind decide.","I like to flip a coin forever."]},
 
-  {index1:11, q:"What should we do in an emergency?", a:0, answers:[
-    "We should ask for help.","We should panic forever.","We should sing loudly.","We should hide from everyone."]},
+  {index1:11, q:"How do you buy tickets?", a:0, answers:[
+    "I buy tickets online.","I ask the wind for tickets.","I find tickets in dreams.","I draw tickets on paper."]},
 
-  {index1:12, q:"Who helps you the most?", a:0, answers:[
-    "My family helps me the most.","My chair helps me the most.","My shadow helps me the most.","My homework helps me the most."]},
+  {index1:12, q:"What apps help you when you travel?", a:0, answers:[
+    "Map apps help me when I travel.","Magic apps help me disappear.","Time apps stop time.","Cloud apps move the sky."]},
 
-  {index1:13, q:"How do you thank people?", a:0, answers:[
-    "I say thank you.","I throw a potato.","I disappear quietly.","I shout into the sky."]},
+  {index1:13, q:"What souvenirs will you buy?", a:0, answers:[
+    "I will buy small souvenirs.","I will buy invisible souvenirs.","I will buy ancient air.","I will buy glowing stones."]},
 
-  {index1:14, q:"Do you like helping others? Why?", a:0, answers:[
-    "Yes, because it makes people happy.","No, because helping is loud.","Yes, because I get magic powers.","No, because chairs need help more."]},
+  {index1:14, q:"What language will you use?", a:0, answers:[
+    "I will use English.","I will use moon language.","I will use dream language.","I will use silent language."]},
 
-  {index1:15, q:"When is it hard to ask for help?", a:0, answers:[
-    "It is hard when I feel shy.","It is hard when gravity stops.","It is hard on invisible days.","It is never hard on Mars."]}
+  {index1:15, q:"How will you stay safe?", a:0, answers:[
+    "I will stay safe and follow the rules.","I will hide in a cloud.","I will freeze time.","I will disappear completely."]}
 ];
+
 
 function shuffle(a){
   for(let i=a.length-1;i>0;i--){
@@ -767,28 +768,71 @@ let iosSelectedIndex=null;
 let iosFirstAttempt=true;
 
 /*------------------------------------------------------------
-  [F] CORRECT ANSWER TRANSLATIONS — February Week 4
+  [F] CORRECT ANSWER TRANSLATIONS — April Week 4
   Notes:
   - Single strings (no arrays) so TTS/reading is always natural.
 ------------------------------------------------------------*/
 const ANSWER_TRANSLATIONS = {
-  1:{ en:"I say, “Can you help me, please?”", jp:"「手伝ってもらえますか」と言います。", hi:"てつだって もらえますか と いいます" },
-  2:{ en:"I helped someone yesterday.", jp:"私は昨日だれかを手伝いました。", hi:"わたしは きのう だれか を てつだいました" },
-  3:{ en:"I can ask someone to help me.", jp:"だれかに手伝ってもらうことができます。", hi:"だれかに てつだって もらう ことが できます" },
-  4:{ en:"I ask politely for directions.", jp:"道をていねいに聞きます。", hi:"みちを ていねいに ききます" },
-  5:{ en:"I can lend a pen to a friend.", jp:"友だちにペンを貸すことができます。", hi:"ともだちに ぺん を かす ことが できます" },
-  6:{ en:"I say, “Sorry, I can’t.”", jp:"「ごめんなさい、できません」と言います。", hi:"ごめんなさい できません と いいます" },
-  7:{ en:"I say it after someone thanks me.", jp:"だれかに感謝されたあとに言います。", hi:"だれかに かんしゃ された あとに いいます" },
-  8:{ en:"I need help with my homework.", jp:"宿題の手伝いが必要です。", hi:"しゅくだい の てつだい が ひつよう です" },
-  9:{ en:"I help by cleaning the classroom.", jp:"教室をそうじして手伝います。", hi:"きょうしつ を そうじ して てつだいます" },
-  10:{ en:"“Could you open the door, please?”", jp:"「ドアを開けていただけますか？」", hi:"どあ を あけて いただけますか" },
-  11:{ en:"We should ask for help.", jp:"助けを求めるべきです。", hi:"たすけ を もとめる べき です" },
-  12:{ en:"My family helps me the most.", jp:"一番助けてくれるのは家族です。", hi:"いちばん たすけて くれる のは かぞく です" },
-  13:{ en:"I say thank you.", jp:"ありがとうと言います。", hi:"ありがとう と いいます" },
-  14:{ en:"Yes, because it makes people happy.", jp:"はい、人を幸せにできるからです。", hi:"はい ひとを しあわせに できる から です" },
-  15:{ en:"It is hard when I feel shy.", jp:"はずかしいときは難しいです。", hi:"はずかしい ときは むずかしい です" }
-};
+  1:{ en:"I would like to go to Okinawa.",
+      jp:"沖縄に行ってみたいです。",
+      hi:"おきなわ に いって みたい です" },
 
+  2:{ en:"I would like to eat local food.",
+      jp:"その土地の食べ物を食べてみたいです。",
+      hi:"その とち の たべもの を たべて みたい です" },
+
+  3:{ en:"I would like to travel with my friend.",
+      jp:"友だちと旅行したいです。",
+      hi:"ともだち と りょこう したい です" },
+
+  4:{ en:"I would like to travel next summer.",
+      jp:"来年の夏に旅行したいです。",
+      hi:"らいねん の なつ に りょこう したい です" },
+
+  5:{ en:"I will get there by train.",
+      jp:"電車でそこへ行きます。",
+      hi:"でんしゃ で そこ へ いきます" },
+
+  6:{ en:"I will pack my clothes and passport.",
+      jp:"服とパスポートをつめます。",
+      hi:"ふく と ぱすぽーと を つめます" },
+
+  7:{ en:"I prefer a hotel.",
+      jp:"ホテルのほうがいいです。",
+      hi:"ほてる の ほう が いい です" },
+
+  8:{ en:"I want to travel by plane.",
+      jp:"飛行機で旅行したいです。",
+      hi:"ひこうき で りょこう したい です" },
+
+  9:{ en:"I want to see a famous temple.",
+      jp:"有名なお寺を見たいです。",
+      hi:"ゆうめい な おてら を みたい です" },
+
+  10:{ en:"I like to plan my trip.",
+       jp:"旅行の計画を立てるのが好きです。",
+       hi:"りょこう の けいかく を たてる の が すき です" },
+
+  11:{ en:"I buy tickets online.",
+       jp:"オンラインでチケットを買います。",
+       hi:"おんらいん で ちけっと を かいます" },
+
+  12:{ en:"Map apps help me when I travel.",
+       jp:"地図アプリは旅行のとき役に立ちます。",
+       hi:"ちず あぷり は りょこう の とき やく に たちます" },
+
+  13:{ en:"I will buy small souvenirs.",
+       jp:"小さなおみやげを買います。",
+       hi:"ちいさな おみやげ を かいます" },
+
+  14:{ en:"I will use English.",
+       jp:"英語を使います。",
+       hi:"えいご を つかいます" },
+
+  15:{ en:"I will stay safe and follow the rules.",
+       jp:"安全に過ごしてルールを守ります。",
+       hi:"あんぜん に すごして るーる を まもります" }
+};
 
 /*------------------------------------------------------------
   [G] SAGE QUESTION AUDIO
