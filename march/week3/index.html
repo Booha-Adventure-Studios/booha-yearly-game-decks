@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>The Boo-riculum – February Week 3 Game Deck</title>
+<title>The Boo-riculum – March Week 3 Game Deck</title>
 <meta name="theme-color" content="#000">
 <link rel="icon" type="image/png" href="BoohaYellow.png">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet" />
@@ -17,22 +18,24 @@
 /* Reset & layout */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{
-  height:100%;
+  min-height:100%;
   font-family:'Cinzel',serif;
   background:#000;
   color:#fff;
-  overflow:hidden;
+  overflow-x:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
 }
 #welcome{
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  height:100%;
+  min-height:100svh;
   text-align:center;
   animation:fadeIn 1s ease;
   position:relative;
-  padding:1rem;
+  padding:1rem 1rem 2rem;
 }
 h1{font-size:clamp(32px,5vw,60px);margin-bottom:.4em;font-weight:900;}
 h2{font-size:clamp(22px,3vw,36px);margin-bottom:.3em;font-weight:800;color:#ccc;}
@@ -53,7 +56,7 @@ h3{font-size:clamp(18px,2.5vw,28px);color:#aaa;margin-bottom:2em;}
    Boxes
    ========================= */
 
-/* ✅ FIX: keep ALL tile titles centered (even while moving) */
+/* keep ALL tile titles centered */
 a.deck{
   text-align:center;
 }
@@ -102,11 +105,6 @@ a.deck.active{
 /* Hide original tile when animating a clone */
 a.deck.is-hidden{ visibility:hidden; }
 
-/* ======================================================
-   🎨 DECK BACKGROUND COLORS (DATA-BASED)
-   December 19, 2026 – Fix for clone animation losing
-   :nth-child() background during motion
-   ====================================================== */
 /* Base colors */
 a.deck:nth-child(1){background:var(--pink);}
 a.deck:nth-child(2){background:var(--blue);}
@@ -114,9 +112,6 @@ a.deck:nth-child(3){background:var(--yellow);}
 a.deck:nth-child(4){background:var(--purple);}
 a.deck:nth-child(5){background:var(--mint);}
 a.deck:nth-child(6){background:var(--orange);}
-
-
-
 
 /* Spiral animation */
 a.deck::after{
@@ -163,14 +158,14 @@ a.deck span{
   z-index:1;
 }
 
-/* ✅ Title block */
+/* Title block */
 a.deck b{
   position:relative;
   z-index:1;
   display:block;
 }
 
-/* ✅ Multi-line long title support (only used when you add spans) */
+/* Multi-line long title support */
 a.deck b .tline{
   display:block;
   line-height:1.05;
@@ -193,13 +188,15 @@ a.deck b .tline.small{
   from{opacity:0;}
   to{opacity:1;}
 }
+
 footer{
-  position:absolute;
-  bottom:20px;
+  position:static;
   width:100%;
   text-align:center;
   font-size:clamp(14px,2vw,18px);
   color:#888;
+  margin-top:1.5rem;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom));
 }
 
 /* Sparkles */
@@ -238,7 +235,9 @@ footer{
 @media (max-width: 768px){
   #welcome{
     justify-content:flex-start;
+    min-height:100svh;
     padding-top:1.5rem;
+    padding-bottom:1.5rem;
   }
   h1{margin-bottom:.2em;}
   h2{margin-bottom:.2em;}
@@ -249,7 +248,7 @@ footer{
   }
   footer{
     font-size:13px;
-    bottom:10px;
+    margin-top:1rem;
   }
 
   /* Slightly smaller title lines on mobile */
@@ -294,7 +293,6 @@ footer{
     const params = new URLSearchParams(window.location.search);
     let token = params.get('token');
 
-    // fallback: token passed from Adventure / other deck
     if (!token) {
       try { token = sessionStorage.getItem('boohaToken'); } catch {}
     }
@@ -323,10 +321,8 @@ footer{
         return;
       }
 
-      // ✅ token is valid — keep it for child pages
       try { sessionStorage.setItem('boohaToken', token); } catch {}
 
-      // ✅ append token to all internal links (games)
       document.querySelectorAll('a[href]').forEach(a => {
         const href = a.getAttribute('href');
         if (!href) return;
@@ -345,8 +341,6 @@ footer{
 </script>
 <!-- 🔐 END BOOHA TOKEN GATE -->
 
-
-  
 <section id="welcome">
   <h1>The Boo-riculum</h1>
   <h2>ブー・リキュラム</h2>
@@ -358,7 +352,6 @@ footer{
     <a class="deck" href="wordbuilder.html"><b>Word Builder</b><span>ワードビルダー</span></a>
     <a class="deck" href="eigoperapera.html"><b>Eigo Pera Pera</b><span>英語ペラペラ</span></a>
 
-    <!-- ✅ Long title: 2 lines (nice, centered, same animations/music as before) -->
     <a class="deck" href="makethesentences.html">
       <b>
         <span class="tline">MAKE THE</span>
@@ -429,24 +422,17 @@ if (deckContainer) {
     const target = deck.getAttribute('href');
     const fadeScreen = document.getElementById('fadeScreen');
 
-    // stop intro (optional)
     if (intro) { try { intro.pause(); } catch(_){} }
 
-    // play opening sound immediately
     safePlay(openSound, 1);
 
-    // make it "alive"
     deck.classList.add('active');
     deck.style.setProperty('--spinDur','1.2s');
 
-    // ---- SMOOTH CLONE ANIMATION (no grid jitter) ----
     const r = deck.getBoundingClientRect();
 
-   // FIX (Dec 19, 2026): preserve background color on cloned tiles
-// nth-child() styles no longer apply once the tile is moved to <body>
-const clone = deck.cloneNode(true);
-clone.style.background = getComputedStyle(deck).background;
-
+    const clone = deck.cloneNode(true);
+    clone.style.background = getComputedStyle(deck).background;
 
     clone.classList.add('active');
     clone.style.setProperty('--spinDur','1.2s');
@@ -472,14 +458,11 @@ clone.style.background = getComputedStyle(deck).background;
     const maxHeightScale = (window.innerHeight * 0.9) / r.height;
     const safeScale = Math.min(3, maxWidthScale, maxHeightScale);
 
-    // ===== 5s AUDIO: slightly longer so it never cuts out =====
-    const MOVE_MS = 5500;  // finishes after the music
-    const OPEN_MS = 5800;  // open after audio fully ends
+    const MOVE_MS = 5500;
+    const OPEN_MS = 5800;
 
-    // sparkle pop on click
     sparkleBurst(r, 35);
 
-    // swipe near the end of the music
     if (fadeScreen) {
       setTimeout(() => {
         fadeScreen.classList.remove('show');
@@ -487,7 +470,6 @@ clone.style.background = getComputedStyle(deck).background;
       }, 4700);
     }
 
-    // animate clone to center
     clone.animate(
       [
         { transform: 'translate(0px,0px) scale(1)' },
@@ -496,7 +478,6 @@ clone.style.background = getComputedStyle(deck).background;
       { duration: MOVE_MS, easing: 'ease-in-out', fill: 'forwards' }
     );
 
-    // navigate after sound + swipe finish
     setTimeout(() => {
       window.location.href = target;
     }, OPEN_MS);
